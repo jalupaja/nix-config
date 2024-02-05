@@ -1,10 +1,9 @@
 { config, pkgs, ... }:
 {
 imports = [
-#./vim.nix
+./vim.nix
 #./ssh.nix
 ./firefox.nix
-#./hyperland.nix
 ];
 
 home.username = "jalupa";
