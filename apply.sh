@@ -1,3 +1,4 @@
 #!/bin/sh
-git add .
+
+# git add .
 sudo nixos-rebuild switch --flake .# --show-trace
