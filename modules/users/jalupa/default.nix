@@ -1,11 +1,13 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 {
+  #extraSpecialArgs = { inherit inputs; };
   imports = [
     ./vim.nix
     #./ssh.nix
     ./firefox.nix
     ./hyprland.nix
-    #./waybar.nix
+    ./waybar.nix
+    ./wpaperd.nix
   ];
 
   home.username = "jalupa";
@@ -18,6 +20,11 @@
     keepassxc
     bitwarden
     kitty
-    bemenu
+    tldr
+    dolphin
+    feh
+
+    bemenu # TODO implement
+    dunst # TODO implement
   ];
 }	
