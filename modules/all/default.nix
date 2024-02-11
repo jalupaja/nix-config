@@ -12,12 +12,20 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-# Bootloader.
-boot.loader.systemd-boot.enable = true;
-boot.loader.efi.canTouchEfiVariables = true;
+  fonts.packages = with pkgs; [
+    nerdfonts
+    noto-fonts
+    noto-fonts-cjk
+    noto-fonts-emoji
+    liberation_ttf
+  ];
 
-boot.initrd.luks.devices."luks-292a6341-056b-4f7f-ac96-55708436bfae".device = "/dev/disk/by-uuid/292a6341-056b-4f7f-ac96-55708436bfae";
-networking.hostName = "debian"; # Define your hostname.
+  # Bootloader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
+  boot.initrd.luks.devices."luks-292a6341-056b-4f7f-ac96-55708436bfae".device = "/dev/disk/by-uuid/292a6341-056b-4f7f-ac96-55708436bfae";
+  networking.hostName = "debian"; # Define your hostname.
 # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
 # Configure network proxy if necessary
@@ -46,30 +54,6 @@ i18n.extraLocaleSettings = {
 };
 
 programs.hyprland.enable = true;
-    #wayland.windowManager.hyprland = {
-    #  input = {
-    #    kb_layout = "eu";
-    #    kb_options = "caps:escape_shifted_capslock";
-    #    touchpad.disable_while_typing = true;
-    #  };
-
-#      layerrule = [
-#        "blur"
-#        "ignorezero"
-#      ];
-
-      #decoration = {
-      #  active_opacity = 0.97;
-      #  inactive_opacity = 0.77;
-      #  fullscreen_opacity = 1.0;
-        #blur = {
-          #enabled = true;
-          #size = 5;
-          #passes = 3;
-          #new_optimizations = true;
-        #};
-      #};
-    #};
 
 # Enable the X11 windowing system.
 #	services.xserver.enable = true;
@@ -115,8 +99,6 @@ users.users.jalupa = {
   isNormalUser = true;
   description = "jalupa";
   extraGroups = [ "networkmanager" "wheel" ];
-  packages = with pkgs; [
-  ];
 };
 
 # Allow unfree packages
