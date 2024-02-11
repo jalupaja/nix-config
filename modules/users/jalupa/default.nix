@@ -4,7 +4,8 @@
     ./vim.nix
     #./ssh.nix
     ./firefox.nix
-    #./hyprland.nix
+    ./hyprland.nix
+    #./waybar.nix
   ];
 
   home.username = "jalupa";
@@ -17,6 +18,6 @@
     keepassxc
     bitwarden
     kitty
+    bemenu
   ];
-
 }	

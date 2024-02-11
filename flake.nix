@@ -11,7 +11,7 @@
         #hyprland.url = "github:hyprwm/Hyprland";
       };
 
-      outputs = { self, nixpkgs, home-manager, nur, ...}: 
+      outputs = { self, nixpkgs, home-manager, nur, ...}@inputs: 
       let
         pkgs = import nixpkgs {
           system = "x86_64-linux";
@@ -22,8 +22,8 @@
       in
       {
 
+        extraSpecialArgs = { inherit inputs; };
         nixosConfigurations."debian" = nixpkgs.lib.nixosSystem {
-          system = "x80_64-linux";
           modules = [ 
             home-manager.nixosModules.home-manager ( import ./modules/home-manager.nix )
             ./modules/all
