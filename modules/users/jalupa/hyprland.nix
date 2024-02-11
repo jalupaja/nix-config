@@ -1,17 +1,22 @@
-{ pkgs, lib, config, inputs, ... }: 
+{ pkgs, lib, inputs, ... }: 
 let
   startupscript = pkgs.pkgs.writeShellScriptBin "startup" ''
     ${pkgs.waybar}/bin/waybar &
+
+    wpaperd
   '';
     in
 {
+  #extraSpecialArgs = { inherit inputs; };
   wayland.windowManager.hyprland = {
+    #extraSpecialArgs = { inherit inputs; };
     enable = true;
 
-# https://github.com/hyprwm/hyprland-plugins
-#    plugins = [
-#      hyprland-plugins.packagsd."${pkgs.system}".
-#    ]
+    #home-manager = true;
+
+    plugins = [
+      #split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces
+    ];
 
     settings = {
       "$terminal" = "${pkgs.kitty}/bin/kitty";
@@ -30,10 +35,10 @@ let
 
       general = {
         gaps_in = 5;
-        gaps_out = 20;
-        border_size = 1;
+        gaps_out = 10;
+          border_size = 2;
         # TODO change to orange?
-        "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
+        "col.active_border" = "rgba(e64c00ee) rgba(9933ffee) 45deg";
         "col.inactive_border" = "rgba(595959aa)";
 
         layout = "dwindle";
@@ -49,8 +54,8 @@ let
       decoration = {
         rounding = 10;
 
-        active_opacity = 0.97;
-        inactive_opacity = 0.77;
+        active_opacity = 0.90;
+        inactive_opacity = 0.75;
         fullscreen_opacity = 1.0;
 
         blur = {
@@ -135,7 +140,8 @@ let
         "$mod, space, togglespecialworkspace, special:scratch"
 
         # window
-        "$mod, M, fullscreen"
+        "$mod, M, fullscreen, 1"
+        "$mod CTRL, M, fullscreen, 0"
         "$mod, F, togglefloating"
         "$mod SHIFT, 0, pin"
 

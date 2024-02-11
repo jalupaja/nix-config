@@ -8,8 +8,18 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nur.url = "github:nix-community/NUR";
-        #hyprland.url = "github:hyprwm/Hyprland";
-      };
+
+    hyprland.url = "github:hyprwm/Hyprland";
+    # Hyprland plugins
+    #hyprland-plugins = {
+    #  url = "github:hyprwm/hyprland-plugins";
+    #  inputs.hyprland.follows = "hyprland";
+    #};
+    split-monitor-workspaces = {
+      url = "github:Duckonaut/split-monitor-workspaces";
+      inputs.hyprland.follows = "hyprland";
+    };
+  };
 
       outputs = { self, nixpkgs, home-manager, nur, ...}@inputs: 
       let
@@ -29,8 +39,6 @@
             ./modules/all
             ./hardware/touch-notebook.nix
             nur.nixosModules.nur
-                #hyprland.homeManagerModules.default
-                #{wayland.windowManager.hyprland.enable = true;}
               ];
               specialArgs = {
                 nur = pkgs.nur;

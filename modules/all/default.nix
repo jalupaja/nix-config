@@ -53,8 +53,6 @@ i18n.extraLocaleSettings = {
   LC_TIME = "de_DE.UTF-8";
 };
 
-programs.hyprland.enable = true;
-
 # Enable the X11 windowing system.
 #	services.xserver.enable = true;
 
@@ -103,6 +101,8 @@ users.users.jalupa = {
 
 # Allow unfree packages
 nixpkgs.config.allowUnfree = true;
+
+programs.hyprland.enable = true;
 
 # Some programs need SUID wrappers, can be configured further or are
 # started in user sessions.
