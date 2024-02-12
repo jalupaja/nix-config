@@ -5,6 +5,6 @@
     neofetch
     wget
     git
-    sshfs
+    htop
   ];
 }

@@ -19,9 +19,13 @@
       url = "github:Duckonaut/split-monitor-workspaces";
       inputs.hyprland.follows = "hyprland";
     };
+    hyprgrass = {
+      url = "github:horriblename/hyprgrass";
+      inputs.hyprland.follows = "hyprland";
+    };
   };
 
-      outputs = { self, nixpkgs, home-manager, nur, ...}@inputs: 
+      outputs = { self, nixpkgs, home-manager, split-monitor-workspaces, hyprgrass, nur, ...}@inputs: 
       let
         pkgs = import nixpkgs {
           system = "x86_64-linux";
@@ -31,7 +35,6 @@
         };
       in
       {
-
         extraSpecialArgs = { inherit inputs; };
         nixosConfigurations."debian" = nixpkgs.lib.nixosSystem {
           modules = [ 
@@ -42,6 +45,7 @@
               ];
               specialArgs = {
                 nur = pkgs.nur;
+                inherit inputs;
               };
             };
 

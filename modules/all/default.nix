@@ -26,7 +26,7 @@
 
   boot.initrd.luks.devices."luks-292a6341-056b-4f7f-ac96-55708436bfae".device = "/dev/disk/by-uuid/292a6341-056b-4f7f-ac96-55708436bfae";
   networking.hostName = "debian"; # Define your hostname.
-# networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
 # Configure network proxy if necessary
 # networking.proxy.default = "http://user:password@proxy:port/";
@@ -76,6 +76,7 @@ services.printing.enable = true;
 sound.enable = true;
 hardware.pulseaudio.enable = false;
 security.rtkit.enable = true;
+security.pam.services.swaylock = {};
 services.pipewire = {
   enable = true;
   alsa.enable = true;
@@ -96,8 +97,13 @@ services.pipewire = {
 users.users.jalupa = {
   isNormalUser = true;
   description = "jalupa";
-  extraGroups = [ "networkmanager" "wheel" ];
+  extraGroups = [ "networkmanager" "wheel" "video"];
 };
+
+services.udev.extraRules = ''
+    ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="intel_backlight", MODE="0666", RUN+="${pkgs.coreutils}/bin/chmod a+w /sys/class/backlight/%k/brightness"
+  '';
+
 
 # Allow unfree packages
 nixpkgs.config.allowUnfree = true;
