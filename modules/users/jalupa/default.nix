@@ -8,6 +8,11 @@
     ./hyprland.nix
     ./waybar.nix
     ./wpaperd.nix
+    ./swaylock.nix
+    ./bemenu.nix
+    ./clipman.nix
+    ./dunst.nix
+    ./udiskie.nix
   ];
 
   home.username = "jalupa";
@@ -23,8 +28,12 @@
     tldr
     dolphin
     feh
-
-    bemenu # TODO implement
-    dunst # TODO implement
+    grim
+    slurp
+    libnotify
+    tor-browser-bundle-bin
+    brave
+    # TODO implement script: https://github.com/coldfix/udiskie/wiki/Usage
+    # TODO https://sr.ht/~emersion/grim/ (also in hyprmanager)
   ];
 }	
