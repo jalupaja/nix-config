@@ -4,9 +4,12 @@ let
     ${pkgs.waybar}/bin/waybar &
 
     wpaperd
+    wl-paste -p -t text --watch clipman store -P --histpath="~/.local/share/clipman-primary.json"
   '';
-    in
-{
+  scripts = "~/.config/jalupa_config/dmenuscripts";
+in
+  with inputs;
+  {
   #extraSpecialArgs = { inherit inputs; };
   wayland.windowManager.hyprland = {
     #extraSpecialArgs = { inherit inputs; };
@@ -15,12 +18,18 @@ let
     #home-manager = true;
 
     plugins = [
+      hyprgrass.packages.${pkgs.system}.default
       #split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces
     ];
 
     settings = {
       "$terminal" = "${pkgs.kitty}/bin/kitty";
-      "$runprompt" = "~/.config/jalupa_config/dmenuscripts/selector";
+      "$runprompt" = "${scripts}/selector";
+      "$lock" = "${pkgs.swaylock}/bin/swaylock";
+      "$volume" = "${scripts}/volume";
+      "$brightness" = "${scripts}/brightness";
+      # TODO implement screenshot bemenu script
+      # TODO fix screenshot thing
 
       exec-once = ''${startupscript}/bin/startup'';
 
@@ -36,7 +45,7 @@ let
       general = {
         gaps_in = 5;
         gaps_out = 10;
-          border_size = 2;
+        border_size = 2;
         # TODO change to orange?
         "col.active_border" = "rgba(e64c00ee) rgba(9933ffee) 45deg";
         "col.inactive_border" = "rgba(595959aa)";
@@ -95,6 +104,7 @@ let
 
       gestures = {
         workspace_swipe = true;
+        workspace_swipe_cancel_ratio = 0.15;
       };
 
       misc = {
@@ -107,6 +117,9 @@ let
         # apps
         "$mod, return, exec, $terminal"
         "CTRL, space, exec, $runprompt"
+        "$mod SHIFT, L, exec, $lock"
+        "$mod, V, exec, clipman pick -t bemenu"
+        "$mod SHIFT, S, exec, grim"
 
         # kill window
         "$mod, Q, killactive"
@@ -139,6 +152,10 @@ let
         "$mod, 9, workspace, 9"
         "$mod, space, togglespecialworkspace, special:scratch"
 
+        # touch workspaces
+        " , edge:l:r, workspace, e-1"
+        " , edge:r:l, workspace, e+1"
+
         # window
         "$mod, M, fullscreen, 1"
         "$mod CTRL, M, fullscreen, 0"
@@ -160,6 +177,13 @@ let
         # Scroll through exisiting workspaces
         "$mod, mouse_down, workspace, e+1"
         "$mod, mouse_up, workspace, e-1"
+
+        # volume keys
+        #"AudioLowerVolume, exec, $volume"
+        #", AUDIOLOWERVOLUME, exec, $runprompt"
+        #"AudioRaiseVolume, exec, $volume"
+
+        # brightness keys
       ];
 
       # resize window
@@ -252,6 +276,6 @@ let
           bind = , escape, submap, reset
           bind = , return, submap, reset
           submap = reset
-      '';
+    '';
   };
 }
