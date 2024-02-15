@@ -42,7 +42,7 @@ in
                                     --fade-in 0.2";
       "$volume" = "${scripts}/volume";
       "$brightness" = "${scripts}/brightness";
-      # TODO implement screenshot bemenu script
+      # TODO implement screenshot dmenu script
       # TODO fix screenshot thing
 
       exec-once = ''${startupscript}/bin/startup'';
@@ -132,7 +132,7 @@ in
         "$mod, return, exec, $terminal"
         "CTRL, space, exec, $runprompt"
         "$mod SHIFT, L, exec, $lock"
-        "$mod, V, exec, clipman pick -t bemenu"
+        "$mod, V, exec, clipman pick -t STDOUT | fuzzel --dmenu"
         "$mod SHIFT, S, exec, grim"
 
         # kill window
