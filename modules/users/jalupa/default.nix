@@ -35,6 +35,7 @@
     brave
     swaylock-effects #TODO improve config (hyprland.nix)
 
+    playerctl
     # TODO implement script: https://github.com/coldfix/udiskie/wiki/Usage
     # TODO https://sr.ht/~emersion/grim/ (also in hyprmanager)
   ];

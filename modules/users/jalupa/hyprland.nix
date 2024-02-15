@@ -1,8 +1,7 @@
 { pkgs, lib, inputs, ... }: 
 let
+    #${pkgs.waybar}/bin/waybar &
   startupscript = pkgs.pkgs.writeShellScriptBin "startup" ''
-    ${pkgs.waybar}/bin/waybar &
-
     wpaperd
     wl-paste -p -t text --watch clipman store -P --histpath="~/.local/share/clipman-primary.json"
   '';
@@ -193,11 +192,18 @@ in
         "$mod, mouse_up, workspace, e-1"
 
         # volume keys
-        #"AudioLowerVolume, exec, $volume"
-        #", AUDIOLOWERVOLUME, exec, $runprompt"
-        #"AudioRaiseVolume, exec, $volume"
+        ", XF86AudioRaiseVolume, exec, $volume -i"
+        ", XF86AudioLowerVolume, exec, $volume -d"
+        ", XF86AudioMute, exec, $volume -t"
+        ", XF86AudioMicMute, exec, $volume -m"
+        ", XF86AudioPlay, exec, playerctl play-pause"
+        ", XF86AudioPause, exec, playerctl play-pause"
+        ", XF86AudioNext, exec, playerctl next"
+        ", XF86AudioPrev, exec, playerctl previous"
 
         # brightness keys
+        ", XF86MonBrightnessUp, exec, $brightness -i"
+        ", XF86MonBrightnessDown, exec, $brightness -d"
       ];
 
       # resize window
