@@ -16,8 +16,8 @@
 
       # cd stuff
       doc = "cd ~/Documents";
-      dot = "cd ~/.config/jalupa-config/dmenuscripts";
-      nix = "cd ~/.config/nix-xonfig";
+      dot = "cd ~/.config/jalupa_config/dmenuscripts";
+      nix = "cd ~/.config/nix-config";
       ".." = "cd ..";
       "..." = "cd ../..";
       "...." = "cd ../../..";
