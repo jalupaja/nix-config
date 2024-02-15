@@ -1,7 +1,7 @@
 { pkgs, lib, inputs, ... }: 
 {  
   programs.swaylock = {
-    enable = true;
+    enable = false;
     settings = {
       no-unlock-indicator = true;
       color = "303030";  

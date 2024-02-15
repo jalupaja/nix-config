@@ -8,11 +8,10 @@
     ./hyprland.nix
     ./waybar.nix
     ./wpaperd.nix
-    ./swaylock.nix
-    ./bemenu.nix
     ./clipman.nix
     ./dunst.nix
     ./udiskie.nix
+    ./fuzzel.nix
   ];
 
   home.username = "jalupa";
@@ -33,6 +32,8 @@
     libnotify
     tor-browser-bundle-bin
     brave
+    swaylock-effects #TODO improve config (hyprland.nix)
+
     # TODO implement script: https://github.com/coldfix/udiskie/wiki/Usage
     # TODO https://sr.ht/~emersion/grim/ (also in hyprmanager)
   ];

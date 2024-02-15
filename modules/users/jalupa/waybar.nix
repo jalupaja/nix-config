@@ -1,5 +1,7 @@
 { pkgs, config, ... }: 
 let
+  scripts = "~/.config/jalupa_config/dmenuscripts";
+
   batteryScript = pkgs.writeShellScriptBin "batteryScript" ''
     cat /sys/class/power_supply/BAT0/capacity
   '';
@@ -20,7 +22,9 @@ let
       #"hyprland/language"
       "network"
       "bluetooth"
+      "pulseaudio"
       "pulseaudio#microphone"
+      "cpu"
       "custom/battery"
       "clock"
       #"tray"
@@ -97,6 +101,7 @@ let
 
     "custom/logo" = {
       exec = "echo ' '";
+      on-click = "${pkgs.kitty}/bin/kitty";
       format = "{}";
       tooltip = false;
     };
@@ -127,13 +132,13 @@ let
     };
 
     network = {
-      format-disconnected = "  Disconnected";
-      format-ethernet = "󱘖  Wired";
-      format-linked = "󱘖  {ifname} (No IP)";
-      format-wifi = "󰤨  {essid}";
+      format-disconnected = " ";
+      format-ethernet = "󱘖 ";
+      format-linked = "󱘖 -";
+      format-wifi = "󰤨 ";
       interval = 5;
       max-length = 30;
-      tooltip-format = "󱘖 {ipaddr}  {bandwidthUpBytes}  {bandwidthDownBytes}";
+      tooltip-format = "󱘖 {essid} {ifname} {ipaddr}  {bandwidthUpBytes}  {bandwidthDownBytes}";
     };
 
     pulseaudio = {
@@ -147,11 +152,10 @@ let
         phone = " ";
         portable = " ";
       };
-      format-muted = "婢 {volume}%";
-      on-click = "pavucontrol -t 3";
-      on-click-middle = "pamixer -t";
-      on-scroll-down = "pamixer -d 5";
-      on-scroll-up = "pamixer -i 5";
+      format-muted = "🔇 {volume}%";
+      on-click = "${scripts}/volume -t";
+      on-scroll-down = "${scripts}/volume -d";
+      on-scroll-up = "${scripts}/volume -i";
       scroll-step = 5;
       tooltip-format = "{icon} {desc} {volume}%";
     };
@@ -160,10 +164,9 @@ let
       format = "{format_source}";
       format-source = "  {volume}%";
       format-source-muted = "  {volume}%";
-      on-click = "pavucontrol -t 4";
-      on-click-middle = "pamixer --default-source -t";
-      on-scroll-down = "pamixer --default-source -d 5";
-      on-scroll-up = "pamixer --default-source -i 5";
+      on-click = "${scripts}/volume -m";
+      on-scroll-down = "${scripts}/volume -l";
+      on-scroll-up = "${scripts}/volume -u";
       scroll-step = 5;
     };
 
@@ -241,10 +244,10 @@ let
     /* resource monitor block */
 
     #cpu {
+      color: @yellow_1;
       border-radius: 10px 0px 0px 10px;
-      margin-left: 25px;
-      padding-left: 12px;
-      padding-right: 4px;
+      padding-left: 2px;
+      padding-right: 2px;
     }
 
     #memory {
