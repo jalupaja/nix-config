@@ -1,7 +1,8 @@
 { config, pkgs, inputs, ... }:
 {
-  #extraSpecialArgs = { inherit inputs; };
   imports = [
+    ./zsh.nix
+    ./starship.nix
     ./vim.nix
     #./ssh.nix
     ./firefox.nix
@@ -13,7 +14,6 @@
     #./udiskie.nix
     ./fuzzel.nix
   ];
-  services.udiskie.enable = true;
 
   home.username = "jalupa";
   home.homeDirectory = "/home/jalupa";
