@@ -108,7 +108,7 @@ let
 
     "custom/logo" = {
       exec = "echo ' '";
-      on-click = "${pkgs.kitty}/bin/kitty";
+      on-click = "${pkgs.foot}/bin/foot";
       format = "{}";
       tooltip = false;
     };
