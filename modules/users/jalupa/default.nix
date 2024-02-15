@@ -1,6 +1,9 @@
 { config, pkgs, inputs, ... }:
 {
+
+  #jalupa.shell = pkgs.zsh;
   imports = [
+    ./kitty.nix
     ./zsh.nix
     ./starship.nix
     ./vim.nix
@@ -24,7 +27,7 @@
     signal-desktop
     keepassxc
     bitwarden
-    kitty
+    st
     tldr
     dolphin
     feh

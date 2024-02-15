@@ -1,4 +1,4 @@
-{nur, inputs, ...}:
+{nur, pkgs, inputs, ...}:
 {
   home-manager = {
     useGlobalPkgs = true;
@@ -11,4 +11,8 @@
       jalupa = import ./users/jalupa;
     };
   };
+
+  # TODO move and prob a better way to do this
+  users.users.jalupa.ignoreShellProgramCheck = true;
+  users.users.jalupa.shell = pkgs.zsh;
 }
