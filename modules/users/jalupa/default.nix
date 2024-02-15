@@ -16,6 +16,7 @@
     ./dunst.nix
     #./udiskie.nix
     ./fuzzel.nix
+    ./pqiv.nix
   ];
 
   home.username = "jalupa";
@@ -27,7 +28,7 @@
     signal-desktop
     keepassxc
     bitwarden
-    st
+    foot
     tldr
     dolphin
     feh
@@ -37,6 +38,7 @@
     tor-browser-bundle-bin
     brave
     swaylock-effects #TODO improve config (hyprland.nix)
+    mpv
 
     playerctl
     # TODO implement script: https://github.com/coldfix/udiskie/wiki/Usage
