@@ -10,16 +10,13 @@ let
 in
   with inputs;
   {
-  #extraSpecialArgs = { inherit inputs; };
   wayland.windowManager.hyprland = {
-    #extraSpecialArgs = { inherit inputs; };
     enable = true;
-
-    #home-manager = true;
+    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
 
     plugins = [
-      hyprgrass.packages.${pkgs.system}.default
-      #split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces
+      split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces
+      #hyprgrass.packages.${pkgs.system}.default
     ];
 
     settings = {
@@ -150,25 +147,22 @@ in
         "$mod, K, movefocus, u"
         "$mod, down, movefocus, d"
         "$mod, J, movefocus, d"
-        # TODO change to proper multi monitor setup (also add moving windows)
-        "$mod, period, focusmonitor, r+1"
-        "$mod, comma, focusmonitor, r-1"
 
         # workspaces
-        "$mod, 1, workspace, 1"
-        "$mod, 2, workspace, 2"
-        "$mod, 3, workspace, 3"
-        "$mod, 4, workspace, 4"
-        "$mod, 5, workspace, 5"
-        "$mod, 6, workspace, 6"
-        "$mod, 7, workspace, 7"
-        "$mod, 8, workspace, 8"
-        "$mod, 9, workspace, 9"
+        "$mod, 1, split-workspace, 1"
+        "$mod, 2, split-workspace, 2"
+        "$mod, 3, split-workspace, 3"
+        "$mod, 4, split-workspace, 4"
+        "$mod, 5, split-workspace, 5"
+        "$mod, 6, split-workspace, 6"
+        "$mod, 7, split-workspace, 7"
+        "$mod, 8, split-workspace, 8"
+        "$mod, 9, split-workspace, 9"
         "$mod, space, togglespecialworkspace, special:scratch"
 
         # touch workspaces
-        " , edge:l:r, workspace, e-1"
-        " , edge:r:l, workspace, e+1"
+        " , edge:l:r, split-workspace, e-1"
+        " , edge:r:l, split-workspace, e+1"
 
         # window
         "$mod, M, fullscreen, 1"
@@ -177,20 +171,22 @@ in
         "$mod SHIFT, 0, pin"
 
         # move to workspace
-        "$mod SHIFT, 1, movetoworkspace, 1"
-        "$mod SHIFT, 2, movetoworkspace, 2"
-        "$mod SHIFT, 3, movetoworkspace, 3"
-        "$mod SHIFT, 4, movetoworkspace, 4"
-        "$mod SHIFT, 5, movetoworkspace, 5"
-        "$mod SHIFT, 6, movetoworkspace, 6"
-        "$mod SHIFT, 7, movetoworkspace, 7"
-        "$mod SHIFT, 8, movetoworkspace, 8"
-        "$mod SHIFT, 9, movetoworkspace, 9"
+        "$mod SHIFT, 1, split-movetoworkspace, 1"
+        "$mod SHIFT, 2, split-movetoworkspace, 2"
+        "$mod SHIFT, 3, split-movetoworkspace, 3"
+        "$mod SHIFT, 4, split-movetoworkspace, 4"
+        "$mod SHIFT, 5, split-movetoworkspace, 5"
+        "$mod SHIFT, 6, split-movetoworkspace, 6"
+        "$mod SHIFT, 7, split-movetoworkspace, 7"
+        "$mod SHIFT, 8, split-movetoworkspace, 8"
+        "$mod SHIFT, 9, split-movetoworkspace, 9"
         "$mod SHIFT, space, movetoworkspace, special:scratch"
+        "$mod SHIFT, period, split-changemonitor, next"
+        "$mod SHIFT, comma, split-changemonitor, prev"
 
         # Scroll through exisiting workspaces
-        "$mod, mouse_down, workspace, e+1"
-        "$mod, mouse_up, workspace, e-1"
+        "$mod, mouse_down, split-workspace, e+1"
+        "$mod, mouse_up, split-workspace, e-1"
 
         # volume keys
         ", XF86AudioRaiseVolume, exec, $volume -i"
@@ -225,6 +221,12 @@ in
     };
 
     extraConfig = ''
+      plugin {
+        split-monitor-workspaces {
+          count = 9
+          }
+        }
+
           # window resize
           bind = $mod, R, submap, resize
 

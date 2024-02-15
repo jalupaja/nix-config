@@ -10,11 +10,6 @@
     nur.url = "github:nix-community/NUR";
 
     hyprland.url = "github:hyprwm/Hyprland";
-    # Hyprland plugins
-    #hyprland-plugins = {
-    #  url = "github:hyprwm/hyprland-plugins";
-    #  inputs.hyprland.follows = "hyprland";
-    #};
     split-monitor-workspaces = {
       url = "github:Duckonaut/split-monitor-workspaces";
       inputs.hyprland.follows = "hyprland";
@@ -25,33 +20,33 @@
     };
   };
 
-      outputs = { self, nixpkgs, home-manager, split-monitor-workspaces, hyprgrass, nur, ...}@inputs: 
-      let
-        pkgs = import nixpkgs {
-          system = "x86_64-linux";
-          overlays = [ 
-            nur.overlay
-          ];
-        };
-      in
-      {
-        extraSpecialArgs = { inherit inputs; };
-        nixosConfigurations."debian" = nixpkgs.lib.nixosSystem {
-          modules = [ 
-            home-manager.nixosModules.home-manager ( import ./modules/home-manager.nix )
-            ./modules/all
-            ./hardware/touch-notebook.nix
-            nur.nixosModules.nur
-              ];
-              specialArgs = {
-                nur = pkgs.nur;
-                inherit inputs;
-              };
-            };
+  outputs = { self, nixpkgs, home-manager, split-monitor-workspaces, hyprgrass, nur, ...}@inputs: 
+  let
+    pkgs = import nixpkgs {
+      system = "x86_64-linux";
+      overlays = [ 
+        nur.overlay
+      ];
+    };
+  in
+  {
+    extraSpecialArgs = { inherit inputs; };
+    nixosConfigurations."debian" = nixpkgs.lib.nixosSystem {
+      modules = [ 
+        home-manager.nixosModules.home-manager ( import ./modules/home-manager.nix )
+        ./modules/all
+        ./hardware/touch-notebook.nix
+        nur.nixosModules.nur
+      ];
+      specialArgs = {
+        nur = pkgs.nur;
+        inherit inputs;
+      };
+    };
 
-            packages.x86_64-linux.hello = nixpkgs.legacyPackages.x86_64-linux.hello;
+    packages.x86_64-linux.hello = nixpkgs.legacyPackages.x86_64-linux.hello;
 
-            packages.x86_64-linux.default = self.packages.x86_64-linux.hello;
+    packages.x86_64-linux.default = self.packages.x86_64-linux.hello;
 
-          };
-        }
+  };
+}
