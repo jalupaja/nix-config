@@ -18,6 +18,10 @@ let
       "hyprland/workspaces"
     ];
 
+    modules-center = [
+      "clock"
+    ];
+
     modules-right = [
       #"hyprland/language"
       "network"
@@ -26,14 +30,17 @@ let
       "pulseaudio#microphone"
       "cpu"
       "custom/battery"
-      "clock"
       #"tray"
     ];
 
     bluetooth = {
-      format = "";
-      format-connected = " {num_connections}";
-      format-disabled = "";
+      format = "{icon}";
+      format-icons = {
+        enabled = "";
+        disabled = "! ";
+      };
+      format-connected = "";
+      format-disabled = "!";
       tooltip-format = " {device_alias}";
       tooltip-format-connected = "{device_enumerate}";
       tooltip-format-enumerate-connected = " {device_alias}";
@@ -341,6 +348,7 @@ let
 in {
   programs.waybar = {
     enable = true;
+    systemd.enable = true;
     package = pkgs.waybar.overrideAttrs (oldAttrs: {
       mesonFlags = oldAttrs.mesonFlags ++ ["-Dexperimental=true"];
     });

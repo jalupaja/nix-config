@@ -30,7 +30,7 @@ in
       extensions = with addons; [ublock-origin];
       search = {
         force = true;
-        default = "brave";
+        default = "bravesearch";
         engines = {
           "Nix Packages" = {
             urls = [{
@@ -187,7 +187,7 @@ in
                     definedAliases = [ "<e" ];
                   };
 
-                  "brave" = {
+                  "bravesearch" = {
                     urls = [{template = "https://search.brave.com/search?q={searchTerms}&source=web";}];
                     iconUpdateURL = "https://brave.com/favicon.ico";
                     inherit updateInterval;
@@ -233,7 +233,7 @@ in
               extensions = with addons; [ublock-origin];
               search = {
                 force = true;
-                default = "brave";
+                default = "bravesearch";
                 engines = {
                   "ddg" = {
                     urls = [{template = "https://duckduckgo.com/?t=h_&q={searchTerms}&ia=web";}];
@@ -242,7 +242,7 @@ in
                     definedAliases = [ "<ddg" ];
                   };
 
-                  "brave" = {
+                  "bravesearch" = {
                     urls = [{template = "https://search.brave.com/search?q={searchTerms}&source=web";}];
                     iconUpdateURL = "https://brave.com/favicon.ico";
                     inherit updateInterval;

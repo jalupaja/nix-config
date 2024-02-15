@@ -10,9 +10,10 @@
     ./wpaperd.nix
     ./clipman.nix
     ./dunst.nix
-    ./udiskie.nix
+    #./udiskie.nix
     ./fuzzel.nix
   ];
+  services.udiskie.enable = true;
 
   home.username = "jalupa";
   home.homeDirectory = "/home/jalupa";
