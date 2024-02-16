@@ -17,6 +17,7 @@
     #./udiskie.nix
     ./fuzzel.nix
     ./pqiv.nix
+    ./mpd.nix
   ];
 
   home.username = "jalupa";

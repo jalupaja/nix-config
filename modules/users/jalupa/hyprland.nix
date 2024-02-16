@@ -10,7 +10,6 @@ let
   '';
 
   lockscript = pkgs.pkgs.writeShellScriptBin "lock" ''
-  sleep 5000
   # key-hl-color = indicator-color on clicked
       swaylock \
         --screenshots \

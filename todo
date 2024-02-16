@@ -1,6 +1,4 @@
 dotfiles: !!!
 Hyprland:
-	switch to flakes:
-		https://wiki.hyprland.org/hyprland-wiki/pages/Nix/Hyprland-on-Home-Manager/
-		https://wiki.hyprland.org/Nix/Hyprland-on-NixOS/
+    fix multi monitor size
 emacs
