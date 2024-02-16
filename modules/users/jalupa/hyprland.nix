@@ -1,18 +1,42 @@
 { pkgs, lib, inputs, ... }: 
 let
+  colorMain = "e64c00";
+  colorSecond = "9933ff";
   startupscript = pkgs.pkgs.writeShellScriptBin "startup" ''
     ${pkgs.waybar}/bin/waybar &
 
     wpaperd
     wl-paste -p -t text --watch clipman store -P --histpath="~/.local/share/clipman-primary.json"
   '';
+
+  lockscript = pkgs.pkgs.writeShellScriptBin "lock" ''
+  sleep 5000
+  # key-hl-color = indicator-color on clicked
+      swaylock \
+        --screenshots \
+        --clock \
+        --indicator \
+        --indicator-radius 100 \
+        --indicator-thickness 7 \
+        --effect-blur 7x10 \
+        --effect-vignette 0.5:0.5 \
+        --ring-color ${colorSecond} \
+        --key-hl-color ${colorSecond} \
+        --text-color ${colorMain} \
+        --line-color 00000000 \
+        --inside-color 00000088 \
+        --separator-color 00000000 \
+        --text-ver "..." \
+        --grace 1.5 \
+        --fade-in 0.2
+
+  '';
   scripts = "~/.config/jalupa_config/dmenuscripts";
 in
   with inputs;
   {
   wayland.windowManager.hyprland = {
-    enable = true;
-    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+    enable = true; package = inputs.hyprland.packages.${pkgs.system}.hyprland;
 
     plugins = [
       split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces
@@ -22,21 +46,7 @@ in
     settings = {
       "$terminal" = "${pkgs.kitty}/bin/kitty";
       "$runprompt" = "${scripts}/selector";
-      "$lock" = "${pkgs.swaylock}/bin/swaylock";
       # TODO
-      "$TODO" = "--screenshots --clock \
-                                      --indicator \
-                                      --indicator-radius 100 \
-                                      --indicator-thickness 7 \
-                                      --effect-blur 7x5 \
-                                      --effect-vignette 0.5:0.5 \
-                                      --ring-color bb00cc \
-                                      --key-hl-color 880033 \
-                                      --line-color 00000000 \
-                                      --inside-color 00000088 \
-                                      --separator-color 00000000 \
-                                      --grace 2 \
-                                    --fade-in 0.2";
       "$volume" = "${scripts}/volume";
       "$brightness" = "${scripts}/brightness";
       # TODO implement screenshot dmenu script
@@ -58,7 +68,7 @@ in
         gaps_out = 10;
         border_size = 2;
         # TODO change to orange?
-        "col.active_border" = "rgba(e64c00ee) rgba(9933ffee) 45deg";
+        "col.active_border" = "rgba(${colorMain}ee) rgba(${colorSecond}ee) 45deg";
         "col.inactive_border" = "rgba(595959aa)";
 
         layout = "dwindle";
@@ -128,7 +138,7 @@ in
         # apps
         "$mod, return, exec, $terminal"
         "CTRL, space, exec, $runprompt"
-        "$mod SHIFT, L, exec, $lock"
+        "$mod SHIFT, L, exec, ${lockscript}/bin/lock"
         "$mod, V, exec, clipman pick -t STDOUT | fuzzel --dmenu"
         "$mod SHIFT, S, exec, grim"
 
@@ -188,19 +198,6 @@ in
         "$mod, mouse_down, split-workspace, e+1"
         "$mod, mouse_up, split-workspace, e-1"
 
-        # volume keys
-        ", XF86AudioRaiseVolume, exec, $volume -i"
-        ", XF86AudioLowerVolume, exec, $volume -d"
-        ", XF86AudioMute, exec, $volume -t"
-        ", XF86AudioMicMute, exec, $volume -m"
-        ", XF86AudioPlay, exec, playerctl play-pause"
-        ", XF86AudioPause, exec, playerctl play-pause"
-        ", XF86AudioNext, exec, playerctl next"
-        ", XF86AudioPrev, exec, playerctl previous"
-
-        # brightness keys
-        ", XF86MonBrightnessUp, exec, $brightness -i"
-        ", XF86MonBrightnessDown, exec, $brightness -d"
       ];
 
       # resize window
@@ -218,6 +215,22 @@ in
         "$mod, mouse:273, resizewindow"
       ];
 
+      # activate even when locked, hold = repeat
+      bindle = [
+        # volume keys
+        ", XF86AudioRaiseVolume, exec, $volume -i"
+        ", XF86AudioLowerVolume, exec, $volume -d"
+        ", XF86AudioMute, exec, $volume -t"
+        ", XF86AudioMicMute, exec, $volume -m"
+        ", XF86AudioPlay, exec, playerctl play-pause"
+        ", XF86AudioPause, exec, playerctl play-pause"
+        ", XF86AudioNext, exec, playerctl next"
+        ", XF86AudioPrev, exec, playerctl previous"
+
+        # brightness keys
+        ", XF86MonBrightnessUp, exec, $brightness -i"
+        ", XF86MonBrightnessDown, exec, $brightness -d"
+      ];
     };
 
     extraConfig = ''
