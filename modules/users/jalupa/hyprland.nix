@@ -1,12 +1,5 @@
-{ pkgs, lib, inputs, colors, ... }: 
+{ pkgs, lib, inputs, colors, scripts, ... }: 
 let
-  startupscript = pkgs.pkgs.writeShellScriptBin "startup" ''
-    ${pkgs.waybar}/bin/waybar &
-    ${pkgs.swww}/bin/swww init
-
-    syncthing &
-    wl-paste -p -t text --watch clipman store -P --histpath="~/.local/share/clipman-primary.json"
-  '';
   switchmonitor = pkgs.pkgs.writeShellScriptBin "switchmonitor" ''
 current_monitor=$(hyprctl activeworkspace | head -n 1 | awk '{print $7}')
 
@@ -71,7 +64,7 @@ esac
         --fade-in 0.2
 
   '';
-  scripts = "~/.config/jalupa_config/dmenuscripts";
+  Dscripts = "~/.config/jalupa_config/dmenuscripts";
 in
   with inputs;
   {
@@ -85,14 +78,14 @@ in
 
     settings = {
       "$terminal" = "${pkgs.kitty}/bin/kitty";
-      "$runprompt" = "${scripts}/selector";
+      "$runprompt" = "${Dscripts}/selector";
       # TODO
-      "$volume" = "${scripts}/volume";
-      "$brightness" = "${scripts}/brightness";
+      "$volume" = "${Dscripts}/volume";
+      "$brightness" = "${Dscripts}/brightness";
       # TODO implement screenshot dmenu script
       # TODO fix screenshot thing
 
-      exec-once = ''${startupscript}/bin/startup'';
+      exec-once = ''${scripts.startup}/bin/startup'';
 
       input = {
         kb_layout = "eu";

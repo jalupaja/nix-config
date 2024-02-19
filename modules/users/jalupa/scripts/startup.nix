@@ -1,5 +1,5 @@
 {
-  startupscript = pkgs.pkgs.writeShellScriptBin "startup" ''
+  startup = pkgs: pkgs.pkgs.writeShellScriptBin "startup" ''
     ${pkgs.waybar}/bin/waybar &
     ${pkgs.swww}/bin/swww init
 
