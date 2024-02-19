@@ -1,14 +1,12 @@
-{ pkgs, lib, inputs, ... }: 
+{ pkgs, lib, inputs, colors, ... }: 
 let
-  colorMain = "e64c00";
-  colorSecond = "9933ff";
   startupscript = pkgs.pkgs.writeShellScriptBin "startup" ''
     ${pkgs.waybar}/bin/waybar &
+    ${pkgs.swww}/bin/swww init
 
-    wpaperd
+    syncthing &
     wl-paste -p -t text --watch clipman store -P --histpath="~/.local/share/clipman-primary.json"
   '';
-
   switchmonitor = pkgs.pkgs.writeShellScriptBin "switchmonitor" ''
 current_monitor=$(hyprctl activeworkspace | head -n 1 | awk '{print $7}')
 
@@ -62,9 +60,9 @@ esac
         --indicator-thickness 7 \
         --effect-blur 7x10 \
         --effect-vignette 0.5:0.5 \
-        --ring-color ${colorSecond} \
-        --key-hl-color ${colorSecond} \
-        --text-color ${colorMain} \
+        --ring-color ${colors.second} \
+        --key-hl-color ${colors.second} \
+        --text-color ${colors.main} \
         --line-color 00000000 \
         --inside-color 00000088 \
         --separator-color 00000000 \
@@ -110,7 +108,7 @@ in
         gaps_out = 10;
         border_size = 2;
         # TODO change to orange?
-        "col.active_border" = "rgba(${colorMain}ee) rgba(${colorSecond}ee) 45deg";
+        "col.active_border" = "rgba(${colors.main}ee) rgba(${colors.second}ee) 45deg";
         "col.inactive_border" = "rgba(595959aa)";
 
         layout = "dwindle";
