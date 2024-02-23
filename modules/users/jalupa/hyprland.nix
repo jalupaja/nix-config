@@ -1,69 +1,5 @@
 { pkgs, lib, inputs, colors, scripts, ... }: 
 let
-  switchmonitor = pkgs.pkgs.writeShellScriptBin "switchmonitor" ''
-current_monitor=$(hyprctl activeworkspace | head -n 1 | awk '{print $7}')
-
-# remove ":" from string
-current_monitor=''${current_monitor//:}
-
-monitors=($(hyprctl monitors | grep "Monitor" | awk '{print $2}'))
-
-monitor_amount=''${#monitors[@]}
-
-for i in "''${!monitors[@]}"; do
-   if [[ "''${monitors[$i]}" = "''${current_monitor}" ]]; then
-       current_monitor_index=''${i};
-   fi
-done
-
-# next
-if [[ $current_monitor = $monitor_amount-1 ]]; 
-then
-    next_index=0
-else
-    next_index=$((current_monitor_index + 1))
-fi
-
-# prev
-if [[ $current_monitor_index = 0 ]];
-then
-    prev_index=$((current_monitor_index - 1))
-else
-    prev_index=$((current_monitor_index - 1))
-fi
-
-getopts "np" flag
-case "''${flag}" in
-    n)
-        hyprctl dispatch focusmonitor ''${monitors[$next_index]}
-        ;;
-    p)
-        hyprctl dispatch focusmonitor ''${monitors[$prev_index]}
-        ;;
-esac
-  '';
-
-  lockscript = pkgs.pkgs.writeShellScriptBin "lock" ''
-  # key-hl-color = indicator-color on clicked
-      swaylock \
-        --screenshots \
-        --clock \
-        --indicator \
-        --indicator-radius 100 \
-        --indicator-thickness 7 \
-        --effect-blur 7x10 \
-        --effect-vignette 0.5:0.5 \
-        --ring-color ${colors.second} \
-        --key-hl-color ${colors.second} \
-        --text-color ${colors.main} \
-        --line-color 00000000 \
-        --inside-color 00000088 \
-        --separator-color 00000000 \
-        --text-ver "..." \
-        --grace 1.5 \
-        --fade-in 0.2
-
-  '';
   Dscripts = "~/.config/jalupa_config/dmenuscripts";
 in
   with inputs;
@@ -171,7 +107,7 @@ in
         # apps
         "$mod, return, exec, $terminal"
         "CTRL, space, exec, $runprompt"
-        "$mod SHIFT, L, exec, ${lockscript}/bin/lock"
+        "$mod SHIFT, L, exec, ${scripts.lock}/bin/lock"
         "$mod, V, exec, clipman pick -t STDOUT | fuzzel --dmenu"
         "$mod SHIFT, S, exec, grim"
 
@@ -202,8 +138,8 @@ in
         "$mod, 8, split-workspace, 8"
         "$mod, 9, split-workspace, 9"
         "$mod, space, togglespecialworkspace, special:scratch"
-        "$mod, period, exec, ${switchmonitor}/bin/switchmonitor -n"
-        "$mod, comma, exec, ${switchmonitor}/bin/switchmonitor -p"
+        "$mod, period, exec, ${scripts.switchmonitor}/bin/switchmonitor -n"
+        "$mod, comma, exec, ${scripts.switchmonitor}/bin/switchmonitor -p"
 
         # touch workspaces
         " , edge:l:r, split-workspace, e-1"
