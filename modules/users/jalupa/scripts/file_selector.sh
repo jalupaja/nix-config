@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-DMENU="fuzzel --dmenu"
+DMENU="fuzzel -w 100 --dmenu"
 
 getdir=false
 while getopts "dp:h" args; do
