@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# If you want to use this for your own setup you will probably have to change the switchWallpaper function as well as the monitors=... call. 
+# I have provided some options in this file.
+# A complete X11 configuration using feh can currently be found on my github: https://github.com/jalupaja/jalupa_config/blob/master/dmenuscripts/changeBackground
+
 DMENU="fuzzel --dmenu"
 startingDir="$HOME/.wallpapers"
 
@@ -79,11 +83,15 @@ if [ -z "$selectedRan" ]; then
     fi
 fi
 
+# different options to get current monitors
 monitors=($(swww query | awk '{print substr($1, 1, length($1) - 1)}'))
+# monitors=($(hyprctl monitors | grep "Monitor" | awk '{print $2}'))
+# for X11
+# monitors=($(xrandr --listactivemonitors | tail -n +2 | awk '{print $4}'))
 
 if [ -z "$selectedMon" ]; then
     if [[ ${#monitors[@]} > 1 ]]; then
-        choice="per monitors\nsingle monitor"
+        choice="per monitor\nsingle monitor"
         selectedMon=$(echo -e $choice | $DMENU)
 
         if [ -z "$selectedRan" ]; then
@@ -140,7 +148,7 @@ if [ "$selectedRan" = "select once" ]; then
 elif [ "$selectedRan" = "random once" ]; then
     ## random from directory
     ranFromDir $path
-    if [ "$selectedMon" = "per monitors" ]; then
+    if [ "$selectedMon" = "per monitor" ]; then
         # build call structure to make it reproduceable
         callStr="$callStr -r 2 -m 1 -p $path"
         echo "$callStr" > $CALLSAVEPATH
@@ -172,7 +180,7 @@ elif [ "$selectedRan" = "random repeat" ]; then
     fi
 
     # build call structure to make it reproduceable
-    if [ "$selectedMon" = "per monitors" ]; then
+    if [ "$selectedMon" = "per monitor" ]; then
         callStr="$callStr -r 1 -m 1 -t $selectedTime -p $path"
     else
         callStr="$callStr -r 1 -m 2 -t $selectedTime -p $path"
@@ -183,7 +191,7 @@ elif [ "$selectedRan" = "random repeat" ]; then
     do
         ## random from directory
         ranFromDir $path
-        if [ "$selectedMon" = "per monitors" ]; then
+        if [ "$selectedMon" = "per monitor" ]; then
             # per monitor
             for i in ${monitors[@]};
             do

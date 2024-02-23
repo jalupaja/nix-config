@@ -33,7 +33,7 @@ while [ "$loop" ]; do
     if $getdir; then
         # only list directories
         # ls will throw an error if there are no more directories. This is fine and will still echo .
-        file=$(echo -e ".\n$(\ls -1 --group-directories-first -a -d */)" | fuzzel --dmenu )
+        file=$(echo -e ".\n$(\ls -1 --group-directories-first -a -d */)" | $DMENU )
     else
         file=$(\ls -1 --group-directories-first | $DMENU )
     fi
