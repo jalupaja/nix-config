@@ -2,6 +2,7 @@
 {
   imports = [
     ./kitty.nix
+    #./alacritty.nix
     ./zsh.nix
     ./starship.nix
     ./vim.nix
@@ -25,7 +26,6 @@
   # TODO https://sw.kovidgoyal.net/kitty/overview/
 
   # TODO possible configs
-  # hyprpaper https://github.com/coffee-is-power/nix-configuration/blob/flakes/modules/home/hyprpaper/default.nix
   # lazygit
   # mimeApps https://github.com/coffee-is-power/nix-configuration/blob/flakes/modules/home/mime-apps/default.nix
 
@@ -34,45 +34,48 @@
   home.stateVersion = "23.11";
 
   home.packages = with pkgs; [
+    # browser
     firefox
+    brave
+    tor-browser-bundle-bin
     signal-desktop
     keepassxc
     bitwarden
     foot
     tldr
+    mpv
+    ripdrag
+
+    # default dependencies
+    playerctl
+    libnotify
+
+    # desktop env programs
     grim
     slurp
-    libnotify
-    tor-browser-bundle-bin
-    brave
-    swaylock-effects
-    mpv
-
     swww
-    lemurs
-    playerctl
+    swaylock-effects
+    lemurs # TODO fix
     # TODO implement script: https://github.com/coldfix/udiskie/wiki/Usage
     # TODO https://sr.ht/~emersion/grim/ (also in hyprmanager)
   ];
 
-  # TODO
-#  systemd.user.services.lemurs = {
-#
-#
-#    unitConfig = {
-#      after = [ "systemd-user-sessions.service" "plymouth-quit-wait.service" "getty@tty2.service" ];
-#      description = "Lemurs";
-#    };
-#    serviceConfig = {
-#      ExecStart = "${pkgs.lemurs}/bin/lemurs";
-#      StandardInput = "tty";
-#      TTYPath = "/dev/tty2";
-#      TTYReset = "yes";
-#      TTYVHangup = "yes";
-#      Type = "idle";
-#    };
-#    installConfig = {
-#      alias = "display-manager.service";
-#    };
-#  };
+  # TODO fix
+  systemd.user.services.lemurs = {
+    unitConfig = {
+      after = [ "systemd-user-sessions.service" "plymouth-quit-wait.service" "getty@tty1.service" ];
+      description = "Lemurs";
+    };
+    serviceConfig = {
+      ExecStart = "${pkgs.lemurs}/bin/lemurs";
+      StandardInput = "tty";
+      TTYPath = "/dev/tty1";
+      TTYReset = "yes";
+      TTYVHangup = "yes";
+      Type = "idle";
+    };
+    installConfig = {
+      alias = "display-manager.service";
+    };
+  };
 }	

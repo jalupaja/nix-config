@@ -25,18 +25,22 @@
       #healthy defaults
       cp = "cp -i";
       mv = "mv -i";
-      emacs="emacsclient -c -a 'emacs' &";
-      e="emacsclient -c";
-      pss="ps -aux | grep ";
-      mpvv="mpv --player-operation-mode=pseudo-gui";
-      grep="grep --colour=auto";
-      g="grep";
       df="df -h";
       du="du -h";
       free="free -m";
       mount="sudo mount -o uid=$USER";
       umount="sudo umount";
+      grep="grep --colour=auto";
+
+      # extra aliases
+      emacs="emacsclient -c -a 'emacs' &";
+      pss="ps -aux | grep ";
+      e="emacsclient -c";
+      g="grep";
+      mpvs="mpv --shuffle";
+      mpvv="mpv --player-operation-mode=pseudo-gui";
       simple_crypt="~/repos/own/simple_crypt/start.sh";
+      drag="${pkgs.ripdrag}/bin/ripdrag -b -n";
 
       # git stuff
       gita = "git add";
