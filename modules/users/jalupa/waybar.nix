@@ -6,121 +6,126 @@ let
     cat /sys/class/power_supply/BAT0/capacity
   '';
 
-  mainWaybarConfig = {
-    mod = "dock";
-    layer = "top";
-    gtk-layer-shell = true;
-    height = 14;
-    position = "top";
+mainWaybarConfig = {
+  mod = "dock";
+  layer = "top";
+  gtk-layer-shell = true;
+  height = 14;
+  position = "top";
 
-    modules-left = [
-      "custom/logo" 
-      "hyprland/workspaces"
-    ];
+  modules-left = [
+    "custom/logo" 
+    "hyprland/workspaces"
+  ];
 
-    modules-center = [
-      "clock"
-    ];
+  modules-center = [
+    "clock"
+  ];
 
-    modules-right = [
-      #"hyprland/language"
-      "network"
-      "bluetooth"
-      "pulseaudio"
-      "pulseaudio#microphone"
-      "cpu"
-      "custom/battery"
-      #"tray"
-    ];
+  modules-right = [
+    #"hyprland/language"
+    "network"
+    "bluetooth"
+    "pulseaudio"
+    "pulseaudio#microphone"
+    "cpu"
+    "battery"
+    #"tray"
+  ];
 
-    bluetooth = {
-      format = "{icon}";
-      format-icons = {
-        enabled = "";
-        disabled = "! ";
+  bluetooth = {
+    format = "{icon}";
+    format-icons = {
+      enabled = "";
+      disabled = "! ";
+    };
+    format-connected = "";
+    format-disabled = "!";
+    tooltip-format = " {device_alias}";
+    tooltip-format-connected = "{device_enumerate}";
+    tooltip-format-enumerate-connected = " {device_alias}";
+  };
+
+  clock = {
+    actions = {
+      on-click-backward = "tz_down";
+      on-click-forward = "tz_up";
+      on-click-right = "mode";
+      on-scroll-down = "shift_down";
+      on-scroll-up = "shift_up";
+    };
+    calendar = {
+      format = {
+        days = "<span color='#ecc6d9'><b>{}</b></span>";
+        months = "<span color='#ffead3'><b>{}</b></span>";
+        today = "<span color='#ff6699'><b><u>{}</u></b></span>";
+        weekdays = "<span color='#ffcc66'><b>{}</b></span>";
+        weeks = "<span color='#99ffdd'><b>W{}</b></span>";
       };
-      format-connected = "";
-      format-disabled = "!";
-      tooltip-format = " {device_alias}";
-      tooltip-format-connected = "{device_enumerate}";
-      tooltip-format-enumerate-connected = " {device_alias}";
+      mode = "year";
+      mode-mon-col = 3;
+      on-click-right = "mode";
+      on-scroll = 1;
+      weeks-pos = "right";
+    };
+    format = "󰥔 {:%H:%M}";
+    format-alt = "󰥔 {:%A, %B %d, %Y (%R)} ";
+  };
+
+  cpu = {
+    format = "󰍛 {usage}%";
+    format-alt = "{icon0}{icon1}{icon2}{icon3}";
+    format-icons = ["▁" "▂" "▃" "▄" "▅" "▆" "▇" "█"];
+    interval = 10;
+  };
+
+  "hyprland/workspaces" = {
+    format = "{icon}";
+    format-icons = {
+      active = "";
+      urgent = "";
+      default = "";
+    };
+    format-window-separator = "";
+    on-click = "activate";
+    #persistent_workspaces = { "*" = 10; };
+  };
+
+  battery = {
+    exec = "${batteryScript}/bin/batteryScript";
+    states = {
+      warning = 30;
+      critical = 15;
     };
 
-    clock = {
-      actions = {
-        on-click-backward = "tz_down";
-        on-click-forward = "tz_up";
-        on-click-right = "mode";
-        on-scroll-down = "shift_down";
-        on-scroll-up = "shift_up";
-      };
-      calendar = {
-        format = {
-          days = "<span color='#ecc6d9'><b>{}</b></span>";
-          months = "<span color='#ffead3'><b>{}</b></span>";
-          today = "<span color='#ff6699'><b><u>{}</u></b></span>";
-          weekdays = "<span color='#ffcc66'><b>{}</b></span>";
-          weeks = "<span color='#99ffdd'><b>W{}</b></span>";
-        };
-        mode = "year";
-        mode-mon-col = 3;
-        on-click-right = "mode";
-        on-scroll = 1;
-        weeks-pos = "right";
-      };
-      format = "󰥔 {:%H:%M}";
-      format-alt = "󰥔 {:%A, %B %d, %Y (%R)} ";
+    format = "{icon} {capacity}";
+    format-icons = {
+      charging = "󱐋";
+      default = [ " " " " " " " " " " ];
     };
+  };
 
-    cpu = {
-      format = "󰍛 {usage}%";
-      format-alt = "{icon0}{icon1}{icon2}{icon3}";
-      format-icons = ["▁" "▂" "▃" "▄" "▅" "▆" "▇" "█"];
-      interval = 10;
-    };
+  "custom/gpu-usage" = {
+    exec = "nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits";
+    format = "{}";
+    interval = 10;
+  };
 
-    "hyprland/workspaces" = {
-      format = "{icon}";
-      format-icons = {
-        "1" = "";
-        "2" = "";
-        "3" = "";
-        active = "";
-        default = "";
-        urgent = "";
-      };
-      format-window-separator = "";
-      on-click = "activate";
-      #persistent_workspaces = { "*" = 10; };
-    };
+  "custom/logo" = {
+    exec = "echo ' '";
+    on-click = "${pkgs.foot}/bin/foot";
+    format = "{}";
+    tooltip = false;
+  };
 
-    "custom/battery" = {
-      exec = "${batteryScript}/bin/batteryScript";
-      format = " 󰁹 {}";
-      interval = 10;
+  "hyprland/window" = {
+    format = "  {}";
+    rewrite = {
+      "(.*) — Mozilla Firefox" = "$1 󰈹";
+      "(.*)Steam" = "Steam 󰓓";
     };
-
-    "custom/gpu-usage" = {
-      exec = "nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits";
-      format = "{}";
-      interval = 10;
-    };
-
-    "custom/logo" = {
-      exec = "echo ' '";
-      on-click = "${pkgs.foot}/bin/foot";
-      format = "{}";
-      tooltip = false;
-    };
-
-    "hyprland/window" = {
-      format = "  {}";
-      rewrite = {
-        "(.*) — Mozilla Firefox" = "$1 󰈹";
-        "(.*)Steam" = "Steam 󰓓";
-      };
-      separate-outputs = true;
-    };
+    separate-outputs = true;
+  };
 
     "hyprland/language" = {
       format = " {}";
@@ -139,6 +144,8 @@ let
     };
 
     network = {
+      # TODO use global variable instead of kitty
+      on-click = "${pkgs.kitty}/bin/kitty sh -c nmtui";
       format-disconnected = " ";
       format-ethernet = "󱘖 ";
       format-linked = "󱘖 -";
@@ -159,7 +166,7 @@ let
         phone = " ";
         portable = " ";
       };
-      format-muted = "🔇 {volume}%";
+      format-muted = " {volume}%";
       on-click = "${scripts}/volume -t";
       on-scroll-down = "${scripts}/volume -d";
       on-scroll-up = "${scripts}/volume -i";
