@@ -1,12 +1,12 @@
-{nur, pkgs, inputs, lib, ...}:
+{nur, pkgs, inputs, lib, config, ...}:
 {
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    extraSpecialArgs = {
+    extraSpecialArgs = rec {
       inherit inputs;
       colors = import ./users/jalupa/colors.nix;
-      scripts = import ./users/jalupa/scripts{inherit pkgs lib;};
+      scripts = import ./users/jalupa/scripts{inherit pkgs lib config;};
       addons = nur.repos.rycee.firefox-addons;
     };
     users = {
