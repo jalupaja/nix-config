@@ -1,9 +1,7 @@
-#!/usr/bin/env bash
-
-colorMain=e64c00
-colorSecond=9933ff
-
-swaylock \
+{ pkgs, colors, ... }:
+{
+  lock = pkgs.pkgs.writeShellScript "lock" ''
+      swaylock \
     --screenshots \
     --clock \
     --indicator \
@@ -11,13 +9,14 @@ swaylock \
     --indicator-thickness 7 \
     --effect-blur 7x10 \
     --effect-vignette 0.5:0.5 \
-    --ring-color $colorSecond \
-    --key-hl-color $colorSecond \
-    --text-color $colorMain \
+    --ring-color ${colors.second} \
+    --key-hl-color ${colors.second} \
+    --text-color ${colors.main} \
     --line-color 00000000 \
     --inside-color 00000088 \
     --separator-color 00000000 \
     --text-ver "..." \
-    --grace 1.5 \
-    --fade-in 0.2
-# key-hl-color = indicator-color on clicked
+    --fade-in 0.3
+    # key-hl-color = indicator-color on clicked
+  '';
+}

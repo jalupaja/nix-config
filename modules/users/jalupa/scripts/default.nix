@@ -1,19 +1,13 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, config, ... }:
 let 
+  colors = config.home-manager.extraSpecialArgs.colors;
+  scripts = config.home-manager.extraSpecialArgs.scripts;
   importNixScript = name: {
-    "${name}" = (import ./${name}.nix)."${name}" pkgs;
+    "${name}" = (import ./${name}.nix {inherit pkgs colors scripts;})."${name}";
   };
   importShellScript = name: {
-    "${name}" = pkgs.pkgs.writeShellScriptBin "${name}" "${lib.readFile ./${name}.sh}";
+    "${name}" = pkgs.pkgs.writeShellScript "${name}" "${lib.readFile ./${name}.sh}";
   };
-  # TODO fix to be able to replace colors, ...
-#  importShellScript = name: {
-#    "${name}" = pkgs.pkgs.writeShellScriptBin "${name}" pkgs.substituteAll { 
-#      src= ./${name}.sh; 
-#      colorMain = "00"; 
-#      colorSecond = "FF"; 
-#    };
-#  };
 in
 {
   # import file
@@ -23,4 +17,11 @@ in
 }
 // importNixScript "startup"
 // importShellScript "switchmonitor"
-// importShellScript "lock"
+// importNixScript "kill"
+// importNixScript "killall"
+// importNixScript "lock"
+// importNixScript "file_selector"
+// importNixScript "wallpaper"
+// importNixScript "volume"
+// importNixScript "brightness"
+// importNixScript "selector"

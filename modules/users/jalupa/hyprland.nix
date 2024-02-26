@@ -14,7 +14,7 @@ in
 
     settings = {
       "$terminal" = "${pkgs.kitty}/bin/kitty";
-      "$runprompt" = "${Dscripts}/selector";
+      "$runprompt" = "${scripts.selector}/bin/selector";
       # TODO
       "$volume" = "${Dscripts}/volume";
       "$brightness" = "${Dscripts}/brightness";
@@ -107,7 +107,7 @@ in
         # apps
         "$mod, return, exec, $terminal"
         "CTRL, space, exec, $runprompt"
-        "$mod SHIFT, L, exec, ${scripts.lock}/bin/lock"
+        "$mod SHIFT, L, exec, ${scripts.lock}"
         "$mod, V, exec, clipman pick -t STDOUT | fuzzel --dmenu"
         "$mod SHIFT, S, exec, grim"
 

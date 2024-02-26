@@ -1,8 +1,10 @@
-#!/usr/bin/env bash
+{ pkgs, scripts, ... }:
+{
+    wallpaper = pkgs.pkgs.writeShellScript "wallpaper" ''
 
-# If you want to use this for your own setup you will probably have to change the switchWallpaper function as well as the monitors=... call. 
-# I have provided some options in this file.
-# A complete X11 configuration using feh can currently be found on my github: https://github.com/jalupaja/jalupa_config/blob/master/dmenuscripts/changeBackground
+    # If you want to use this for your own setup you will probably have to change the switchWallpaper function as well as the monitors=... call. 
+    # I have provided some options in this file.
+    # A complete X11 configuration using feh can currently be found on my github: https://github.com/jalupaja/jalupa_config/blob/master/dmenuscripts/changeBackground
 
 DMENU="fuzzel --dmenu"
 startingDir="$HOME/.wallpapers"
@@ -13,7 +15,7 @@ CALLSAVEPATH="$HOME/.wallpapercall"
 
 # get the current file location
 # this is used to find the needded file_selector.sh
-if [ "${0::1}" = "/" ]; then
+if [ "''${0::1}" = "/" ]; then
     shFile=$0
 else
     shFile="$(pwd)/$0"
@@ -26,9 +28,9 @@ callStr="$shFile"
 
 # make options accessible from cli
 while getopts "r:m:t:p:h" args; do
-    case "${args}" in
+    case "''${args}" in
         r)
-            case "${OPTARG}" in
+            case "''${OPTARG}" in
                 1)
                     selectedRan="random repeat"
                     ;;
@@ -42,7 +44,7 @@ while getopts "r:m:t:p:h" args; do
             esac
             ;;
         m)
-            case "${OPTARG}" in
+            case "''${OPTARG}" in
                 1)
                     selectedMon="per monitor"
                     ;;
@@ -53,35 +55,35 @@ while getopts "r:m:t:p:h" args; do
             esac
             ;;
         t)
-            selectedTime=${OPTARG}
+            selectedTime=''${OPTARG}
             ;;
         p)
-            path=${OPTARG}
+            path=''${OPTARG}
             ;;
         h)
             echo "\
--r | select random mode: 1=random repeat, 2=random once, 3=select once
--m | select monitor mode: 1=per monitor, 2=on all monitors
--t | input the time needed for random repeat
--p | select the full file or directory path to either the image or the directory from wich to randomly choose images \
-    "
-    exit
-    ;;
-*)
-    # wrong option
-    exit
-    ;;
-esac
-done
+                -r | select random mode: 1=random repeat, 2=random once, 3=select once
+                            -m | select monitor mode: 1=per monitor, 2=on all monitors
+                            -t | input the time needed for random repeat
+                            -p | select the full file or directory path to either the image or the directory from wich to randomly choose images \
+                                "
+                                                            exit
+                                                            ;;
+                                                        *)
+                                                            # wrong option
+                                                            exit
+                                                            ;;
+                                                    esac
+                                                done
 
-if [ -z "$selectedRan" ]; then
-    choice="random repeat\nrandom once\nselect once"
-    selectedRan=$(echo -e $choice | $DMENU)
+                                                if [ -z "$selectedRan" ]; then
+                                                    choice="random repeat\nrandom once\nselect once"
+                                                    selectedRan=$(echo -e $choice | $DMENU)
 
-    if [ -z "$selectedRan" ]; then
-        exit
-    fi
-fi
+                                                    if [ -z "$selectedRan" ]; then
+                                                        exit
+                                                    fi
+                                                fi
 
 # different options to get current monitors
 monitors=($(swww query | awk '{print substr($1, 1, length($1) - 1)}'))
@@ -90,7 +92,7 @@ monitors=($(swww query | awk '{print substr($1, 1, length($1) - 1)}'))
 # monitors=($(xrandr --listactivemonitors | tail -n +2 | awk '{print $4}'))
 
 if [ -z "$selectedMon" ]; then
-    if [[ ${#monitors[@]} > 1 ]]; then
+    if [[ ''${#monitors[@]} > 1 ]]; then
         choice="per monitor\nsingle monitor"
         selectedMon=$(echo -e $choice | $DMENU)
 
@@ -103,10 +105,10 @@ fi
 if [ -z "$path" ]; then
     if [ "$selectedRan" = "select once" ]; then
         # select file
-        path=$($shFileDir/file_selector.sh -p "$startingDir")
+        path=$(${scripts.file_selector} -p "$startingDir")
     else
         # select path
-        path=$($shFileDir/file_selector.sh -d -p "$startingDir")
+        path=$(${scripts.file_selector} -d -p "$startingDir")
     fi
 
     if [ -z "$path" ]; then
@@ -133,9 +135,9 @@ function ranFromDir {
 # kill old script if any are running
 script_name=$(echo "$0" | sed 's/.*\///g')
 id=($(ps aux | grep "/$script_name" | awk '{print $2}'))
-first_id=${id[0]}
+first_id=''${id[0]}
 # dont kill process if it is the current process
-if [ "$first_id" != "$$" ]; then
+if [ "$first_id" != "''$$" ]; then
     kill $first_id
 fi
 
@@ -154,7 +156,7 @@ elif [ "$selectedRan" = "random once" ]; then
         echo "$callStr" > $CALLSAVEPATH
 
         # per monitor
-        for i in ${monitors[@]};
+        for i in ''${monitors[@]};
         do
             # Random in directory
             switchWallpaper "$path/$file" "$i" 
@@ -193,7 +195,7 @@ elif [ "$selectedRan" = "random repeat" ]; then
         ranFromDir $path
         if [ "$selectedMon" = "per monitor" ]; then
             # per monitor
-            for i in ${monitors[@]};
+            for i in ''${monitors[@]};
             do
                 # Random in directory
                 switchWallpaper "$path/$file" "$i" 
@@ -206,4 +208,5 @@ elif [ "$selectedRan" = "random repeat" ]; then
         sleep $selectedTime
     done
 fi
-
+'';
+}

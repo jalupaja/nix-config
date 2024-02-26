@@ -1,0 +1,361 @@
+#!/bin/sh
+
+DMENU="fuzzel --dmenu"
+CMD="/usr/bin/env bash -c $1"
+DMSCRIPTS="/bin/sh -c $HOME/.config/jalupa_config/dmenuscripts"
+NEWSCRIPTS="/bin/sh -c $HOME/.config/nix-config/modules/users/jalupa/scripts"
+
+menu () { 
+    printf "apps\n"
+    printf "todo\n"
+    printf "kill\n"
+    printf "killall\n"
+    printf "wallpaper\n"
+    printf "emacs\n"
+    printf "firefox\n"
+    printf "foot\n"
+    printf "kitty\n"
+    printf "mpv\n"
+    printf "Harmonoid(music player)\n"
+    printf "vlc\n"
+    printf "joplin\n"
+    printf "signal\n"
+    printf "tutanota\n"
+    printf "element\n"
+    printf "bitwarden\n"
+    printf "keepassxc\n"
+    printf "veracrypt\n"
+    printf "bottles\n"
+    printf "spotify\n"
+    printf "zathura (pdf viewer)\n"
+    printf "onlyoffice\n"
+    printf "xournal++\n"
+    printf "protonvpn\n"
+    printf "riseupvpn\n"
+    printf "brave\n"
+    printf "librewolf\n"
+    printf "Mullvad Browser\n"
+    printf "tor browser\n"
+    printf "onionshare\n"
+    printf "discord\n"
+    printf "calculator\n"
+    printf "camera\n"
+    printf "thunar (file manager)\n"
+    printf "firefox research\n"
+    printf "firefox social\n"
+    printf "firefox shopping\n"
+    printf "firefox github\n"
+    printf "virtmanager\n"
+    printf "wifi\n"
+    printf "wifi gui\n"
+    printf "bluetooth\n"
+    printf "clipboard\n"
+    printf "clear-clipboard\n"
+    printf "screenshot\n"
+    printf "brightness\n"
+    printf "volume\n"
+    printf "pavucontrol (volume control)\n"
+    printf "mount\n"
+    printf "umount\n"
+    printf "lock\n"
+    printf "sleep\n"
+    printf "shutdown\n"
+    printf "restart\n"
+    printf "picom\n"
+    printf "translate\n"
+    printf "music/radio\n"
+    printf "background\n"
+    printf "fix\n"
+    printf "keyboard layout\n"
+}
+
+choice=$(menu | $DMENU ) || exit
+
+case $choice in
+    *\!) 
+        $CMD "$(printf "%s" "${choice}" | cut -d'!' -f1)" # by https://tools.suckless.org/dmenu/scripts/dmenu_run_i
+        return
+        ;;
+    "apps")
+        fuzzel
+        return
+        ;;
+    "emacs")
+        emacsclient -c -a 'emacs'
+        return
+        ;;
+    "todo")
+        $DMSCRIPTS/todo
+        return
+        ;;
+    "kill")
+        $DMSCRIPTS/kill
+        return
+        ;;
+    "killall")
+        $DMSCRIPTS/killall
+        return
+        ;;
+    "wallpaper")
+        $NEWSCRIPTS/wallpaper.sh
+        ;;
+    "firefox")
+        $CMD firefox
+        return
+        ;;
+    "firefox research")
+        $CMD "firefox -p research"
+        return
+        ;;
+    "firefox social")
+        $CMD "firefox -p social"
+        return
+        ;;
+    "firefox shopping")
+        $CMD "firefox -p shopping"
+        return
+        ;;
+    "firefox github")
+        $CMD "firefox -p github"
+        return
+        ;;
+    "tor browser")
+        $CMD tor-browser
+        return
+        ;;
+    "librewolf")
+        $CMD librewolf
+        return
+        ;;
+    "Mullvad Browser")
+        $CMD mullvad-browser
+        return
+        ;;
+    "brave")
+        $CMD brave
+        return
+        ;;
+    "foot")
+        $CMD foot
+        return
+        ;;
+    "kitty")
+        $CMD kitty
+        return
+        ;;
+    "mpv")
+        $CMD "mpv --player-operation-mode=pseudo-gui"
+        return
+        ;;
+    "Harmonoid(music player)")
+        $CMD /home/jakob/repos/utils/Harmonoid/harmonoid
+        return
+        ;;
+    "vlc")
+        $CMD vlc
+        return
+        ;;
+    "joplin")
+        $CMD joplin-desktop
+        return
+        ;;
+    "signal")
+        $CMD signal-desktop
+        return
+        ;;
+    "element")
+        $CMD element-desktop
+        return
+        ;;
+    "tutanota")
+        $CMD tutanota-desktop
+        return
+        ;;
+    "bitwarden")
+        $CMD bitwarden --enable-features=UseOzonePlatform --ozone-platform=wayland
+        return
+        ;;
+    "keepassxc")
+        $CMD keepassxc
+        return
+        ;;
+    "veracrypt")
+        $CMD veracrypt
+        return
+        ;;
+    "bottles")
+        $CMD 'flatpak run com.usebottles.bottles'
+        return 
+        ;;
+    "protonvpn")
+        $CMD qomui-gui
+        #$CMD protonvpn
+        return
+        ;;
+    "riseupvpn")
+        $CMD riseup-vpn-terminal
+        return
+        ;;
+    "onionshare")
+        $CMD onionshare
+        return
+        ;;
+    "discord")
+        $CMD "firefox -p discord"
+        return
+        ;;
+    "spotify")
+        $CMD spotify
+        return
+        ;;
+    "zathura (pdf viewer)")
+        $CMD zathura
+        return
+        ;;
+    "onlyoffice")
+        $CMD onlyoffice-desktopeditors
+        return
+        ;;
+    "xournal++")
+        $CMD xournalpp
+        return
+        ;;
+    "calculator")
+        $CMD kcalc
+        return
+        ;;
+    "camera")
+        $CMD deepin-camera
+        return
+        ;;
+    "thunar (file manager)")
+        $CMD thunar
+        return
+        ;;
+    "virtmanager")
+        $CMD virt-manager
+        return
+        ;;
+    "wifi")
+        $DMSCRIPTS/wifi
+        return
+        ;;
+    "wifi gui")
+        $CMD nm-connection-editor
+        return
+        ;;
+    "bluetooth")
+        $DMSCRIPTS/bluetooth 
+        return
+        ;;
+    "clipboard")
+        $DMSCRIPTS/clipboard
+        return
+        ;;
+    "clear-clipboard")
+        $DMSCRIPTS/clear-clipboard
+        return
+        ;;
+    "screenshot")
+        $DMSCRIPTS/screenshot
+        return
+        ;;
+    "brightness")
+        $DMSCRIPTS/brightness
+        return
+        ;;
+    "volume")
+        $DMSCRIPTS/volume
+        return
+        ;;
+    "pavucontrol (volume control)")
+        $CMD pavucontrol
+        return
+        ;;
+    "mount")
+        $DMSCRIPTS/'mount -m'
+        return
+        ;;
+    "umount")
+        $DMSCRIPTS/'mount -u'
+        return
+        ;;
+    "lock")
+        # TODO duplicate to script in hypland.nix
+        swaylock \
+            --screenshots \
+            --clock \
+            --indicator \
+            --indicator-radius 100 \
+            --indicator-thickness 7 \
+            --effect-blur 7x10 \
+            --effect-vignette 0.5:0.5 \
+            --ring-color 9933ff \
+            --key-hl-color 9933ff \
+            --text-color 64c00 \
+            --line-color 00000000 \
+            --inside-color 00000088 \
+            --separator-color 00000000 \
+            --text-ver "..." \
+            --grace 1.5 \
+            --fade-in 0.2
+        return
+        ;;
+    "sleep")
+        systemctl suspend
+        # TODO duplicate to script in hypland.nix
+        swaylock \
+            --screenshots \
+            --clock \
+            --indicator \
+            --indicator-radius 100 \
+            --indicator-thickness 7 \
+            --effect-blur 7x10 \
+            --effect-vignette 0.5:0.5 \
+            --ring-color 9933ff \
+            --key-hl-color 9933ff \
+            --text-color 64c00 \
+            --line-color 00000000 \
+            --inside-color 00000088 \
+            --separator-color 00000000 \
+            --text-ver "..." \
+            #--grace 1.5 \ TODO changed as it isn't locked otherwise
+            #--fade-in 0.2
+        return
+        ;;
+    "shutdown")
+        if [ "$(echo -e "yes\nno" | $DMENU)" = "yes" ]; then systemctl poweroff; fi
+        return
+        ;;
+    "restart")
+        if [ "$(echo -e "yes\nno" | $DMENU)" = "yes" ]; then systemctl reboot; fi
+        return
+        ;;
+    "picom")
+        $DMSCRIPTS/picom
+        return
+        ;;
+    "translate")
+        $DMSCRIPTS/translate
+        return
+        ;;
+    "music/radio")
+        $DMSCRIPTS/music
+        return
+        ;;
+    "background")
+        $DMSCRIPTS/changeBackground
+        return
+        ;;
+    "fix")
+        $DMSCRIPTS/fix
+        return
+        ;;
+    "keyboard layout")
+        $DMSCRIPTS/keyboard
+        return
+        ;;
+    *)
+        echo "idk what happend. terminating..." && exit 0
+        ;;
+esac
