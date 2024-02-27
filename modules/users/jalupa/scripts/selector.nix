@@ -1,6 +1,6 @@
 { pkgs, scripts, ... }:
 {
-  selector = pkgs.pkgs.writeShellScriptBin "selector" ''
+  selector = pkgs.pkgs.writeShellScript "selector" ''
     # TODO fix this
     DMENU="rofi -dmenu"
     CMD="/usr/bin/env bash -c $1"

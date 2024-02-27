@@ -14,14 +14,14 @@ in
 
     settings = {
       "$terminal" = "${pkgs.kitty}/bin/kitty";
-      "$runprompt" = "${scripts.selector}/bin/selector";
+      "$runprompt" = "${scripts.selector}";
       # TODO
-      "$volume" = "${Dscripts}/volume";
-      "$brightness" = "${Dscripts}/brightness";
+      "$volume" = "${scripts.volume}";
+      "$brightness" = "${scripts.brightness}";
       # TODO implement screenshot dmenu script
       # TODO fix screenshot thing
 
-      exec-once = ''${scripts.startup}/bin/startup'';
+      exec-once = ''${scripts.startup}'';
 
       input = {
         kb_layout = "eu";
@@ -138,8 +138,8 @@ in
         "$mod, 8, split-workspace, 8"
         "$mod, 9, split-workspace, 9"
         "$mod, space, togglespecialworkspace, special:scratch"
-        "$mod, period, exec, ${scripts.switchmonitor}/bin/switchmonitor -n"
-        "$mod, comma, exec, ${scripts.switchmonitor}/bin/switchmonitor -p"
+        "$mod, period, exec, ${scripts.switchmonitor} -n"
+        "$mod, comma, exec, ${scripts.switchmonitor} -p"
 
         # touch workspaces
         " , edge:l:r, split-workspace, e-1"

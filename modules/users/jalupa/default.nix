@@ -18,7 +18,8 @@
     ./pqiv.nix
     ./mpd.nix
     ./syncthing.nix
-    #./emacs.nix
+    ./emacs.nix
+    #./emacs-overlay.nix
     #./doom-emacs
     ./gtk.nix
     ./rofi.nix
@@ -34,7 +35,7 @@
   home.stateVersion = "23.11";
 
   home.packages = with pkgs; [
-    # browser
+    # default programs
     firefox
     brave
     tor-browser-bundle-bin
@@ -45,10 +46,14 @@
     tldr
     mpv
     ripdrag
+    #onlyoffice
+    zathura
+    xournalpp
 
     # default dependencies
     playerctl
     libnotify
+    sshfs # TODO replace by home manager
 
     # desktop env programs
     grim
