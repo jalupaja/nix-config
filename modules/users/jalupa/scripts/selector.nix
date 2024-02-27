@@ -73,7 +73,6 @@
         ${pkgs.kitty}/bin/kitty
         ;;
     "wallpaper")
-        # TODO fix this
         ${scripts.wallpaper}
         ;;
     "signal")
@@ -104,16 +103,15 @@
         # TODO
         ;;
     "wifi")
-        # TODO scripts
+        ${scripts.wifi}
         ;;
     "wifi gui")
         # TODO
         ;;
     "bluetooth")
-        # TODO
+        ${scripts.bluetooth}
         ;;
     "clipboard")
-        # TODO
         ${pkgs.clipman}/bin/clipman pick -t STDOUT | $DMENU
         ;;
     "clear-clipboard")
@@ -123,10 +121,10 @@
         # TODO script
         ;;
     "brightness")
-        # TODO script
+        ${scripts.brightness}
         ;;
     "volume")
-        # TODO sciprt
+        ${scripts.volume}
         ;;
     "volume gui")
         # TODO
@@ -143,7 +141,6 @@
     "sleep")
         systemctl suspend
         ${scripts.lock}
-        # TODO lock script (without timer)
         ;;
     "shutdown")
         if [ "$(echo -e "yes\nno" | $DMENU)" = "yes" ]; then systemctl shutdown; fi
@@ -161,7 +158,7 @@
         # TODO script
         ;;
     "keyboard layout")
-        # TODO
+        ${scripts.keyboard_layout}
         ;;
     *)
         echo "ERROR: choice not in list"

@@ -24,7 +24,7 @@ in
       exec-once = ''${scripts.startup}'';
 
       input = {
-        kb_layout = "eu";
+        kb_layout = "eu,de,us";
         kb_options = "caps:escape_shifted_capslock";
 
         touchpad = {

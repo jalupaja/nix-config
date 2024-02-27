@@ -3,7 +3,7 @@ let
   colors = config.home-manager.extraSpecialArgs.colors;
   scripts = config.home-manager.extraSpecialArgs.scripts;
   importNixScript = name: {
-    "${name}" = (import ./${name}.nix {inherit pkgs colors scripts;})."${name}";
+    "${name}" = (import ./${name}.nix {inherit pkgs config colors scripts;})."${name}";
   };
   importShellScript = name: {
     "${name}" = pkgs.pkgs.writeShellScript "${name}" "${lib.readFile ./${name}.sh}";
@@ -23,5 +23,8 @@ in
 // importNixScript "file_selector"
 // importNixScript "wallpaper"
 // importNixScript "volume"
+// importNixScript "wifi"
+// importNixScript "bluetooth"
 // importNixScript "brightness"
+// importNixScript "keyboard_layout"
 // importNixScript "selector"
