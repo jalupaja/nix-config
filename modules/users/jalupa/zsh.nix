@@ -33,6 +33,7 @@
       grep="grep --colour=auto";
 
       # extra aliases
+      s="xdg-open";
       emacs="emacsclient -c -a 'emacs' &";
       pss="ps -aux | grep ";
       e="emacsclient -c";

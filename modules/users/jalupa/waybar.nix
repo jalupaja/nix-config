@@ -166,7 +166,7 @@ mainWaybarConfig = {
         phone = " ";
         portable = " ";
       };
-      format-muted = " {volume}%";
+      format-muted = "  {volume}%";
       on-click = "${scripts}/volume -t";
       on-scroll-down = "${scripts}/volume -d";
       on-scroll-up = "${scripts}/volume -i";

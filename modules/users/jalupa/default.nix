@@ -23,6 +23,7 @@
     #./doom-emacs
     ./gtk.nix
     ./rofi.nix
+    ./mime.nix
   ];
   # TODO https://sw.kovidgoyal.net/kitty/overview/
 
@@ -45,8 +46,9 @@
     foot
     tldr
     mpv
+    p7zip
     ripdrag
-    #onlyoffice
+    onlyoffice-bin
     zathura
     xournalpp
 
