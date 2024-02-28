@@ -1,6 +1,7 @@
-{ pkgs, colors, ... }:
+{ pkgs, globals, ... }:
 {
   bluetooth = pkgs.pkgs.writeShellScript "bluetooth" ''
+    DMENU="${globals.dmenu}"
     #      _                                  _     _            _              _    _
     #   __| |_ __ ___   ___ _ __  _   _      | |__ | |_   _  ___| |_ ___   ___ | |_ | |__
     #  / _` | '_ ` _ \ / _ \ '_ \| | | |_____| '_ \| | | | |/ _ \ __/ _ \ / _ \| __|| '_ \
@@ -20,7 +21,6 @@
     #   Arch repositories: dmenu, bluez-utils (contains bluetoothctl)
 
     # Constants
-        DMENU="fuzzel --dmenu"
         divider="---------"
         goback="Back"
 

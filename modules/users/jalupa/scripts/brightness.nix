@@ -1,9 +1,9 @@
-{ pkgs, colors, ... }:
+{ pkgs, globals, ... }:
 {
   brightness = pkgs.pkgs.writeShellScript "brightness" ''
     # the user has to be inside of the "video" group to not need sudo!
 
-    DMENU="fuzzel --dmenu"
+    DMENU="${globals.dmenu}"
 
     levels="0
     5

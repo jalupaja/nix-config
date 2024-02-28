@@ -1,8 +1,7 @@
-{ pkgs, colors, ... }:
+{ pkgs, globals, ... }:
 {
   volume = pkgs.pkgs.writeShellScript "volume" ''
-
-    DMENU="fuzzel --dmenu"
+    DMENU="${globals.dmenu}"
 
     levels="5
     15

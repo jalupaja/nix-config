@@ -1,8 +1,8 @@
-{ pkgs, colors, ... }:
+{ pkgs, globals, ... }:
 {
   killall = pkgs.pkgs.writeShellScript "killall" ''
+    DMENU="${globals.dmenu}"
 
-    DMENU="rofi -dmenu"
     processes=$(ps axo user,comm | sed -n -e "s/$USER\s*//p" | sort | uniq)
 
 

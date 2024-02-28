@@ -1,10 +1,9 @@
-{ pkgs, scripts, ... }:
+{ pkgs, scripts, globals, ... }:
 {
   selector = pkgs.pkgs.writeShellScript "selector" ''
-    # TODO fix this
-    DMENU="rofi -dmenu"
+    DMENU="${globals.dmenu}"
     CMD="/usr/bin/env bash -c $1"
-    APPS="rofi -show drun"
+    APPS="${globals.app_runner}"
 
     menu="\
     apps
@@ -88,7 +87,7 @@
         ${pkgs.keepassxc}/bin/keepassxc
         ;; 
     "office")
-        # TODO
+        ${pkgs.libreoffice}/bin/libreoffice
         ;;
     "xournal++")
         ${pkgs.xournalpp}/bin/xournalpp
@@ -143,10 +142,10 @@
         ${scripts.lock}
         ;;
     "shutdown")
-        if [ "$(echo -e "yes\nno" | $DMENU)" = "yes" ]; then systemctl shutdown; fi
+        if [ "$(echo -e "yes\nno" | $DMENU)" = "yes" ]; then poweroff; fi
         ;;
     "restart")
-        if [ "$(echo -e "yes\nno" | $DMENU)" = "yes" ]; then systemctl reboot; fi
+        if [ "$(echo -e "yes\nno" | $DMENU)" = "yes" ]; then reboot; fi
         ;;
     "kill")
         ${scripts.kill}

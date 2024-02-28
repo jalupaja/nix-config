@@ -1,9 +1,10 @@
 { pkgs, lib, config, ... }:
 let 
   colors = config.home-manager.extraSpecialArgs.colors;
+  globals = config.home-manager.extraSpecialArgs.globals;
   scripts = config.home-manager.extraSpecialArgs.scripts;
   importNixScript = name: {
-    "${name}" = (import ./${name}.nix {inherit pkgs config colors scripts;})."${name}";
+    "${name}" = (import ./${name}.nix {inherit pkgs config colors globals scripts;})."${name}";
   };
   importShellScript = name: {
     "${name}" = pkgs.pkgs.writeShellScript "${name}" "${lib.readFile ./${name}.sh}";

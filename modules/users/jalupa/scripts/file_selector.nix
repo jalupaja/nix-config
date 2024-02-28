@@ -1,7 +1,7 @@
-{ pkgs, colors, ... }:
+{ pkgs, globals, ... }:
 {
   file_selector = pkgs.pkgs.writeShellScript "file_selector" ''
-    DMENU="fuzzel -w 100 --dmenu"
+    DMENU="${globals.dmenu}"
 
     getdir=false
     while getopts "dp:h" args; do

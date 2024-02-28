@@ -1,13 +1,10 @@
-{ pkgs, ... }:
+{ pkgs, globals, ... }:
 {
   wifi = pkgs.pkgs.writeShellScript "wifi" ''
-    #
+    DMENU="${globals.dmenu}"
+
     # This script is copied from https://github.com/GeorgiChalakov01/wifi-control
     # and has been edited to work for me
-    #
-    # TODO: check for internet after 3 sec, if not, ask for password
-
-    DMENU="rofi -dmenu"
 
     case $(echo -e "CONNECT\nDISCONNECT\nWIFI ON\nWIFI OFF" | $DMENU "WIFI Options: " -l 4;) in
         CONNECT)
