@@ -39,12 +39,12 @@
             amixer set Capture toggle
             end_mic
             ;;
-        l) #mic increase
-            amixer set Capture 5%+
+        l) #mic decrease
+            amixer set Capture 5%-
             end_mic
             ;;
-        u) #mic decrease
-            amixer set Capture 5%-
+        u) #mic increase
+            amixer set Capture 5%+
             end_mic
             ;;
         s) #set

@@ -1,7 +1,5 @@
-{ pkgs, config, ... }: 
+{ pkgs, config, scripts, ... }: 
 let
-  scripts = "~/.config/jalupa_config/dmenuscripts";
-
   batteryScript = pkgs.writeShellScriptBin "batteryScript" ''
     cat /sys/class/power_supply/BAT0/capacity
   '';
@@ -167,9 +165,9 @@ mainWaybarConfig = {
         portable = " ";
       };
       format-muted = "  {volume}%";
-      on-click = "${scripts}/volume -t";
-      on-scroll-down = "${scripts}/volume -d";
-      on-scroll-up = "${scripts}/volume -i";
+      on-click = "${scripts.volume} -t";
+      on-scroll-down = "${scripts.volume} -d";
+      on-scroll-up = "${scripts.volume} -i";
       scroll-step = 5;
       tooltip-format = "{icon} {desc} {volume}%";
     };
@@ -178,9 +176,9 @@ mainWaybarConfig = {
       format = "{format_source}";
       format-source = "  {volume}%";
       format-source-muted = "  {volume}%";
-      on-click = "${scripts}/volume -m";
-      on-scroll-down = "${scripts}/volume -l";
-      on-scroll-up = "${scripts}/volume -u";
+      on-click = "${scripts.volume} -m";
+      on-scroll-down = "${scripts.volume} -l";
+      on-scroll-up = "${scripts.volume} -u";
       scroll-step = 5;
     };
 
