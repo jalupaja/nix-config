@@ -1,7 +1,4 @@
 { pkgs, lib, inputs, colors, scripts, ... }: 
-let
-  Dscripts = "~/.config/jalupa_config/dmenuscripts";
-in
   with inputs;
   {
   wayland.windowManager.hyprland = {
@@ -15,7 +12,6 @@ in
     settings = {
       "$terminal" = "${pkgs.kitty}/bin/kitty";
       "$runprompt" = "${scripts.selector}";
-      # TODO
       "$volume" = "${scripts.volume}";
       "$brightness" = "${scripts.brightness}";
       # TODO implement screenshot dmenu script

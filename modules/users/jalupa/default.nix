@@ -56,6 +56,8 @@
     playerctl
     libnotify
     sshfs # TODO replace by home manager
+    xdg-desktop-portal-hyprland # maybe replace with home manager (not hyprland)
+    bc
 
     # desktop env programs
     grim
