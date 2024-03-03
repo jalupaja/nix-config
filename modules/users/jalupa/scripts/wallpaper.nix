@@ -85,11 +85,15 @@
       fi
     fi
 
-    # different options to get current monitors
-    monitors=($(swww query | awk '{print substr($1, 1, length($1) - 1)}'))
-    # monitors=($(hyprctl monitors | grep "Monitor" | awk '{print $2}'))
-    # for X11
-    # monitors=($(xrandr --listactivemonitors | tail -n +2 | awk '{print $4}'))
+    function updateMonitor {
+      # different options to get current monitors
+      monitors=($(swww query | awk '{print substr($1, 1, length($1) - 1)}'))
+      # monitors=($(hyprctl monitors | grep "Monitor" | awk '{print $2}'))
+      # for X11
+      # monitors=($(xrandr --listactivemonitors | tail -n +2 | awk '{print $4}'))
+    }
+
+    updateMonitor 
 
     if [ -z "$selectedMon" ]; then
         if [[ ''${#monitors[@]} > 1 ]]; then
@@ -195,6 +199,7 @@
             ranFromDir $path
             if [ "$selectedMon" = "per monitor" ]; then
                 # per monitor
+                updateMonitor 
                 for i in ''${monitors[@]};
                 do
                     # Random in directory
