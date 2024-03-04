@@ -10,6 +10,17 @@
     };
 
     shellAliases = {
+      #healthy defaults
+      cp = "cp -i";
+      mv = "mv -i";
+      df="df -h";
+      du="du -h";
+      free="free -m";
+      mount="sudo mount -o uid=$USER";
+      umount="sudo umount";
+      grep="grep -i --colour=auto";
+
+      # ll stuff
       ll = "ls -l";
       la = "ls -la";
       lg = "ls -la | grep ";
@@ -21,16 +32,6 @@
       ".." = "cd ..";
       "..." = "cd ../..";
       "...." = "cd ../../..";
-
-      #healthy defaults
-      cp = "cp -i";
-      mv = "mv -i";
-      df="df -h";
-      du="du -h";
-      free="free -m";
-      mount="sudo mount -o uid=$USER";
-      umount="sudo umount";
-      grep="grep --colour=auto";
 
       # extra aliases
       s="xdg-open";

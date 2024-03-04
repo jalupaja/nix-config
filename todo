@@ -1,4 +1,30 @@
-dotfiles: !!!
+access nix-config dir within config? ((config.)environments.etc doesnt work in config)
+
+apply theme (also font)
+    notifications(swaync?)
+    ? kitty, starship, (neo)fetch
+    ?? emacs
+udiskie
+more mime apps
 Hyprland:
+    https://wiki.hyprland.org/Useful-Utilities/Must-have/
+    https://wiki.hyprland.org/Useful-Utilities/Other/
     fix multi monitor size
+    monitor=...
+dunst -> swayNC
+    conf + waybar: https://github.com/artaz0l/dotfiles/blob/master/.config/waybar/config
+keyboard layout switcher:
+    https://github.com/artaz0l/dotfiles/blob/master/.config/waybar/config
 emacs
+rofi
+    https://github.com/davatorium/rofi/wiki/User-scripts
+    bitwarden, keepassxc
+    mpd
+    emoji/kaomoji
+    translate
+    udiskie
+ls -> sls
+age-nix
+ripgrepall
+
+https://codeberg.org/lunik1/nix-wallpaper

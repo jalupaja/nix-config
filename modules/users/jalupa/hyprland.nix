@@ -24,6 +24,8 @@ with inputs;
 
       monitor = [
         ",preferred,auto,1"
+        # rotate my verticle monitor
+        "desc:Samsung Electric Company S24F350 H4ZJ203739,preferred,auto,1,transform,1"
       ];
 
       input = {
