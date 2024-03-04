@@ -1,12 +1,12 @@
-{ pkgs, colors, ... }:
+{ pkgs, theme, ... }:
 {
   services.mako = {
     enable = true;
 
-    backgroundColor = "#${colors.background}FF";
-    textColor = "#${colors.foreground}FF";
-    progressColor = "over #${colors.foreground}FF";
-    borderColor = "#${colors.second}FF";
+    backgroundColor = "#${theme.background}FF";
+    textColor = "#${theme.foreground}FF";
+    progressColor = "over #${theme.foreground}FF";
+    borderColor = "#${theme.color_first}FF";
     borderRadius = 4;
 
     defaultTimeout = 3000;

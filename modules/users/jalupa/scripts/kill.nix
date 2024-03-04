@@ -1,4 +1,4 @@
-{ pkgs, colors, globals, ... }:
+{ pkgs, globals, ... }:
 {
   kill = pkgs.pkgs.writeShellScript "kill" ''
     DMENU="${globals.dmenu}"

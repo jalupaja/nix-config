@@ -1,4 +1,4 @@
-{ pkgs, lib, inputs, colors, scripts, ... }: 
+{ pkgs, lib, inputs, theme, scripts, ... }: 
 with inputs;
 {
   wayland.windowManager.hyprland = {
@@ -43,8 +43,8 @@ with inputs;
         gaps_out = 10;
         border_size = 2;
         # TODO change to orange?
-        "col.active_border" = "rgba(${colors.main}ee) rgba(${colors.second}ee) 45deg";
-        "col.inactive_border" = "rgba(595959aa)";
+        "col.active_border" = "rgba(${theme.color_first}ee) rgba(${theme.color_second}ee) 45deg";
+        "col.inactive_border" = "rgba(${theme.background}aa)";
 
         layout = "dwindle";
 

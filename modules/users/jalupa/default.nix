@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, colors, ... }:
+{ config, pkgs, inputs, theme, ... }:
 {
   imports = [
     ./kitty.nix

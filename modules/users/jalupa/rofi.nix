@@ -1,4 +1,4 @@
-{pkgs, config, colors, ...}:
+{pkgs, config, theme, ...}:
 {
   programs.rofi = {
     enable = true;
@@ -24,9 +24,9 @@
 
       "*" = {    
         font = "Monospace 12";
-        text-color = mkLiteral "#f8f8f2";
-        background-color = mkLiteral "#00000099";    
-        active-background = mkLiteral "#${colors.main}ff";
+        text-color = mkLiteral "#${theme.foreground}";
+        background-color = mkLiteral "#${theme.background}99";    
+        active-background = mkLiteral "#${theme.color_first}ff";
         urgent-background = mkLiteral "#ffcccbff";
         urgent-text-color = mkLiteral "#8b0000";
         selected-background = mkLiteral "@active-background";
@@ -34,7 +34,7 @@
         selected-active-background = mkLiteral "@active-background";
         separatorcolor = mkLiteral "@active-background";
 
-        border-color = mkLiteral "#${colors.second}";
+        border-color = mkLiteral "#${theme.color_second}";
         width = 512;  
       };  
 

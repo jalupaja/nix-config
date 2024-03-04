@@ -5,7 +5,7 @@
     useUserPackages = true;
     extraSpecialArgs = rec {
       inherit inputs;
-      colors = import ./users/jalupa/colors.nix;
+      theme = import ./users/jalupa/theme.nix;
       globals = import ./users/jalupa/globals.nix {inherit pkgs;};
       scripts = import ./users/jalupa/scripts{inherit pkgs lib config;};
       addons = nur.repos.rycee.firefox-addons;
