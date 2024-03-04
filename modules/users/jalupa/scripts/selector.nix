@@ -41,7 +41,7 @@
     kill
     killall
     fix
-    keyboard layout
+    keyboard layout\
     "
 
     choice=$(echo -e "$menu" | ''${DMENU}) || exit
@@ -117,7 +117,7 @@
         ${pkgs.clipman}/bin/clipman clear --all
         ;;
     "screenshot")
-        # TODO script
+        ${scripts.screenshot}
         ;;
     "brightness")
         ${scripts.brightness}
@@ -126,7 +126,7 @@
         ${scripts.volume}
         ;;
     "volume gui")
-        # TODO
+        ${pkgs.pavucontrol}/bin/pavucontrol
         ;;
     "mount")
         # TODO script

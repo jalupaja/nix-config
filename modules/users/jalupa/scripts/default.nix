@@ -27,5 +27,6 @@ in
 // importNixScript "wifi"
 // importNixScript "bluetooth"
 // importNixScript "brightness"
+// importNixScript "screenshot"
 // importNixScript "keyboard_layout"
 // importNixScript "selector"

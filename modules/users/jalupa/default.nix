@@ -12,8 +12,10 @@
     ./waybar.nix
     #./wpaperd.nix
     ./clipman.nix
-    ./dunst.nix
-    #./udiskie.nix
+    ./mpv.nix
+    #./dunst.nix
+    #./mako.nix
+    ./udiskie.nix
     ./fuzzel.nix
     ./pqiv.nix
     ./mpd.nix
@@ -24,6 +26,8 @@
     ./gtk.nix
     ./rofi.nix
     ./mime.nix
+    #./ags.nix
+    #./eww.nix
   ];
   # TODO https://sw.kovidgoyal.net/kitty/overview/
 
@@ -45,7 +49,6 @@
     bitwarden
     foot
     tldr
-    mpv
     p7zip
     ripdrag
     onlyoffice-bin
@@ -55,15 +58,19 @@
     # default dependencies
     playerctl
     libnotify
+    pavucontrol
     sshfs # TODO replace by home manager
     xdg-desktop-portal-hyprland # maybe replace with home manager (not hyprland)
+    udiskie
     bc
 
     # desktop env programs
     grim
+    grimblast
     slurp
     swww
     swaylock-effects
+    swaynotificationcenter
     lemurs # TODO fix
     # TODO implement script: https://github.com/coldfix/udiskie/wiki/Usage
     # TODO https://sr.ht/~emersion/grim/ (also in hyprmanager)
