@@ -2,7 +2,6 @@
 {
   imports = [
     ./kitty.nix
-    #./alacritty.nix
     ./zsh.nix
     ./starship.nix
     ./vim.nix
@@ -10,7 +9,6 @@
     ./firefox.nix
     ./hyprland.nix
     ./waybar.nix
-    #./wpaperd.nix
     ./clipman.nix
     ./mpv.nix
     #./dunst.nix
@@ -26,8 +24,6 @@
     ./gtk.nix
     ./rofi.nix
     ./mime.nix
-    #./ags.nix
-    #./eww.nix
   ];
   # TODO https://sw.kovidgoyal.net/kitty/overview/
 
