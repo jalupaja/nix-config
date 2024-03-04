@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, theme, ... }:
 {
   programs.zsh = {
     enable = true;
@@ -51,8 +51,14 @@
     };
 
     envExtra = ''
-printf "\033c"
-printf '\033[0;33m'
+
+printf '\e]4;1;rgb:${theme.color_second}\e\\\e[31m'
+date=$(date | awk '{print $4}')
+printf "%*s\n" $(((''${#date}+$COLUMNS)/2)) "$date"
+unset date
+
+printf '\e]4;1;rgb:${theme.color_first}\e\\\e[31m'
+
 echo '
        ___  ________  ___       ___  ___  ________  ________
       |\  \|\   __  \|\  \     |\  \|\  \|\   __  \|\   __  \
