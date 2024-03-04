@@ -14,7 +14,7 @@ for i in "${!monitors[@]}"; do
 done
 
 # next
-if [[ $current_monitor = $monitor_amount-1 ]]; 
+if (( $current_monitor_index == $monitor_amount-1 )); 
 then
     next_index=0
 else
@@ -24,7 +24,7 @@ fi
 # prev
 if [[ $current_monitor_index = 0 ]];
 then
-    prev_index=$((current_monitor_index - 1))
+    prev_index=$((monitor_amount - 1))
 else
     prev_index=$((current_monitor_index - 1))
 fi
