@@ -1,8 +1,11 @@
 { pkgs, lib, inputs, colors, scripts, ... }: 
-  with inputs;
-  {
+with inputs;
+{
   wayland.windowManager.hyprland = {
-    enable = true; package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+    enable = true; 
+    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+    systemd.enable = true;
+    xwayland.enable = true;
 
     plugins = [
       split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces
@@ -19,12 +22,19 @@
 
       exec-once = ''${scripts.startup}'';
 
+      monitor = [
+        ",preferred,auto,1"
+      ];
+
       input = {
         kb_layout = "eu,de,us";
         kb_options = "caps:escape_shifted_capslock";
 
+        follow_mouse = 1;
         touchpad = {
+          natural_scroll = true;
           disable_while_typing = true;
+          drag_lock = true;
         };
       };
 
@@ -90,6 +100,8 @@
 
       gestures = {
         workspace_swipe = true;
+        workspace_swipe_forever = true;
+        workspace_swipe_numbered = true;
         workspace_swipe_cancel_ratio = 0.15;
       };
 
