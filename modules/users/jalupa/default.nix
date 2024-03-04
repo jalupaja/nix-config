@@ -11,7 +11,7 @@
     ./waybar.nix
     ./clipman.nix
     ./mpv.nix
-    #./dunst.nix
+    ./dunst.nix
     #./mako.nix
     ./udiskie.nix
     ./fuzzel.nix
@@ -24,8 +24,12 @@
     ./gtk.nix
     ./rofi.nix
     ./mime.nix
+    ./btop.nix
   ];
   # TODO https://sw.kovidgoyal.net/kitty/overview/
+
+  # TODO works. use this for emacs
+  # home.file."test".text = builtins.readFile ./dunst.nix;
 
   # TODO possible configs
   # lazygit
@@ -65,8 +69,9 @@
     grimblast
     slurp
     swww
+    wlr-randr
     swaylock-effects
-    swaynotificationcenter
+    #swaynotificationcenter
     lemurs # TODO fix
     # TODO implement script: https://github.com/coldfix/udiskie/wiki/Usage
     # TODO https://sr.ht/~emersion/grim/ (also in hyprmanager)

@@ -1,4 +1,4 @@
-{ pkgs, config, scripts, ... }: 
+{ pkgs, config, scripts, theme, ... }: 
 let
   batteryScript = pkgs.writeShellScriptBin "batteryScript" ''
     cat /sys/class/power_supply/BAT0/capacity
@@ -8,7 +8,7 @@ mainWaybarConfig = {
   mod = "dock";
   layer = "top";
   gtk-layer-shell = true;
-  height = 28;
+  height = 32;
   position = "top";
 
   modules-left = [
@@ -212,8 +212,7 @@ mainWaybarConfig = {
   css = ''
     * {
       border-radius: 5px;
-      font-family: "Mono Font";
-      font-weight: bold;
+      font-family: "${theme.font}";
       font-size: 16px;
       padding: 0px;
       margin: 1px 5px 0px 5px;
@@ -224,12 +223,12 @@ mainWaybarConfig = {
     }
 
     tooltip {
-      color: @theme_text_color;
-      background-color: black;
+      color: #${theme.foreground};
+      background-color: #${theme.background};
       border-radius: 10px;
       border-width: 1px;
       border-style: solid;
-      border-color: shade(alpha(@theme_text_colors, 0.9), 1.25);
+      border-color: shade(#${theme.color_second}, 1.25);
     }
 
     #workspaces button {
@@ -237,14 +236,10 @@ mainWaybarConfig = {
       margin-left: 0px;
       padding-right: 0px;
       padding-left: 0px;
-      color: @theme_unfocused_base_color;
+      color: #${theme.foreground};
       border: none;
       box-shadow: none;
       background: transparent;
-    }
-
-    #workspaces button.active {
-        color: @accent_color;
     }
 
     #workspaces button:hover {
@@ -266,18 +261,26 @@ mainWaybarConfig = {
     #custom-wallchange,
     #custom-mode,
     #tray {
-      color: @theme_text_color;
+      color: #${theme.foreground};
       opacity: 1;
     }
 
     #custom-battery {
-      color: @green_1
+      color: #${theme.foreground};
     }
 
     /* resource monitor block */
 
+    #custom-notification {
+      color: #${theme.foreground};
+    }
+
+    #battery {
+      color: #${theme.foreground};
+    }
+
     #cpu {
-      color: @yellow_1;
+      color: #${theme.foreground};
       border-radius: 10px 0px 0px 10px;
       padding-left: 2px;
       padding-right: 2px;
@@ -294,7 +297,7 @@ mainWaybarConfig = {
 
     /* date time block */
     #clock {
-      color: @yellow_1;
+      color: #${theme.foreground};
       padding-left: 12px;
       padding-right: 12px;
     }
@@ -303,7 +306,7 @@ mainWaybarConfig = {
     /* workspace window block */
     #workspaces {
       border-radius: 3px 3px 3px 3px;
-      color: @yellow_1;
+      color: #${theme.foreground};
     }
 
     #window {
@@ -321,31 +324,31 @@ mainWaybarConfig = {
     }
 
     #network {
-      color: @purple_1;
+      color: #${theme.foreground};
       padding-left: 4px;
       padding-right: 4px;
     }
 
     #language {
-      color: @orange_1;
+      color: #${theme.foreground};
       padding-left: 9px;
       padding-right: 9px;
     }
 
     #bluetooth {
-      color: @blue_1;
+      color: #${theme.foreground};
       padding-left: 4px;
       padding-right: 0px;
     }
 
     #pulseaudio {
-      color: @purple_1;
+      color: #${theme.foreground};
       padding-left: 4px;
       padding-right: 4px;
     }
 
     #pulseaudio.microphone {
-      color: @red_1;
+      color: #${theme.foreground};
       padding-left: 0px;
       padding-right: 4px;
     }
@@ -362,7 +365,7 @@ mainWaybarConfig = {
     #custom-logo {
       margin-left: 6px;
       padding-right: 4px;
-      color: @blue_1;
+      color: #${theme.foreground};
       font-size: 16px;
     }
 

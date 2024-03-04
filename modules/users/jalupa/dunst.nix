@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, theme, ... }:
 {
   services.dunst = {
     enable = true;
@@ -10,7 +10,7 @@
         origin = "top-right";    
         # doesn't work 
         transparency = 50;    
-        frame_color = "#b35900";    
+        frame_color = "#${theme.color_second}";
         font = "Monospace 8";  
         notification_limit = 0;
         padding = 9;
@@ -20,14 +20,14 @@
         separator_color = "frame";
       };  
       urgency_low = {    
-        background = "#222222";    
-        foreground = "#b35900";    
+        background = "#${theme.background}";
+        foreground = "#${theme.foreground}";
         timeout = 3;  
       };
       urgency_normal = {    
-        background = "#222222";    
-        foreground = "#b35900";    
-        timeout = 3;  
+        background = "#${theme.background}";
+        foreground = "#${theme.foreground}";
+        timeout = 3;
       };
       urgency_critical = {    
         background = "#900000";    

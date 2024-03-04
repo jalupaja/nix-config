@@ -23,9 +23,9 @@
       };
 
       "*" = {    
-        font = "Monospace 12";
+        font = "${theme.font}";
         text-color = mkLiteral "#${theme.foreground}";
-        background-color = mkLiteral "#${theme.background}99";    
+        background-color = mkLiteral "#${theme.background}ff";    
         active-background = mkLiteral "#${theme.color_first}ff";
         urgent-background = mkLiteral "#ffcccbff";
         urgent-text-color = mkLiteral "#8b0000";
@@ -41,7 +41,7 @@
       "#window" = {
         background-color = mkLiteral "@background-color";
         border = 3;
-        border-radius = 7;
+        border-radius = 10;
         border-color = mkLiteral "@border-color";
         padding = 10;
       };
@@ -129,9 +129,7 @@
         spacing = 0;
         text-color = mkLiteral "@text-color";
         padding = mkLiteral "1px";
-        # TODO fix textbox-prompt-colon
         children = map mkLiteral [ "prompt" "textbox-prompt-colon" "entry" "case-indicator" ];
-        #children = map mkLiteral [ "prompt" "textprompt" "textbox-prompt-colon" "entry" "case-indicator" ];
       };
 
       "#case-indicator" = {
@@ -146,7 +144,7 @@
 
       "#prompt" = {
         spacing = 0;
-        text-color = mkLiteral "@text-color";
+        text-color = mkLiteral "#${theme.color_first}";
       };
 
       "#textbox-prompt-colon" = {
@@ -155,7 +153,7 @@
         str = ">";
         # expand doesnt seem to work but this does
         width = mkLiteral "1em";
-        text-color = mkLiteral "@text-color";
+        text-color = mkLiteral "#${theme.color_second}";
       };
 
       "#element-text, element-icon" = {

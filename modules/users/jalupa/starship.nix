@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, theme, ... }:
 {
   programs.starship = {
     enable = true;
@@ -14,9 +14,14 @@
 
       scan_timeout = 10;  
 
+      directory = {
+        style = "#${theme.color_third}";
+      };
+
       character = {    
-        success_symbol = "➜";    
-        error_symbol = "➜";  
+        # TODO fix/cont
+        success_symbol = "[ ➜](green)";
+        error_symbol = "[ ➜](red)";
       };
 
       git_branch = {
