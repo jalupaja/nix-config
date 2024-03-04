@@ -8,7 +8,7 @@ mainWaybarConfig = {
   mod = "dock";
   layer = "top";
   gtk-layer-shell = true;
-  height = 14;
+  height = 28;
   position = "top";
 
   modules-left = [
@@ -27,6 +27,7 @@ mainWaybarConfig = {
     "pulseaudio"
     "pulseaudio#microphone"
     "cpu"
+    "custom/notification"
     "battery"
     #"tray"
   ];
@@ -101,6 +102,27 @@ mainWaybarConfig = {
       charging = "󱐋";
       default = [ " " " " " " " " " " ];
     };
+  };
+
+  "custom/notification" = {
+    tooltip = false;
+    format = "{icon}";
+    format-icons = {
+      notification = "<span foreground='red'><sup></sup></span>";
+      none = "";
+      dnd-notification = "<span foreground='red'><sup></sup></span>";
+      dnd-none = "";
+      inhibited-notification = "<span foreground='red'><sup></sup></span>";
+      inhibited-none = "";
+      dnd-inhibited-notification = "<span foreground='red'><sup></sup></span>";
+      dnd-inhibited-none = "";
+    };
+    return-type = "json";
+    exec-if = "which swaync-client";
+    exec = "swaync-client -swb";
+    on-click = "swaync-client -t -sw";
+    on-click-right = "swaync-client -d -sw";
+    escape = true;
   };
 
   "custom/gpu-usage" = {
@@ -193,7 +215,7 @@ mainWaybarConfig = {
       border-radius: 5px;
       font-family: "Mono Font";
       font-weight: bold;
-      font-size: 12px;
+      font-size: 16px;
       padding: 0px;
       margin: 1px 5px 0px 5px;
       background-color: transparent;
