@@ -1,5 +1,5 @@
 {
-  font = "Monospace 12";
+  font = "JetBrains Mono Nerd Font";
   color_first = "e64c00";
   color_second = "9933ff";
   color_third = "0080FE";

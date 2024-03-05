@@ -1,10 +1,10 @@
-{ pkgs, ... }:
+{ pkgs, globals, ... }:
 {  
   programs.fuzzel = {
     enable = true;
     settings = {
       main = {    
-        terminal = "${pkgs.kitty}/bin/kitty";    
+        terminal = "${globals.term}";    
         layer = "overlay"; 
         password-character = "*";
         fuzzy = "yes";

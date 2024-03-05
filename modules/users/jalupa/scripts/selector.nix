@@ -12,6 +12,7 @@
     firefox shopping
     firefox github
     tor browser
+    alacritty
     kitty
     wallpaper
     signal
@@ -67,6 +68,9 @@
         ;;
     "tor browser")
         ${pkgs.tor-browser-bundle-bin}/bin/tor-browser
+        ;;
+    "alacritty")
+        ${pkgs.alacritty}/bin/alacritty
         ;;
     "kitty")
         ${pkgs.kitty}/bin/kitty

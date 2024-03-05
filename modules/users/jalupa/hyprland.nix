@@ -1,4 +1,4 @@
-{ pkgs, lib, inputs, theme, scripts, ... }: 
+{ pkgs, lib, inputs, theme, globals, scripts, ... }:
 with inputs;
 {
   wayland.windowManager.hyprland = {
@@ -13,7 +13,7 @@ with inputs;
     ];
 
     settings = {
-      "$terminal" = "${pkgs.kitty}/bin/kitty";
+      "$terminal" = "${globals.term}";
       "$runprompt" = "${scripts.selector}";
       "$volume" = "${scripts.volume}";
       "$brightness" = "${scripts.brightness}";

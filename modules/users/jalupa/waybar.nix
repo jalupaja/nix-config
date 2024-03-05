@@ -1,4 +1,4 @@
-{ pkgs, config, scripts, theme, ... }: 
+{ pkgs, config, scripts, globals, theme, ... }:
 let
   batteryScript = pkgs.writeShellScriptBin "batteryScript" ''
     cat /sys/class/power_supply/BAT0/capacity
@@ -163,8 +163,7 @@ mainWaybarConfig = {
     };
 
     network = {
-      # TODO use global variable instead of kitty
-      on-click = "${pkgs.kitty}/bin/kitty sh -c nmtui";
+      on-click = "${globals.term} sh -c nmtui";
       format-disconnected = " ";
       format-ethernet = "󱘖 ";
       format-linked = "󱘖 -";

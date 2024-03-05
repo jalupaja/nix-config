@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  term = "kitty";
+  term = "alacritty";
   dmenu = "rofi -dmenu";
   app_runner = "rofi -show drun";
   browser = "firefox -profile research";

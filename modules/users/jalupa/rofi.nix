@@ -1,4 +1,4 @@
-{pkgs, config, theme, ...}:
+{pkgs, config, globals, theme, ...}:
 {
   programs.rofi = {
     enable = true;
@@ -6,7 +6,7 @@
 
     cycle = true;
     location = "top";
-    terminal = "${pkgs.kitty}/bin/kitty";
+    terminal = "${globals.term}";
     # this theme is heavenly influenced by dracula: https://github.com/dracula/rofi/blob/main/theme/config1.rasi
 
     extraConfig = {
