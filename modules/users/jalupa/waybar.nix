@@ -210,12 +210,21 @@ mainWaybarConfig = {
 
   css = ''
     * {
-      border-radius: 5px;
+      border-radius: 7px;
       font-family: "${theme.font}";
       font-size: 16px;
       padding: 0px;
-      margin: 1px 5px 0px 5px;
+      margin: 1px 5px 1px 5px;
       background-color: transparent;
+    }
+
+    .modules-left, .modules-center, .modules-right {
+      background: #${theme.background}, 30%;
+      opacity: 0.6;
+      border-width: 3px;
+      border-radius: 10px;
+      border-style: solid;
+      border-color: #${theme.color_first}
     }
 
     window#waybar {
@@ -225,16 +234,13 @@ mainWaybarConfig = {
       color: #${theme.foreground};
       background-color: #${theme.background};
       border-radius: 10px;
-      border-width: 1px;
+      border-width: 2px;
       border-style: solid;
       border-color: shade(#${theme.color_second}, 1.25);
     }
 
     #workspaces button {
-      margin-right: 0px;
-      margin-left: 0px;
-      padding-right: 0px;
-      padding-left: 0px;
+      margin: 0;
       color: #${theme.foreground};
       border: none;
       box-shadow: none;
@@ -261,7 +267,6 @@ mainWaybarConfig = {
     #custom-mode,
     #tray {
       color: #${theme.foreground};
-      opacity: 1;
     }
 
     #custom-battery {
@@ -304,7 +309,6 @@ mainWaybarConfig = {
 
     /* workspace window block */
     #workspaces {
-      border-radius: 3px 3px 3px 3px;
       color: #${theme.foreground};
     }
 
