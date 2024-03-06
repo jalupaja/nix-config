@@ -1,7 +1,6 @@
 { pkgs, theme, ... }:
 {
     programs.alacritty = {
-    # https://github.com/LoneWolf4713/auspicious-dots/blob/main/alacritty/alacritty.toml
         enable = true;
         settings = {
             scrolling = {
@@ -22,30 +21,30 @@
                 draw_bold_text_with_bright_colors = true;
 
                 primary = {
-                    foreground = "0x${theme.foreground}";
-                    background = "0x${theme.background}";
+                    foreground = "#${theme.foreground}";
+                    background = "#${theme.background}";
                 };
 
                 normal = {
-                    black = "0x3B4252";
-                    red = "0xBF616A";
-                    green = "0xA3BE8C";
-                    yellow = "0xEBCB8B";
-                    blue = "0x81A1C1";
-                    magenta = "0xB48EAD";
-                    cyan = "0x88C0D0";
-                    white = "0xE5E9F0";
+                    black = "#1a1a1a";
+                    blue = "#6d46b2";
+                    cyan = "#4fbcd3";
+                    green = "#608f16";
+                    magenta = "#f4005f";
+                    red = "#D64326";
+                    white = "#c4c5b5";
+                    yellow = "#e5ab00";
                 };
 
                 bright = {
-                    black = "0x4C566A";
-                    red = "0xBF616A";
-                    green = "0xA3BE8C";
-                    yellow = "0xEBCB8B";
-                    blue = "0x81A1C1";
-                    magenta = "0xB48EAD";
-                    cyan = "0x8FBCBB";
-                    white = "0xECEFF4";
+                    black = "#625e4c";
+                    blue = "#b083ff";
+                    cyan = "#58d1eb";
+                    green = "#79b31c";
+                    magenta = "#f5196f";
+                    red = "#EE4B2B";
+                    white = "#f6f6ef";
+                    yellow = "#FFBF00";
                 };
             };
 
