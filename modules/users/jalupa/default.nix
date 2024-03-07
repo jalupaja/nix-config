@@ -7,6 +7,7 @@
     ./starship.nix
     ./vim.nix
     #./ssh.nix
+    ./dev
     ./firefox.nix
     ./hyprland.nix
     ./waybar.nix
