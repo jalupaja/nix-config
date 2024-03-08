@@ -10,7 +10,6 @@
     nur.url = "github:nix-community/NUR";
 
     hyprland.url = "github:hyprwm/Hyprland";
-    nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
     split-monitor-workspaces = {
       url = "github:Duckonaut/split-monitor-workspaces";
       inputs.hyprland.follows = "hyprland";
@@ -19,9 +18,14 @@
       url = "github:horriblename/hyprgrass";
       inputs.hyprland.follows = "hyprland";
     };
+
+    nixvim = {
+     url = "github:nix-community/nixvim";
+     #inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, split-monitor-workspaces, hyprgrass, nur, nix-doom-emacs, ...}@inputs: 
+  outputs = { self, nixpkgs, home-manager, split-monitor-workspaces, hyprgrass, nur, nixvim, ...}@inputs: 
   let
     pkgs = import nixpkgs {
       system = "x86_64-linux";

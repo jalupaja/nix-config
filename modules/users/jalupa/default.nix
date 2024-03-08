@@ -7,6 +7,9 @@
     ./zsh.nix
     ./starship.nix
     ./vim.nix
+    # TODO installation crashes currently
+    #./nixvim.nix # neovim
+    #./neovim.nix
     #./ssh.nix
     ./dev
     ./firefox.nix
