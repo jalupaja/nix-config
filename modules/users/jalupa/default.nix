@@ -1,8 +1,9 @@
 { config, pkgs, inputs, theme, ... }:
 {
   imports = [
-    ./kitty.nix
+    #./kitty.nix
     ./alacritty.nix
+    ./foot.nix # backup terminal
     ./zsh.nix
     ./starship.nix
     ./vim.nix
@@ -49,7 +50,6 @@
     signal-desktop
     keepassxc
     bitwarden
-    foot
     tldr
     p7zip
     ripdrag
