@@ -80,26 +80,24 @@
     swaylock-effects
     #swaynotificationcenter
     lemurs # TODO fix
-    # TODO implement script: https://github.com/coldfix/udiskie/wiki/Usage
-    # TODO https://sr.ht/~emersion/grim/ (also in hyprmanager)
   ];
 
   # TODO fix
-  systemd.user.services.lemurs = {
-    unitConfig = {
-      after = [ "systemd-user-sessions.service" "plymouth-quit-wait.service" "getty@tty1.service" ];
-      description = "Lemurs";
-    };
-    serviceConfig = {
-      ExecStart = "${pkgs.lemurs}/bin/lemurs";
-      StandardInput = "tty";
-      TTYPath = "/dev/tty1";
-      TTYReset = "yes";
-      TTYVHangup = "yes";
-      Type = "idle";
-    };
-    installConfig = {
-      alias = "display-manager.service";
-    };
-  };
+#  systemd.user.services.lemurs = {
+#    unitConfig = {
+#      after = [ "systemd-user-sessions.service" "plymouth-quit-wait.service" "getty@tty1.service" ];
+#      description = "Lemurs";
+#    };
+#    serviceConfig = {
+#      ExecStart = "${pkgs.lemurs}/bin/lemurs";
+#      StandardInput = "tty";
+#      TTYPath = "/dev/tty1";
+#      TTYReset = "yes";
+#      TTYVHangup = "yes";
+#      Type = "idle";
+#    };
+#    installConfig = {
+#      alias = "display-manager.service";
+#    };
+#  };
 }	
