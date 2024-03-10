@@ -24,7 +24,6 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  boot.initrd.luks.devices."luks-292a6341-056b-4f7f-ac96-55708436bfae".device = "/dev/disk/by-uuid/292a6341-056b-4f7f-ac96-55708436bfae";
   networking.hostName = "debian"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -104,11 +103,11 @@ services.udev.extraRules = ''
     ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="intel_backlight", MODE="0666", RUN+="${pkgs.coreutils}/bin/chmod a+w /sys/class/backlight/%k/brightness"
   '';
 
+# TODO move into home-manager (didn't work for me)
+programs.hyprland.enable = true;
 
 # Allow unfree packages
 nixpkgs.config.allowUnfree = true;
-
-programs.hyprland.enable = true;
 
 # Some programs need SUID wrappers, can be configured further or are
 # started in user sessions.

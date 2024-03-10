@@ -18,6 +18,10 @@
     fsType = "ext4";
   };
 
+  # [SWAP]
+  boot.initrd.luks.devices."luks-292a6341-056b-4f7f-ac96-55708436bfae".device = "/dev/disk/by-uuid/292a6341-056b-4f7f-ac96-55708436bfae";
+
+  # /nix/store
   boot.initrd.luks.devices."luks-f0884014-d3ce-44e2-92fc-3bd7aa6e5a66".device = "/dev/disk/by-uuid/f0884014-d3ce-44e2-92fc-3bd7aa6e5a66";
 
   fileSystems."/boot" =

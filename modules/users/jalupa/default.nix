@@ -1,6 +1,7 @@
 { config, pkgs, inputs, theme, ... }:
 {
   imports = [
+    ./fonts.nix
     #./kitty.nix
     ./alacritty.nix
     ./foot.nix # backup terminal
@@ -19,7 +20,7 @@
     ./mpv.nix
     ./dunst.nix
     #./mako.nix
-    ./udiskie.nix
+    #./udiskie.nix
     ./fuzzel.nix
     ./pqiv.nix
     ./mpd.nix
