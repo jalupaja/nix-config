@@ -18,6 +18,7 @@ in
 }
 // importNixScript "startup"
 // importShellScript "switchmonitor"
+// importNixScript  "monitorsetup"
 // importNixScript "kill"
 // importNixScript "killall"
 // importNixScript "lock"

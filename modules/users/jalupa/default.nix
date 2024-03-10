@@ -78,6 +78,7 @@
     slurp
     swww
     wlr-randr
+    wdisplays # gui display positioning
     swaylock-effects
     #swaynotificationcenter
     lemurs # TODO fix

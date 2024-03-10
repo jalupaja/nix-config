@@ -33,6 +33,8 @@
     brightness
     volume
     volume gui
+    monitor setup
+    monitor setup gui
     mount
     umount
     lock
@@ -131,6 +133,12 @@
         ;;
     "volume gui")
         ${pkgs.pavucontrol}/bin/pavucontrol
+        ;;
+    "monitor setup")
+        ${scripts.monitorsetup}
+        ;;
+    "monitor setup gui")
+        ${pkgs.wdisplays}/bin/wdisplays
         ;;
     "mount")
         # TODO script
