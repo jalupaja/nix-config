@@ -48,7 +48,6 @@
 
   home.packages = with pkgs; [
     # default programs
-    firefox
     brave
     tor-browser-bundle-bin
     signal-desktop
@@ -60,6 +59,7 @@
     onlyoffice-bin
     zathura
     xournalpp
+    ripgrep-all
 
     # default dependencies
     playerctl
@@ -67,9 +67,10 @@
     pavucontrol
     sshfs # TODO replace by home manager
     xdg-desktop-portal-hyprland # maybe replace with home manager (not hyprland)
-    udiskie
     ripgrep
     bc
+    usbutils
+    # https://github.com/NixOS/nixpkgs/issues/30506
 
     # desktop env programs
     grim
