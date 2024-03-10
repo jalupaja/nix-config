@@ -12,14 +12,6 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  fonts.packages = with pkgs; [
-    nerdfonts
-    noto-fonts
-    noto-fonts-cjk
-    noto-fonts-emoji
-    liberation_ttf
-  ];
-
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -75,7 +67,9 @@ services.printing.enable = true;
 sound.enable = true;
 hardware.pulseaudio.enable = false;
 security.rtkit.enable = true;
+# TODO
 security.pam.services.swaylock = {};
+security.pam.services.lemurs = {};
 services.pipewire = {
   enable = true;
   alsa.enable = true;
@@ -96,7 +90,7 @@ services.pipewire = {
 users.users.jalupa = {
   isNormalUser = true;
   description = "jalupa";
-  extraGroups = [ "networkmanager" "wheel" "video"];
+  extraGroups = [ "networkmanager" "wheel" "video" "dialout" ];
 };
 
 services.udev.extraRules = ''
