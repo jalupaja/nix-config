@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   term = "alacritty";
-  dmenu = "rofi -dmenu";
+  dmenu = "rofi -dmenu -i";
   app_runner = "rofi -show drun";
   browser = "firefox -profile research";
   image = "pqiv";
