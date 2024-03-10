@@ -8,10 +8,11 @@
         height = 300;    
         offset = "10x50";    
         origin = "top-right";    
+        follow = "keyboard";
         # doesn't work 
         transparency = 50;    
         frame_color = "#${theme.color_second}";
-        font = "Monospace 8";  
+        font = "${theme.font}";  
         notification_limit = 0;
         padding = 9;
         horizontal_padding = 8;
