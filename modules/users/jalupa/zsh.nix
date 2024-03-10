@@ -74,8 +74,19 @@ echo '
     prezto = {
       enable = true;
 
+      color = true;
       caseSensitive = false;
-      editor.dotExpansion = true;
+      editor = {
+        dotExpansion = true;
+      };
+
+      prompt = {
+        pwdLength = "short";
+      };
+
+      utility = {
+        safeOps = false;
+      };
     };
   };
 }

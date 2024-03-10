@@ -5,31 +5,87 @@
     enableZshIntegration = true;
 
     settings = {  
-      add_newline = false;  
-      line_break.disabled = true;
-      package.disabled = true;
-      git_commit.disabled = true;
-      git_state.disabled = true;
-      git_metrics.disabled = true;
 
-      scan_timeout = 10;  
+      # disable unwanted behaviour
+      add_newline = true;  
+
+      format = "$directory$fossil_branch$hg_branch$pijul_channel$git_branch$docker_context$guix_shell$meson$spack$container$jobs$cmd_duration$battery $character";
 
       directory = {
+        format = "[$read_only]($read_only_style)[$path]($style)";
         style = "#${theme.color_third}";
+        truncation_length = 2;
+        disabled = false;
+      };
+
+      jobs = {
+        format = " [$symbol$number]($style)";
+        symbol = "*";
+        disabled = false;
       };
 
       character = {    
-        # TODO fix/cont
-        success_symbol = "[ ➜](green)";
-        error_symbol = "[ ➜](red)";
+        success_symbol = "[➜](green)";
+        error_symbol = "[➜](red)";
+        disabled = false;
+      };
+
+      fossil_branch = {
+        format = " [$symbol$branch](bold purple)";
+        disabled = false;
+      };
+
+      hg_branch = {
+        format = " [$symbol$branch]($style)";
+        disabled = false;
+      };
+
+      pijul_channel = {
+        format = " [$symbol$channel]($style)";
+        disabled = false;
       };
 
       git_branch = {
-        style = "bold purple";
-        format = "[$symbol$branch]($style)";
+        format = " [$symbol$branch](bold purple)";
+        disabled = false;
       };
 
-      cmd_duration.format = " [$duration]($style)";
+      docker_context = {
+        format = " [$symbol$context]($style)";
+        disabled = false;
+      };
+
+      guix_shell = {
+        format = " [$symbol]($style)";
+        disabled = false;
+      };
+
+      meson = {
+        format = " [$symbol$project]($style)";
+        disabled = false;
+      };
+
+      spack = {
+        format = " [$symbol$project]($style)";
+        disabled = false;
+      };
+
+      cmd_duration = {
+        format = " [$duration]($style)";
+        disabled = false;
+      };
+
+      battery = {
+        format = " [$symbol$percentage]($style)";
+        display.threshold = 15;
+        disabled = false;
+      };
+
+      container = {
+        format = " [$symbol \[$name\]]($style)";
+        disabled = false;
+      };
+
     };
   };
 }
