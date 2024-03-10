@@ -77,7 +77,6 @@
 
       battery = {
         format = " [$symbol$percentage]($style)";
-        display.threshold = 15;
         disabled = false;
       };
 
