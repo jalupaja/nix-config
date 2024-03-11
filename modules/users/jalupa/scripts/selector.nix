@@ -117,7 +117,7 @@
         ${scripts.bluetooth}
         ;;
     "clipboard")
-        ${pkgs.clipman}/bin/clipman pick -t STDOUT | $DMENU
+        ${pkgs.clipman}/bin/clipman pick -t STDOUT | $DMENU wl | wl-store
         ;;
     "clear-clipboard")
         ${pkgs.clipman}/bin/clipman clear --all
