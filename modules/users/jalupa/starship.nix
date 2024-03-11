@@ -9,7 +9,11 @@
       # disable unwanted behaviour
       add_newline = true;  
 
-      format = "$directory$fossil_branch$hg_branch$pijul_channel$git_branch$docker_context$guix_shell$meson$spack$container$jobs$cmd_duration$battery $character";
+      format = "$python$directory$fossil_branch$hg_branch$pijul_channel$git_branch$docker_context$guix_shell$meson$spack$container$jobs$cmd_duration$battery $character";
+
+      python = {
+        format = "[\\($virtualenv\\)]($style) ";
+      };
 
       directory = {
         format = "[$read_only]($read_only_style)[$path]($style)";
