@@ -3,7 +3,7 @@ with inputs;
 {
   wayland.windowManager.hyprland = {
     enable = true; 
-    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+    package = hyprland.packages.${pkgs.system}.hyprland;
     systemd.enable = true;
     xwayland.enable = true;
 
@@ -118,7 +118,7 @@ with inputs;
         "$mod, return, exec, $terminal"
         "CTRL, space, exec, $runprompt"
         "$mod SHIFT, L, exec, ${scripts.lock}"
-        "$mod, V, exec, clipman pick -t STDOUT | fuzzel --dmenu"
+        "$mod, V, exec, clipman pick -t STDOUT | ${globals.dmenu}"
         "$mod SHIFT, S, exec, grim"
 
         # kill window

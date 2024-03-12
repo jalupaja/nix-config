@@ -9,7 +9,7 @@
     ./starship.nix
     ./vim.nix
     # TODO installation crashes currently
-    #./nixvim.nix # neovim
+    ./nixvim.nix # neovim
     #./neovim.nix
     #./ssh.nix
     ./dev

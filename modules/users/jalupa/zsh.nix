@@ -36,6 +36,7 @@
       # extra aliases
       s="xdg-open";
       emacs="emacsclient -c -a 'emacs' &";
+      vim="nvim";
       pss="ps -aux | grep ";
       e="emacsclient -c";
       g="grep";
