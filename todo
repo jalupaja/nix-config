@@ -1,16 +1,21 @@
-access nix-config dir within config? ((config.)environments.etc doesnt work in config)
-
+nixvim
+    lsp
+	coloring
+	org mode
+clipboard alternative (clipman is archived?!?)
+    allow image copy
+    diy using wl-clipboard
+libinput:
+    or hyprland implementation?
+    disable touchpad
+    setup touchpad pressure (Synaptic ...)
 apply theme (also font)
-    notifications(swaync?)
     ? kitty, starship, (neo)fetch
     ?? emacs
-udiskie
-more mime apps
+udiskie more mime apps
 Hyprland:
     https://wiki.hyprland.org/Useful-Utilities/Must-have/
     https://wiki.hyprland.org/Useful-Utilities/Other/
-    fix multi monitor size
-    monitor=...
 dunst -> swayNC
     conf + waybar: https://github.com/artaz0l/dotfiles/blob/master/.config/waybar/config
 keyboard layout switcher:
@@ -25,6 +30,6 @@ rofi
     udiskie
 ls -> sls
 age-nix
-ripgrepall
+service to remove /tmp, clipboard on startup
 
 https://codeberg.org/lunik1/nix-wallpaper

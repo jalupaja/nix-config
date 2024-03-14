@@ -1,4 +1,4 @@
-{ pkgs, lib, inputs, globals, ... }:
+{ pkgs, lib, inputs, theme, globals, ... }:
 # TODO check what TODOs do
 with inputs;
 {
@@ -11,12 +11,26 @@ with inputs;
 	    mapleader = " ";
 	};
 
+	options = {
+	    signcolumn = "no";
+	};
+
+	colorschemes = {
 	# TODO 
-	colorschemes.tokyonight = { 
-	    # enable = true;
-	    # TODO
-	    # https://nix-community.github.io/nixvim/colorschemes/tokyonight/index.html#colorschemestokyonightenable
-	    # onColors
+	# https://nix-community.github.io/nixvim/colorschemes/tokyonight/index.html#colorschemestokyonightenable
+	    tokyonight = {
+		enable = true;
+		style = "night";
+	    };
+	    ayu = {
+		enable = false;
+
+		# doesn't work?
+		#extraOptions.overrides = {
+		#    fg = "#000000";
+		#};
+	    };
+	    oxocarbon.enable = false;
 	};
 
 	options = {
@@ -37,9 +51,6 @@ with inputs;
 
 	    neogit.enable = true;
 
-	    # TODO doesn't work
-	    #specs.enable = true;
-
 	    # better default movement keys
 	    spider = {
 		enable = true;
@@ -49,15 +60,6 @@ with inputs;
 		    ge = "ge";
 		    w = "w";
 		};
-	    };
-
-	    # TODO doesn't work
-	    nvim-colorizer = {
-		enable = true;
-		#fileTypes = {
-		#    AARRGGBB = true;
-		#    RGB = true;
-		#};
 	    };
 
 	    # TODO 
@@ -130,6 +132,15 @@ with inputs;
 		lspServersToEnable = "all";
 	    };
 
+	    # commenting
+	    commentary = {
+		enable = true;
+	    };
+
+	    nvim-cmp = {
+		enable = true;
+	    };
+
 	    markdown-preview = {
 		enable = true;
 		autoStart = false;
@@ -139,6 +150,7 @@ with inputs;
 		enable = true;
 	    };
 
+	    # TODO fix: probably by installing plenary ...
 	    harpoon = {
 		enable = true;
 		enableTelescope = true;
@@ -155,6 +167,10 @@ with inputs;
 		};
 	    };
 
+	    # TODO doesn't work (never tested in css files...)
+	    nvim-colorizer = {
+		enable = false;
+	    };
 	};
 
 	keymaps = [
@@ -164,6 +180,12 @@ with inputs;
 	    mode = "t";
 	    key = "<Esc><Esc>";
 	    action = "<C-\\><C-n>";
+	}
+	{
+	    # current project
+	    mode = "n";
+	    key = "<leader>fr";
+	    action = ":lua require'telescope.builtin'.oldfiles{}<CR>";
 	}
 	{
 	    # file finder
@@ -176,6 +198,16 @@ with inputs;
 	    mode = "n";
 	    key = "<leader>gg";
 	    action = ":Neogit<CR>";
+	}
+	{
+	    # Commenting
+	    key = "<leader>c";
+	    action = ":Commentary<CR>";
+	}
+	{
+	    # rename variable in Buffer
+	    key = "<leader>r";
+	    action = ":lua vim.lsp.buf.rename()<CR>";
 	}
 
 	# remap Control to leader key
@@ -226,39 +258,39 @@ with inputs;
 	    action = "<C-w>l";
 	}
 
-    ## split
-    {
-	    mode = "n";
-	    key = "<leader>ws";
-	    action = "<C-w>s";
-    }
-    {
-	    mode = "n";
-	    key = "<leader>wv";
-	    action = "<C-w>v";
-    }
-    {
-	    mode = "n";
-	    key = "<leader>wq";
-	    action = ":q<CR>";
-    }
+	## split
+	{
+		mode = "n";
+		key = "<leader>ws";
+		action = "<C-w>s";
+	}
+	{
+		mode = "n";
+		key = "<leader>wv";
+		action = "<C-w>v";
+	}
+	{
+		mode = "n";
+		key = "<leader>wq";
+		action = ":q<CR>";
+	}
 
-    ## buffer
-    {
-	    mode = "n";
-	    key = "<leader>bp";
-	    action = ":bp<CR>";
-    }
-    {
-	    mode = "n";
-	    key = "<leader>bn";
-	    action = ":bn<CR>";
-    }
-    {
-	    mode = "n";
-	    key = "<leader>bd";
-	    action = ":bd<CR>";
-    }
+	## buffer
+	{
+		mode = "n";
+		key = "<leader>bp";
+		action = ":bp<CR>";
+	}
+	{
+		mode = "n";
+		key = "<leader>bn";
+		action = ":bn<CR>";
+	}
+	{
+		mode = "n";
+		key = "<leader>bd";
+		action = ":bd<CR>";
+	}
 
 	# TODO continue this for all keys + split creation, buffer deletion, ...
 	];
