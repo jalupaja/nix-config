@@ -9,6 +9,7 @@
     apps
     emacs
     firefox research
+    firefox uni
     firefox shopping
     firefox github
     tor browser
@@ -61,6 +62,9 @@
         ;;
     "firefox research")
         ${pkgs.firefox}/bin/firefox -p "research"
+        ;;
+    "firefox uni")
+        ${pkgs.firefox}/bin/firefox -p "uni"
         ;;
     "firefox shopping")
         ${pkgs.firefox}/bin/firefox -p "shopping"

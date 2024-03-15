@@ -20,6 +20,24 @@ let
       inherit updateInterval;
     };
   };
+
+settings = {
+    # TODO ??? https://github.com/dwarfmaster/arkenfox-nixos
+
+    # These settings are an alternation from arkenfox
+    # https://github.com/arkenfox/user.js/blob/master/user.js
+
+    # startup page
+    "browser.startup.page" = 0;
+    "browser.startup.homepage" = "about:blank";
+
+    # remove sponsored content
+    "browser.newtabpage.activity-stream.showSponsored" = false;
+"browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
+
+    # Geo location
+};
+
 in
   {
     programs.firefox.enable = true;
@@ -202,6 +220,7 @@ in
                 //  gh_search ({type="issues"; alias="i";personal = true;}) #<ghpi
                 ;
               };
+	      settings = settings;
             };
             programs.firefox.profiles.shopping = {
               id = 1;
@@ -226,10 +245,77 @@ in
                   };
                 };
               };
+	      settings = settings;
             };
-            programs.firefox.profiles.github = {
+            programs.firefox.profiles.uni = {
               id = 2;
-              name = "github";
+              name = "uni";
+              extensions = with addons; [ublock-origin bitwarden];
+              search = {
+                force = true;
+                default = "ddg";
+                engines = {
+                  "ddg" = {
+                    urls = [{template = "https://duckduckgo.com/?t=h_&q={searchTerms}&ia=web";}];
+                    iconUpdateURL = "https://duckduckgo.com/favicon.ico";
+                    inherit updateInterval;
+                    definedAliases = [ "<ddg" ];
+                  };
+
+		  "brave" = {
+		      urls = [{template = "https://search.brave.com/search?q={searchTerms}&source=web";}];
+		      iconUpdateURL = "https://brave.com/favicon.ico";
+		      inherit updateInterval;
+		      definedAliases = [ "<b" ];
+		  };
+		};
+	      };
+	      bookmarks = [  
+	      {    
+		  name = "OTH";    
+		  toolbar = false;    
+		  bookmarks = [      
+		  {        
+		      name = "Infoboard";        
+		      url = "https://elearning.oth-regensburg.de/course/view.php?id=3696";      
+		  }    
+		  {        
+		      name = "Mail";        
+		      url = "https://exchange.hs-regensburg.de";
+		  }      
+		  {        
+		      name = "Studiuservice, QIS";        
+		      url = "https://hisinone-studium.oth-regensburg.de";      
+		  }    
+		  {        
+		      name = "Cloud";        
+		      url = "https://cloud.fsim-ev.de";      
+		  }    
+		  {        
+		      name = "Webuntis";        
+		      tags = [ "untis" ];
+		      url = "https://untis.oth-regensburg.de";      
+		  }    
+		  {        
+		      name = "Prüfungsterminplanung";        
+		      url = "https://java.oth-regensburg.de/ptp/index.xhtml";      
+		  }    
+		  {        
+		      name = "Elearning";        
+		      url = "https://elearning.hs-regensburg.de";      
+		  }    
+		  {        
+		      name = "Semesterzeiten";        
+		      url = "https://www.oth-regensburg.de/die-oth/termine-und-oeffnungszeiten";      
+		  }    
+		  ];  
+	      }
+	      ];
+	      settings = settings;
+	    };
+	    programs.firefox.profiles.github = {
+		id = 3;
+		name = "github";
               extensions = with addons; [ublock-origin];
               search = {
                 force = true;
@@ -250,6 +336,7 @@ in
                   };
                 };
               };
+	      settings = settings;
             };
           }
 
