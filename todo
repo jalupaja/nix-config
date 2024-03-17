@@ -2,34 +2,29 @@ nixvim
     lsp
 	coloring
 	org mode
-clipboard alternative (clipman is archived?!?)
-    allow image copy
-    diy using wl-clipboard
 libinput:
     or hyprland implementation?
     disable touchpad
     setup touchpad pressure (Synaptic ...)
-apply theme (also font)
-    ? kitty, starship, (neo)fetch
-    ?? emacs
 udiskie more mime apps
 Hyprland:
     https://wiki.hyprland.org/Useful-Utilities/Must-have/
     https://wiki.hyprland.org/Useful-Utilities/Other/
 dunst -> swayNC
     conf + waybar: https://github.com/artaz0l/dotfiles/blob/master/.config/waybar/config
-keyboard layout switcher:
-    https://github.com/artaz0l/dotfiles/blob/master/.config/waybar/config
-emacs
+emacs?
 rofi
     https://github.com/davatorium/rofi/wiki/User-scripts
-    bitwarden, keepassxc
-    mpd
-    emoji/kaomoji
-    translate
-    udiskie
+	bitwarden, keepassxc
+	mpd
+	emoji/kaomoji
+	translate
+	udiskie
 ls -> sls
 age-nix
 service to remove /tmp, clipboard on startup
 
 https://codeberg.org/lunik1/nix-wallpaper
+
+NIX HELP:
+(firefox settings) inherit but change some
