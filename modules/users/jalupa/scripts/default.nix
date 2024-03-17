@@ -30,4 +30,6 @@ in
 // importNixScript "brightness"
 // importNixScript "screenshot"
 // importNixScript "keyboard_layout"
+// importNixScript "clipboard"
+// importNixScript "rem-from-clipboard"
 // importNixScript "selector"

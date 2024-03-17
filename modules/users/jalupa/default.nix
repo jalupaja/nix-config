@@ -16,7 +16,8 @@
     ./firefox.nix
     ./hyprland.nix
     ./waybar.nix
-    ./clipman.nix
+    ./cliphist.nix
+    #./clipman.nix
     ./mpv.nix
     ./dunst.nix
     #./mako.nix

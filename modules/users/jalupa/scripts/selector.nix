@@ -29,6 +29,7 @@
     wifi gui
     bluetooth
     clipboard
+    remove from clipboard
     clear-clipboard
     screenshot
     brightness
@@ -121,10 +122,13 @@
         ${scripts.bluetooth}
         ;;
     "clipboard")
-        ${pkgs.clipman}/bin/clipman pick -t STDOUT | $DMENU wl | wl-store
+        ${scripts.clipboard}
+        ;;
+    "remove from clipboard")
+        ${scripts.rem-from-clipboard}
         ;;
     "clear-clipboard")
-        ${pkgs.clipman}/bin/clipman clear --all
+        ${pkgs.cliphist}/bin/cliphist wipe
         ;;
     "screenshot")
         ${scripts.screenshot}

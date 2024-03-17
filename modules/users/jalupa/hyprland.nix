@@ -118,7 +118,7 @@ with inputs;
         "$mod, return, exec, $terminal"
         "CTRL, space, exec, $runprompt"
         "$mod SHIFT, L, exec, ${scripts.lock}"
-        "$mod, V, exec, clipman pick -t STDOUT | ${globals.dmenu}"
+	"$mod, V, exec, ${scripts.clipboard}"
         "$mod SHIFT, S, exec, grim"
 
         # kill window
