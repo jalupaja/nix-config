@@ -1,5 +1,6 @@
 { pkgs, lib, addons, ...}:
 let 
+
 updateInterval = 32 * 24 * 60 * 60 * 1000; # search about monthly
 
 favicon = domain: "https://${domain}/favicon.ico";
@@ -363,13 +364,13 @@ in
 		isDefault = true;
 		id = 0;
 		name = "research";
-		extensions = with addons; [ vim-vixen ublock-origin darkreader ];
+		extensions = with addons; [ vimium ublock-origin darkreader ];
 		search = {
 		    force = true;
 		    default = "bravesearch";
 		    engines = {
 			"bravesearch" = search.brave;
-			"DuckDuckGo" = search.ddg;
+			"ddg" = search.ddg;
 			"Startpage" = search.Startpage;
 			"Ecosia" = search.ecosia;
 
@@ -389,13 +390,13 @@ in
 	    shopping = {
 		id = 1;
 		name = "shopping";
-		extensions = with addons; [ vim-vixen ublock-origin bitwarden multi-account-containers ];
+		extensions = with addons; [ vimium ublock-origin bitwarden multi-account-containers ];
 		search = {
 		    force = true;
-		    default = "DuckDuckGo";
+		    default = "ddg";
 		    engines = {
 			"brave" = search.brave;
-			"DuckDuckGo" = search.ddg;
+			"ddg" = search.ddg;
 			"Startpage" = search.Startpage;
 		    };
 		};
@@ -418,13 +419,13 @@ in
 	    uni = {
 		id = 2;
 		name = "uni";
-		extensions = with addons; [ vim-vixen ublock-origin bitwarden ];
+		extensions = with addons; [ vimium ublock-origin bitwarden ];
 		search = {
 		    force = true;
 		    default = "ddg";
 		    engines = {
 			"brave" = search.brave;
-			"DuckDuckGo" = search.ddg;
+			"ddg" = search.ddg;
 			"Startpage" = search.Startpage;
 		    };
 		};
@@ -474,13 +475,13 @@ in
 	    github = {
 		id = 3;
 		name = "github";
-		extensions = with addons; [ vim-vixen ublock-origin ];
+		extensions = with addons; [ vimium ublock-origin ];
 		search = {
 		    force = true;
 		    default = "bravesearch";
 		    engines = {
 			"bravesearch" = search.brave;
-			"DuckDuckGo" = search.ddg;
+			"ddg" = search.ddg;
 			"Startpage" = search.Startpage;
 		    };
 		};
