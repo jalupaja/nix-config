@@ -52,6 +52,7 @@
     brave
     tor-browser-bundle-bin
     signal-desktop
+    tutanota-desktop
     keepassxc
     bitwarden
     tldr

@@ -174,7 +174,7 @@ mainWaybarConfig = {
     };
 
     pulseaudio = {
-      format = "{icon}  {volume}%";
+      format = "{icon} {volume}%";
       format-icons = {
         car = " ";
         default = ["" "" ""];
