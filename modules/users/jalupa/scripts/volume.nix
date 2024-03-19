@@ -33,7 +33,7 @@
 
   get_app_vol () {
 # app-index
-      pactl list sink-inputs | sed -n -e "/Sink Input #$1/,/Volume/ p" | grep -oP "\d+%"
+      pactl list sink-inputs | sed -n -e "/Sink Input #$1/,/Volume/ p" | grep -oP "\d+%" | head -n 1
   }
 
   get_app_muted () {
@@ -56,7 +56,7 @@
   }
 
   get_output_vol () {
-      pactl get-sink-volume "$1" | grep -oP "\d+%"
+      pactl get-sink-volume "$1" | grep -oP "\d+%" | head -n 1
   }
 
   get_output_muted () {
@@ -73,13 +73,13 @@
   }
 
   toggle_mic () {
-# mic-index
+	# mic-index
       pactl set-source-mute "$i" toggle
   }
 
   get_mic_vol () {
-#mic-index
-      pactl get-source-volume "$1" | grep -oP "\d+%"
+	#mic-index
+      pactl get-source-volume "$1" | grep -oP "\d+%" | head -n 1
   }
 
   get_mic_muted () {
@@ -161,7 +161,7 @@
 		      get_output_muted "''${output[0]}"
 		      ;;
 		  b) # mic volume
-		      get_output_vol "''${input[0]}"
+		      get_mic_vol "''${input[0]}"
 		      ;;
 		  c) # check mic (muted)
 		      get_mic_muted "''${input[0]}"
