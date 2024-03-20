@@ -27,7 +27,7 @@ mainWaybarConfig = {
     "pulseaudio"
     "pulseaudio#microphone"
     "cpu"
-    "custom/notification"
+    #"custom/notification"
     "battery"
     #"tray"
   ];
