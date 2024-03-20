@@ -1,4 +1,4 @@
-{ pkgs, theme, ... }:
+{ pkgs, theme, globals, ... }:
 {
   programs.zsh = {
     enable = true;
@@ -44,6 +44,7 @@
       mpvv="mpv --player-operation-mode=pseudo-gui";
       simple_crypt="~/repos/own/simple_crypt/start.sh";
       drag="${pkgs.ripdrag}/bin/ripdrag -b -n";
+      term="${globals.term} &";
 
       # git stuff
       gita = "git add";
