@@ -46,4 +46,11 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+
+  # Efficiency settings
+  powerManagement.enable = true;
+  services.thermald.enable = true;
+  services.tlp.enable = true;
+  services.auto-cpufreq.enable = true;
+  powerManagement.powertop.enable = true;
 }
