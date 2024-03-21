@@ -294,7 +294,7 @@ with inputs;
 
 	## access global clipboard
 	{
-		mode = "v";
+		mode = "";
 		key = "<leader>y";
 		action = ''"+y'';
 	}
