@@ -62,6 +62,7 @@
     zathura
     xournalpp
     ripgrep-all
+    texliveFull
 
     # default dependencies
     playerctl
@@ -71,6 +72,7 @@
     xdg-desktop-portal-hyprland # maybe replace with home manager (not hyprland)
     wl-clipboard
     ripgrep
+    fd
     bc
     usbutils
     # https://github.com/NixOS/nixpkgs/issues/30506

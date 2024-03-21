@@ -75,7 +75,10 @@ with inputs;
 	    # TODO
 	    #clipboard-image.enable = true;
 
-	    treesitter.enable = true;
+	    treesitter = {
+		enable = true;
+		disabledLanguages = [ "latex" ];
+	    };
 
 	    diffview = {
 		enable = true;
@@ -125,6 +128,12 @@ with inputs;
 			gt = "type_definition";
 		    };
 		};
+	    };
+
+	    # more LaTex features
+	    vimtex = {
+		enable = true;
+		extraConfig.view_method = "zathura";
 	    };
 
 	    lsp-format = {
