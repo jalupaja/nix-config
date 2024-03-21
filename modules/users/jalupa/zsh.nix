@@ -53,6 +53,11 @@
     };
 
     envExtra = ''
+# Functions
+calc()
+{
+    echo "$1" | bc -l
+}
 
 printf '\e]4;1;rgb:${theme.color_second}\e\\\e[31m'
 date=$(date | awk '{print $4}')
