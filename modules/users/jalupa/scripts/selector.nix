@@ -128,7 +128,7 @@
         ${scripts.rem-from-clipboard}
         ;;
     "clear-clipboard")
-        ${pkgs.cliphist}/bin/cliphist wipe
+        ${scripts.clear-clipboard}
         ;;
     "screenshot")
         ${scripts.screenshot}

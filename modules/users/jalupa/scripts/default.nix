@@ -32,4 +32,5 @@ in
 // importNixScript "keyboard_layout"
 // importNixScript "clipboard"
 // importNixScript "rem-from-clipboard"
+// importNixScript "clear-clipboard"
 // importNixScript "selector"

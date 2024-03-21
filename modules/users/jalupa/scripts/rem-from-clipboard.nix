@@ -3,6 +3,8 @@
     rem-from-clipboard = pkgs.pkgs.writeShellScript "rem-from-clipboard" ''
 
 	DMENU="${globals.dmenu}"
-	cliphist list | ${globals.dmenu} | cliphist delete 
+	cliphist="${pkgs.cliphist}/bin/cliphist"
+
+	$cliphist list | $DMENU | $cliphist delete 
 	'';
 }
