@@ -68,7 +68,8 @@ mainWaybarConfig = {
       weeks-pos = "right";
     };
     format = "󰥔 {:%H:%M}";
-    format-alt = "󰥔 {:%A, %B %d, %Y (%R)} ";
+    format-alt = "󰥔 {:%A, %B %d, %Y (%H:%M:%S)} ";
+    interval = 1;
   };
 
   cpu = {
