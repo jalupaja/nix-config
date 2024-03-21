@@ -40,7 +40,7 @@ with inputs;
 	    autochdir = true;
 	    autoindent = true;
 	    autoread = true;
-		clipboard = "unnamedplus"; # use global clipboard
+		clipboard = "unnamed"; # use global clipboard
 		title = true;
 	};
 
@@ -211,7 +211,7 @@ with inputs;
 	}
 
 	# remap Control to leader key
-    ## movement
+	## movement
 	{
 	    mode = "n";
 	    key = "<leader>ww";
@@ -290,6 +290,18 @@ with inputs;
 		mode = "n";
 		key = "<leader>bd";
 		action = ":bd<CR>";
+	}
+
+	## access global clipboard
+	{
+		mode = "v";
+		key = "<leader>y";
+		action = ''"+y'';
+	}
+	{
+		mode = "";
+		key = "<leader>p";
+		action = ''"+p'';
 	}
 
 	# TODO continue this for all keys + split creation, buffer deletion, ...
