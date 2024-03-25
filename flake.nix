@@ -21,14 +21,21 @@
     };
 
     nixvim = {
-     # TODO below didn't seem to work
-     #url = "github:nix-community/nixvim";
-     url = "github:nix-community/nixvim/nixos-23.11";
+     url = "github:nix-community/nixvim";
      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, split-monitor-workspaces, hyprgrass, nur, nixvim, ... }@inputs: 
+  outputs = { 
+      self, 
+      nixpkgs, 
+      home-manager, 
+      split-monitor-workspaces, 
+      hyprgrass, 
+      nur, 
+      nixvim, 
+      ... 
+    } @ inputs: 
   let
     pkgs = import nixpkgs {
       system = "x86_64-linux";
