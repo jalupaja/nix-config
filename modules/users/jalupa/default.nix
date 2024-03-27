@@ -1,70 +1,65 @@
 { config, pkgs, inputs, theme, ... }:
 {
   imports = [
+    # DEFAULT DEPENDENCIES
     ./fonts.nix
-    #./kitty.nix
-    ./alacritty.nix
-    ./foot.nix # backup terminal
     ./zsh.nix
-    ./starship.nix
-    ./vim.nix
-    # TODO installation crashes currently
-    ./nixvim.nix # neovim
-    #./neovim.nix
     #./ssh.nix
-    ./dev
-    ./firefox.nix
+    #./udiskie.nix
+    ./gtk.nix # (hopefully) just dark mode
+    ./mime.nix # setup default programs
+
+    # DESKTOP ENV PROGRAMS
+		# Desktop environment
     ./hyprland.nix
     ./waybar.nix
+		# clipboard manager
     ./cliphist.nix
     #./clipman.nix
-    ./mpv.nix
+		# notification manager
     ./dunst.nix
     #./mako.nix
-    #./udiskie.nix
-    ./fuzzel.nix
-    ./pqiv.nix
-    ./mpd.nix
-    ./syncthing.nix
+		# dmenu replacements
+    ./rofi.nix
+    #./fuzzel.nix
+
+    # OPTIONAL DEPENDENCIES
+		# browser
+    ./firefox.nix
+		# terminal emulators
+    ./alacritty.nix
+    #./kitty.nix
+    ./foot.nix # backup terminal
+		# editors
+    ./vim.nix
+    ./nixvim.nix # neovim
+    #./neovim.nix
     ./emacs.nix
     #./emacs-overlay.nix
     #./doom-emacs
-    ./gtk.nix
-    ./rofi.nix
-    ./mime.nix
+		# media viewers
+    ./mpv.nix # music/video
+    ./pqiv.nix # images
+		./zathura.nix # (pdf) documents
+		# terminal extras
+    ./starship.nix
+		# development extras
+    ./dev
+
+    # EXTRA PROGRAMS
+    ./mpd.nix
+    ./syncthing.nix
     ./btop.nix
   ];
-  # TODO https://sw.kovidgoyal.net/kitty/overview/
-
-  # TODO works. use this for emacs
-  # home.file."test".text = builtins.readFile ./dunst.nix;
-
   # TODO possible configs
   # lazygit
-  # mimeApps https://github.com/coffee-is-power/nix-configuration/blob/flakes/modules/home/mime-apps/default.nix
 
   home.username = "jalupa";
   home.homeDirectory = "/home/jalupa";
   home.stateVersion = "23.11";
 
   home.packages = with pkgs; [
-    # default programs
-    brave
-    tor-browser-bundle-bin
-    signal-desktop
-    tutanota-desktop
-    keepassxc
-    bitwarden
-    tldr
-    p7zip
-    ripdrag
-    onlyoffice-bin
-    zathura
-    xournalpp
-    ripgrep-all
-    texliveFull
-
-    # default dependencies
+    # DEFAULT DEPENDENCIES
     playerctl
     libnotify
     pavucontrol
@@ -75,9 +70,11 @@
     fd
     bc
     usbutils
+    tldr
+    ripgrep-all
     # https://github.com/NixOS/nixpkgs/issues/30506
 
-    # desktop env programs
+    # DESKTOP ENV PROGRAMS
     grim
     grimblast
     slurp
@@ -87,6 +84,27 @@
     swaylock-effects
     #swaynotificationcenter
     lemurs # TODO fix
+    ripdrag
+
+    # OPTIONAL DEPENDENCIES
+    p7zip
+    texliveFull
+    jdk # java
+
+    # EXTRA PROGRAMS WITHOUT PROGRAMS MANAGED IN HOME-MANAGER
+    brave # chromium based Browser
+    tor-browser-bundle-bin # Tor Browser
+    signal-desktop # signal client
+    tutanota-desktop # tuta email client
+    keepassxc # password manager
+    bitwarden # password manager
+    onlyoffice-bin # office
+    xournalpp # pdf viewer/annotator with pen drawing capabilities
+    krita # painting program
+    prusa-slicer # 3D printing slicer
+
+    # UNI STUFF
+    asymptote # programmable vector graphics
   ];
 
   # TODO fix
@@ -107,4 +125,4 @@
 #      alias = "display-manager.service";
 #    };
 #  };
-}	
+}
