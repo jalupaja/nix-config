@@ -102,9 +102,6 @@
     xournalpp # pdf viewer/annotator with pen drawing capabilities
     krita # painting program
     prusa-slicer # 3D printing slicer
-
-    # UNI STUFF
-    asymptote # programmable vector graphics
   ];
 
   # TODO fix
