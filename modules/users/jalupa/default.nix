@@ -102,6 +102,8 @@
     xournalpp # pdf viewer/annotator with pen drawing capabilities
     krita # painting program
     prusa-slicer # 3D printing slicer
+		freecad # 3D CAD Design
+		kicad # PCB Design
   ];
 
   # TODO fix
