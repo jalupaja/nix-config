@@ -2,13 +2,13 @@
 with inputs;
 {
   wayland.windowManager.hyprland = {
-    enable = true; 
+    enable = true;
     package = hyprland.packages.${pkgs.system}.hyprland;
     systemd.enable = true;
     xwayland.enable = true;
 
     plugins = [
-      split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces
+      #split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces
       #hyprgrass.packages.${pkgs.system}.default
     ];
 
@@ -24,7 +24,7 @@ with inputs;
 
       monitor = [
         ",preferred,auto,1"
-        # rotate my verticle monitor
+        # rotate my vertical monitor
         "desc:Samsung Electric Company S24F350 H4ZJ203739,preferred,auto,1,transform,1"
       ];
 
@@ -138,22 +138,34 @@ with inputs;
         "$mod, J, movefocus, d"
 
         # workspaces
-        "$mod, 1, split-workspace, 1"
-        "$mod, 2, split-workspace, 2"
-        "$mod, 3, split-workspace, 3"
-        "$mod, 4, split-workspace, 4"
-        "$mod, 5, split-workspace, 5"
-        "$mod, 6, split-workspace, 6"
-        "$mod, 7, split-workspace, 7"
-        "$mod, 8, split-workspace, 8"
-        "$mod, 9, split-workspace, 9"
+	# TODO fix split workspaces
+        "$mod, 1, workspace, 1"
+        "$mod, 2, workspace, 2"
+        "$mod, 3, workspace, 3"
+        "$mod, 4, workspace, 4"
+        "$mod, 5, workspace, 5"
+        "$mod, 6, workspace, 6"
+        "$mod, 7, workspace, 7"
+        "$mod, 8, workspace, 8"
+        "$mod, 9, workspace, 9"
+#        "$mod, 1, split-workspace, 1"
+#        "$mod, 2, split-workspace, 2"
+#        "$mod, 3, split-workspace, 3"
+#        "$mod, 4, split-workspace, 4"
+#        "$mod, 5, split-workspace, 5"
+#        "$mod, 6, split-workspace, 6"
+#        "$mod, 7, split-workspace, 7"
+#        "$mod, 8, split-workspace, 8"
+#        "$mod, 9, split-workspace, 9"
         "$mod, space, togglespecialworkspace, special:scratch"
         "$mod, period, exec, ${scripts.switchmonitor} -n"
         "$mod, comma, exec, ${scripts.switchmonitor} -p"
 
         # touch workspaces
-        " , edge:l:r, split-workspace, e-1"
-        " , edge:r:l, split-workspace, e+1"
+        " , edge:l:r, workspace, e-1"
+        " , edge:r:l, workspace, e+1"
+#        " , edge:l:r, split-workspace, e-1"
+#        " , edge:r:l, split-workspace, e+1"
 
         # window
         "$mod, M, fullscreen, 1"
@@ -162,22 +174,34 @@ with inputs;
         "$mod SHIFT, 0, pin"
 
         # move to workspace
-        "$mod SHIFT, 1, split-movetoworkspacesilent, 1"
-        "$mod SHIFT, 2, split-movetoworkspacesilent, 2"
-        "$mod SHIFT, 3, split-movetoworkspacesilent, 3"
-        "$mod SHIFT, 4, split-movetoworkspacesilent, 4"
-        "$mod SHIFT, 5, split-movetoworkspacesilent, 5"
-        "$mod SHIFT, 6, split-movetoworkspacesilent, 6"
-        "$mod SHIFT, 7, split-movetoworkspacesilent, 7"
-        "$mod SHIFT, 8, split-movetoworkspacesilent, 8"
-        "$mod SHIFT, 9, split-movetoworkspacesilent, 9"
-        "$mod SHIFT, space, split-movetoworkspacesilent, special:scratch"
-        "$mod SHIFT, period, split-changemonitorsilent, next"
-        "$mod SHIFT, comma, split-changemonitorsilent, prev"
+        "$mod SHIFT, 1, movetoworkspacesilent, 1"
+        "$mod SHIFT, 2, movetoworkspacesilent, 2"
+        "$mod SHIFT, 3, movetoworkspacesilent, 3"
+        "$mod SHIFT, 4, movetoworkspacesilent, 4"
+        "$mod SHIFT, 5, movetoworkspacesilent, 5"
+        "$mod SHIFT, 6, movetoworkspacesilent, 6"
+        "$mod SHIFT, 7, movetoworkspacesilent, 7"
+        "$mod SHIFT, 8, movetoworkspacesilent, 8"
+        "$mod SHIFT, 9, movetoworkspacesilent, 9"
+        "$mod SHIFT, space, movetoworkspacesilent, special:scratch"
+#        "$mod SHIFT, 1, split-movetoworkspacesilent, 1"
+#        "$mod SHIFT, 2, split-movetoworkspacesilent, 2"
+#        "$mod SHIFT, 3, split-movetoworkspacesilent, 3"
+#        "$mod SHIFT, 4, split-movetoworkspacesilent, 4"
+#        "$mod SHIFT, 5, split-movetoworkspacesilent, 5"
+#        "$mod SHIFT, 6, split-movetoworkspacesilent, 6"
+#        "$mod SHIFT, 7, split-movetoworkspacesilent, 7"
+#        "$mod SHIFT, 8, split-movetoworkspacesilent, 8"
+#        "$mod SHIFT, 9, split-movetoworkspacesilent, 9"
+#        "$mod SHIFT, space, split-movetoworkspacesilent, special:scratch"
+#        "$mod SHIFT, period, split-changemonitorsilent, next"
+#        "$mod SHIFT, comma, split-changemonitorsilent, prev"
 
         # Scroll through exisiting workspaces
-        "$mod, mouse_down, split-workspace, e+1"
-        "$mod, mouse_up, split-workspace, e-1"
+        "$mod, mouse_down, workspace, e+1"
+        "$mod, mouse_up, workspace, e-1"
+#        "$mod, mouse_down, split-workspace, e+1"
+#        "$mod, mouse_up, split-workspace, e-1"
 
       ];
 
