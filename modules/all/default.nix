@@ -6,9 +6,10 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
-    ./pkgs.nix
-  ];
+    [
+			# include default packages
+			./pkgs.nix
+		];
 
   nix = {
       package = pkgs.nixFlakes;

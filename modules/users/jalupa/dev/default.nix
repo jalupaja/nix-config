@@ -9,5 +9,8 @@
     ./c.nix
     #./rust.nix
     ./python.nix
+		./java.nix
+		# TODO test
+		#./pytest.nix
   ];
 }
