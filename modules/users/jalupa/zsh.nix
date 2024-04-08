@@ -59,6 +59,9 @@ calc()
     echo "$1" | bc -l
 }
 
+# Session Variables
+export LD_LIBRARY_PATH="${pkgs.stdenv.cc.cc.lib}/lib/:/run/opengl-driver/lib/";
+
 printf '\e]4;1;rgb:${theme.color_second}\e\\\e[31m'
 date=$(date | awk '{print $4}')
 printf "%*s\n" $(((''${#date}+$COLUMNS)/2)) "$date"
@@ -74,7 +77,7 @@ echo '
    |\  \\\_\  \ \  \ \  \ \  \____\ \  \\\\\  \ \  \___|\ \  \ \  \
    \ \________\ \__\ \__\ \_______\ \_______\ \__\    \ \__\ \__\
     \|________|\|__|\|__|\|_______|\|_______|\|__|     \|__|\|__|
-   
+
 '
     '';
 
