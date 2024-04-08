@@ -23,7 +23,7 @@ programs.nixvim = {
     # TODO
     # https://nix-community.github.io/nixvim/colorschemes/tokyonight/index.html#colorschemestokyonightenable
     tokyonight = {
-      enable = false;
+      enable = true;
       style = "night";
     };
     ayu = {
@@ -211,7 +211,7 @@ programs.nixvim = {
           };
         };
 
-				# TODO doesn't work (never tested in css files...)
+				# might only work with a colortheme?
 				nvim-colorizer = {
 					enable = true;
 				};
