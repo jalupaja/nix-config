@@ -72,6 +72,7 @@
     usbutils
     tldr
     ripgrep-all
+		file
     # https://github.com/NixOS/nixpkgs/issues/30506
 
     # DESKTOP ENV PROGRAMS
@@ -104,6 +105,10 @@
     prusa-slicer # 3D printing slicer
 		freecad # 3D CAD Design
 		kicad # PCB Design
+
+		# Uni (DEL later)
+		openfortivpn
+		dbeaver
   ];
 
   # TODO fix
