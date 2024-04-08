@@ -63,7 +63,7 @@ search = {
 	};
 
 	"Home Manager Option Search" = {
-		urls = [{ template = "https://mipmip.github.io/home-manager-option-search/?query={searchTerms}"; }];
+		urls = [{ template = "https://home-manager-options.extranix.com/?query={searchTerms}&release=master"; }];
 		iconUpdateURL = favicon("nixos.wiki");
 		inherit updateInterval;
 		definedAliases = [ "<ho" ];
@@ -390,7 +390,7 @@ in
 			shopping = {
 				id = 1;
 				name = "shopping";
-				extensions = with addons; [ vimium ublock-origin bitwarden multi-account-containers ];
+				extensions = with addons; [ vimium ublock-origin darkreader  bitwarden multi-account-containers ];
 				search = {
 					force = true;
 					default = "ddg";
@@ -419,7 +419,7 @@ in
 			uni = {
 				id = 2;
 				name = "uni";
-				extensions = with addons; [ vimium ublock-origin bitwarden ];
+				extensions = with addons; [ vimium ublock-origin bitwarden darkreader ];
 				search = {
 					force = true;
 					default = "ddg";
@@ -477,7 +477,22 @@ in
 			github = {
 				id = 3;
 				name = "github";
-				extensions = with addons; [ vimium ublock-origin ];
+				extensions = with addons; [ vimium ublock-origin darkreader ];
+				search = {
+					force = true;
+					default = "bravesearch";
+					engines = {
+						"bravesearch" = search.brave;
+						"ddg" = search.ddg;
+						"Startpage" = search.Startpage;
+					};
+				};
+				settings = settings;
+			};
+			discord = {
+				id = 4;
+				name = "discord";
+				extensions = with addons; [ ublock-origin darkreader ];
 				search = {
 					force = true;
 					default = "bravesearch";
