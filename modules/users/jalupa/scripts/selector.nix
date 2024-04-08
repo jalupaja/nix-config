@@ -42,7 +42,7 @@
     lock
     sleep
     shutdown
-    restart
+    restart/reboot
     kill
     killall
     fix
@@ -92,11 +92,11 @@
         # TODO
         ;;
     "bitwarden")
-       ${pkgs.bitwarden}/bin/bitwarden --enable-features=UseOzonePlatform --ozone-platform=wayland 
+       ${pkgs.bitwarden}/bin/bitwarden --enable-features=UseOzonePlatform --ozone-platform=wayland
        ;;
     "keepassxc")
         ${pkgs.keepassxc}/bin/keepassxc
-        ;; 
+        ;;
     "office")
         ${pkgs.libreoffice}/bin/libreoffice
         ;;
@@ -164,7 +164,7 @@
     "shutdown")
         if [ "$(echo -e "yes\nno" | $DMENU)" = "yes" ]; then poweroff; fi
         ;;
-    "restart")
+    "restart/reboot")
         if [ "$(echo -e "yes\nno" | $DMENU)" = "yes" ]; then reboot; fi
         ;;
     "kill")
