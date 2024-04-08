@@ -4,12 +4,12 @@
       DMENU="${globals.dmenu}"
       startingDir="$HOME/.wallpapers"
 
-      # If you want to use this for your own setup you will probably have to change the switchWallpaper function as well as the monitors=... call. 
+      # If you want to use this for your own setup you will probably have to change the switchWallpaper function as well as the monitors=... call.
       # I have provided some options in this file.
       # A complete X11 configuration using feh can currently be found on my github: https://github.com/jalupaja/jalupa_config/blob/master/dmenuscripts/changeBackground
 
 
-    # This will save the current call with all arguments to the given path so that you can use it on startup 
+    # This will save the current call with all arguments to the given path so that you can use it on startup
     CALLSAVEPATH="$HOME/.wallpapercall"
     # CALLSAVEPATH=/dev/null # if you dont want this functionality
 
@@ -20,8 +20,6 @@
     else
         shFile="$(pwd)/$0"
     fi
-    # remove this scripts name
-    shFileDir=$(echo "$shFile" | sed 's/\/[^\/]*$//')
 
     # build call structure to make it reproduceable
     callStr="$shFile"
@@ -93,7 +91,7 @@
       # monitors=($(xrandr --listactivemonitors | tail -n +2 | awk '{print $4}'))
     }
 
-    updateMonitor 
+    updateMonitor
 
     if [ -z "$selectedMon" ]; then
         if [[ ''${#monitors[@]} > 1 ]]; then
@@ -133,7 +131,7 @@
     }
 
     function ranFromDir {
-        file="$(ls $1 -1 -p | grep -v / | shuf -n 1)"
+					file="$(fd . $1 | grep -v -E '/$' | shuf -n 1)"
     }
 
     # kill old script if any are running
@@ -170,7 +168,7 @@
             for i in ''${monitors[@]};
             do
                 # Random in directory
-                switchWallpaper "$path/$file" "$i" 
+                switchWallpaper "$path/$file" "$i"
             done
         fi
     elif [ "$selectedRan" = "random repeat" ]; then
@@ -199,16 +197,16 @@
             ranFromDir $path
             if [ "$selectedMon" = "per monitor" ]; then
                 # per monitor
-                updateMonitor 
+                updateMonitor
                 for i in ''${monitors[@]};
                 do
                     # Random in directory
-                    switchWallpaper "$path/$file" "$i" 
+                    switchWallpaper "$file" "$i"
                     ranFromDir $path
                 done
             else
                 # both monitors
-                switchWallpaper "$path/$file"
+                switchWallpaper "$file"
             fi
             sleep $selectedTime
         done
