@@ -280,7 +280,7 @@ programs.nixvim = {
 			action = "<C-\\><C-n>";
 		}
 		{
-			# Escape to remove highleight
+			# Escape to remove highlight
 			mode = "n";
 			key = "<Esc>";
 			action = ":noh<CR>";
@@ -443,13 +443,43 @@ programs.nixvim = {
 		## access global clipboard
 		{
 			mode = "";
+			key = "<leader>p";
+			action = ''"+p'';
+		}
+		{
+			mode = "";
 			key = "<leader>y";
 			action = ''"+y'';
 		}
 		{
-			mode = "";
-			key = "<leader>p";
-			action = ''"+p'';
+			mode = "n";
+			key = "<leader>ye";
+			action = ''ve"+y'';
+		}
+		{
+			mode = "n";
+			key = "<leader>yw";
+			action = ''vw"+y'';
+		}
+		{
+			mode = "n";
+			key = "<leader>yW";
+			action = ''vW"+y'';
+		}
+		{
+			mode = "n";
+			key = "<leader>y$";
+			action = ''v$"+y'';
+		}
+		{
+			mode = "n";
+			key = "<leader>y0";
+			action = ''v0"+y'';
+		}
+		{
+			mode = "n";
+			key = "<leader>yy";
+			action = ''V"+y'';
 		}
 		];
 
