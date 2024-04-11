@@ -21,9 +21,9 @@
       grep="grep -i --colour=auto";
 
       # ll stuff
-      ll = "ls -l";
-      la = "ls -la";
-      lg = "ls -la | grep ";
+      ll = "ls -lh";
+      la = "ls -lah";
+      lg = "ls -lah | grep ";
 
       # cd stuff
       doc = "cd ~/Documents";
