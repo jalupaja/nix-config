@@ -177,7 +177,9 @@ programs.nixvim = {
         # more LaTex features
         vimtex = {
           enable = true;
-          settings.view_method = "zathura";
+          settings = {
+						view_method = "zathura";
+					};
         };
 
         # commenting
@@ -276,6 +278,13 @@ programs.nixvim = {
 			mode = "t";
 			key = "<Esc><Esc>";
 			action = "<C-\\><C-n>";
+		}
+		{
+			# Escape to remove highleight
+			mode = "n";
+			key = "<Esc>";
+			action = ":noh<CR>";
+			options.silent = true;
 		}
 		{
 			# current project
