@@ -86,6 +86,7 @@
     #swaynotificationcenter
     lemurs # TODO fix
     ripdrag
+		webcamoid # camera
 
     # OPTIONAL DEPENDENCIES
     p7zip
