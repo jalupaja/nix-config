@@ -183,9 +183,25 @@ programs.nixvim = {
         };
 
         # commenting
-        commentary = {
-          enable = true;
-        };
+				comment = {
+					enable = true;
+
+					settings = {
+						opleader = {
+							line = "<leader>c";
+							block = "<leader>bc";
+						};
+						toggler = {
+							line = "<leader>c";
+							block = "<leader>bc";
+						};
+
+						mappings = {
+							basic = true;
+							extra = false;
+						};
+					};
+				};
 
         markdown-preview = {
           enable = true;
@@ -303,11 +319,6 @@ programs.nixvim = {
 			mode = "n";
 			key = "<leader>gg";
 			action = "<cmd>Neogit<CR>";
-		}
-		{
-			# Commenting
-			key = "<leader>c";
-			action = "<cmd>Commentary<CR>";
 		}
 		{
 			# rename variable in Buffer
