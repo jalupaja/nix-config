@@ -430,6 +430,11 @@ programs.nixvim = {
 		}
 		{
 			mode = "n";
+			key = "<leader>w=";
+			action = "<C-w>=";
+		}
+		{
+			mode = "n";
 			key = "<leader>wq";
 			action = "<cmd>q<CR>";
 		}

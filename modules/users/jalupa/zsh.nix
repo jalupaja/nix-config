@@ -26,9 +26,10 @@
       lg = "ls -lah | grep ";
 
       # cd stuff
-      doc = "cd ~/Documents";
-      dot = "cd ~/.config/jalupa_config/dmenuscripts";
-      nix = "cd ~/.config/nix-config";
+      cdd = "cd ~/Documents";
+      cdn = "cd ~/.config/nix-config";
+      cdnh = "cd ~/.config/nix-config/modules/users/jalupa";
+      cdu = "cd ~/Documents/Uni/6.\\ Semester";
       ".." = "cd ..";
       "..." = "cd ../..";
       "...." = "cd ../../..";
