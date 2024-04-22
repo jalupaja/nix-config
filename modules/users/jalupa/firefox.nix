@@ -469,6 +469,11 @@ in
 						name = "Semesterzeiten";
 						url = "https://www.oth-regensburg.de/die-oth/termine-und-oeffnungszeiten";
 					}
+					{
+						name = "LaTeX Detexify";
+						keyword = "det";
+						url = "https://detexify.kirelabs.org/classify.html";
+					}
 					];
 				}
 				];
