@@ -57,17 +57,6 @@ programs.nixvim = {
 
         neogit.enable = true;
 
-        # better default movement keys
-        spider = {
-          enable = true;
-          keymaps.motions = {
-            b = "b";
-            e = "e";
-            ge = "ge";
-            w = "w";
-          };
-        };
-
         # TODO
         startify = {
           enable = false;
