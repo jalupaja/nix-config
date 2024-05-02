@@ -1,0 +1,95 @@
+{
+	"keymaps": {
+		"0": {
+			"type": "scroll.home"
+		},
+		"$": {
+			"type": "scroll.end"
+		},
+		":": {
+			"type": "command.show"
+		},
+		"b": {
+			"type": "command.show.buffer"
+		},
+		"k": {
+			"type": "scroll.vertically",
+			"count": -1
+		},
+		"j": {
+			"type": "scroll.vertically",
+			"count": 1
+		},
+		"h": {
+			"type": "scroll.horizonally",
+			"count": -1
+		},
+		"l": {
+			"type": "scroll.horizonally",
+			"count": 1
+		},
+		"<C-U>": {
+			"type": "scroll.pages",
+			"count": -0.5
+		},
+		"<C-D>": {
+			"type": "scroll.pages",
+			"count": 0.5
+		},
+		"<C-B>": {
+			"type": "scroll.pages",
+			"count": -1
+		},
+		"<C-F>": {
+			"type": "scroll.pages",
+			"count": 1
+		},
+		"gg": {
+			"type": "scroll.top"
+		},
+		"G": {
+			"type": "scroll.bottom"
+		},
+		"K": {
+			"type": "tabs.prev"
+		},
+		"J": {
+			"type": "tabs.next"
+		},
+		"f": {
+			"type": "follow.start",
+			"newTab": false
+		},
+		"cf": {
+			"type": "follow.start",
+			"newTab": true,
+			"background": true
+		},
+		"/": {
+			"type": "find.start"
+		},
+		"n": {
+			"type": "find.next"
+		},
+		"N": {
+			"type": "find.prev"
+		},
+		".": {
+			"type": "repeat.last"
+		}
+	},
+	"search": {
+		"default": "duckduckgo",
+		"engines": {
+			"duckduckgo": "https://duckduckgo.com/?q={}",
+			"wikipedia": "https://en.wikipedia.org/w/index.php?search={}"
+		}
+	},
+	"properties": {
+		"hintchars": "abcdehijklmnoprstuvw",
+		"smoothscroll": false,
+		"complete": "sbh",
+		"colorscheme": "system"
+	},
+	"blacklist": []
+}
