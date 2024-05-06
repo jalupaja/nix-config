@@ -24,7 +24,7 @@ programs.nixvim = {
     # https://nix-community.github.io/nixvim/colorschemes/tokyonight/index.html#colorschemestokyonightenable
     tokyonight = {
       enable = true;
-      style = "night";
+      settings.style = "night";
     };
     ayu = {
       enable = false;
@@ -37,7 +37,7 @@ programs.nixvim = {
       oxocarbon.enable = false;
     };
 
-    options = {
+    opts = {
       number = true;
       relativenumber = true;
       shiftwidth = 4;
