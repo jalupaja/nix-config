@@ -19,6 +19,7 @@
       mount="sudo mount -o uid=$USER";
       umount="sudo umount";
       grep="grep -i --colour=auto";
+			rg="rg -i";
 
       # ll stuff
       ll = "ls -lh";
@@ -55,7 +56,7 @@
 
 		envExtra = ''
 # Session Variables
-export LD_LIBRARY_PATH="${pkgs.stdenv.cc.cc.lib}/lib/:/run/opengl-driver/lib/";
+export LD_LIBRARY_PATH="${pkgs.stdenv.cc.cc.lib}/lib/:/run/opengl-driver/lib/:${pkgs.libGL}/lib/:${pkgs.libxkbcommon}/lib/:${pkgs.fontconfig}/lib/";
 		'';
 
     initExtra = ''
