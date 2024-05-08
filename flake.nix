@@ -9,16 +9,22 @@
     };
     nur.url = "github:nix-community/NUR";
 
-    hyprland.url = "github:hyprwm/Hyprland";
+    hyprland = {
+			url = "github:hyprwm/Hyprland";
+		};
 
-    split-monitor-workspaces = {
-      url = "github:Duckonaut/split-monitor-workspaces";
-      inputs.hyprland.follows = "hyprland";
+   #  split-monitor-workspaces = {
+   #    url = "github:Duckonaut/split-monitor-workspaces";
+   #    inputs.hyprland.follows = "hyprland";
+   #  };
+    hyprsplit = {
+			url = "github:shezdy/hyprsplit";
+			inputs.hyprland.follows = "hyprland";
     };
-    hyprgrass = {
-      url = "github:horriblename/hyprgrass";
-      inputs.hyprland.follows = "hyprland";
-    };
+    # hyprgrass = {
+    #   url = "github:horriblename/hyprgrass";
+    #   inputs.hyprland.follows = "hyprland";
+    # };
 
     nixvim = {
      url = "github:nix-community/nixvim";
@@ -26,20 +32,21 @@
     };
   };
 
-  outputs = { 
-      self, 
-      nixpkgs, 
-      home-manager, 
-      split-monitor-workspaces, 
-      hyprgrass, 
-      nur, 
-      nixvim, 
-      ... 
-    } @ inputs: 
+  outputs = {
+      self,
+      nixpkgs,
+      home-manager,
+      # split-monitor-workspaces,
+			hyprsplit,
+      # hyprgrass,
+      nur,
+      nixvim,
+      ...
+    } @ inputs:
   let
     pkgs = import nixpkgs {
       system = "x86_64-linux";
-      overlays = [ 
+      overlays = [
         nur.overlay
       ];
     };
@@ -47,7 +54,7 @@
   {
     extraSpecialArgs = { inherit inputs; };
     nixosConfigurations."debian" = nixpkgs.lib.nixosSystem {
-      modules = [ 
+      modules = [
         home-manager.nixosModules.home-manager ( import ./modules/home-manager.nix )
         ./modules/all
         ./hardware/touch-notebook.nix
