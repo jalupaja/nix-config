@@ -265,10 +265,14 @@ with inputs;
           bind = , return, submap, reset
           submap = reset
 
-          # window swapping
+          # window swapping + window fixing
           bind = $mod, S, submap, swap
 
           submap = swap
+
+					# grap windows in invalid workspaces (can happen when unplugging a monitor)
+          binde = , G, split:grabroguewindows
+          binde = , G,  submap, reset
 
           binde = , left, swapwindow, l
           binde = , left,  submap, reset
