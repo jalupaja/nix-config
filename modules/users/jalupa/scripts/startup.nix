@@ -2,7 +2,7 @@
 {
   startup = pkgs.pkgs.writeShellScript "startup" ''
     ${pkgs.waybar}/bin/waybar &
-    ${pkgs.swww}/bin/swww init
+    ${pkgs.swww}/bin/swww-daemon
     $(cat ~/.wallpapercall)
 
     #${pkgs.syncthing}/bin/syncthing &
