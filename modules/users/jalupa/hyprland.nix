@@ -35,7 +35,7 @@ with inputs;
         kb_layout = "eu,de,us";
         kb_options = "caps:escape_shifted_capslock";
 
-        follow_mouse = 1;
+        follow_mouse = 2;
         touchpad = {
           natural_scroll = true;
           disable_while_typing = true;
