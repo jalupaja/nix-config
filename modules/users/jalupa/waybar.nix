@@ -12,7 +12,7 @@ mainWaybarConfig = {
   position = "top";
 
   modules-left = [
-    "custom/logo" 
+    "custom/logo"
     "hyprland/workspaces"
   ];
 
@@ -22,14 +22,14 @@ mainWaybarConfig = {
 
   modules-right = [
     #"hyprland/language"
-    "network"
+    # "network"
+    "tray"
     "bluetooth"
     "pulseaudio"
     "pulseaudio#microphone"
     "cpu"
     #"custom/notification"
     "battery"
-    #"tray"
   ];
 
   bluetooth = {
@@ -164,6 +164,7 @@ mainWaybarConfig = {
     };
 
     network = {
+			# possible alternative: nm-applet --indicator
       on-click = "${globals.term} sh -c nmtui";
       format-disconnected = " ";
       format-ethernet = "󱘖 ";
@@ -268,6 +269,7 @@ mainWaybarConfig = {
     #custom-mode,
     #tray {
       color: #${theme.foreground};
+			background: black;
     }
 
     #custom-battery {
