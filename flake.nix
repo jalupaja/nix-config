@@ -10,9 +10,6 @@
     nur.url = "github:nix-community/NUR";
 
     hyprland = {
-			# TODO change as soon as it builds again...
-		 	#url = "github:hyprwm/Hyprland/f2b03e9679bc1a091fecffd98b50a4179b5c7d43";
-			#url = "https://github.com/hyprwm/Hyprland?submodules=1";
 			type = "git";
 			url = "https://github.com/hyprwm/Hyprland";
 			submodules = true;
@@ -34,7 +31,7 @@
 
     nixvim = {
      url = "github:nix-community/nixvim";
-     inputs.nixpkgs.follows = "nixpkgs";
+     # inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
