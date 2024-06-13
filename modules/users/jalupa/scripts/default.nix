@@ -1,10 +1,10 @@
 { pkgs, lib, config, ... }:
-let 
+let
   theme = config.home-manager.extraSpecialArgs.theme;
   globals = config.home-manager.extraSpecialArgs.globals;
   scripts = config.home-manager.extraSpecialArgs.scripts;
   importNixScript = name: {
-    "${name}" = (import ./${name}.nix {inherit pkgs config theme globals scripts;})."${name}";
+    "${name}" = (import ./${name}.nix {inherit pkgs lib config theme globals scripts;})."${name}";
   };
   importShellScript = name: {
     "${name}" = pkgs.pkgs.writeShellScript "${name}" "${lib.readFile ./${name}.sh}";

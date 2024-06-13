@@ -23,7 +23,7 @@ with inputs;
       # TODO implement screenshot dmenu script
       # TODO fix screenshot thing
 
-      exec-once = ''${scripts.startup}'';
+      exec-once = scripts.startup;
 
       monitor = [
         ",preferred,auto,1"
@@ -122,7 +122,7 @@ with inputs;
         "CTRL, space, exec, $runprompt"
         "$mod SHIFT, L, exec, ${scripts.lock}"
 	"$mod, V, exec, ${scripts.clipboard}"
-        "$mod SHIFT, S, exec, grim"
+        "$mod SHIFT, S, exec, grimblast copy area"
 
         # kill window
         "$mod, Q, killactive"

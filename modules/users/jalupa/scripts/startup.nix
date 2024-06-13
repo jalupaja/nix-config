@@ -1,12 +1,13 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
-  startup = pkgs.pkgs.writeShellScript "startup" ''
-    ${pkgs.waybar}/bin/waybar &
+startup = lib.filter (a: a!= "") (lib.splitString "\n"
+''
+    ${pkgs.waybar}/bin/waybar
+		${pkgs.networkmanagerapplet}/bin/nm-applet --indicator
     ${pkgs.swww}/bin/swww-daemon
     $(cat ~/.wallpapercall)
 
-    #${pkgs.syncthing}/bin/syncthing &
-
-    # start wallpaper using my wallpaper script
-  '';
+    #${pkgs.syncthing}/bin/syncthing
+''
+);
 }
