@@ -47,12 +47,10 @@
     ./dev
 
     # EXTRA PROGRAMS
-    ./mpd.nix
+    # ./mpd.nix
     ./syncthing.nix
     ./btop.nix
   ];
-  # TODO possible configs
-  # lazygit
 
   home.username = "jalupa";
   home.homeDirectory = "/home/jalupa";
@@ -109,7 +107,25 @@
 
 		# Uni (DEL later)
 		openfortivpn
-		dbeaver
+
+		glm
+		glew
+		glfw
+
+		R
+		rstudio
+
+
+		python311Packages.pip
+		python311Packages.nltk
+		python311Packages.lime
+		python311Packages.shap
+		python311Packages.gensim
+		python311Packages.wordcloud
+		python311Packages.numpy
+		python311Packages.pandas
+		python311Packages.scipy
+		python311Packages.matplotlib
   ];
 
   # TODO fix
