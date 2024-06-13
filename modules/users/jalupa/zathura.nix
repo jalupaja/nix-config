@@ -19,7 +19,7 @@
 
 			#stop at page boundries;
 			scroll-page-aware = "true";
-			smooth-scroll = "true";
+			# smooth-scroll = "true";
 			scroll-full-overlap = "0.01";
 			scroll-step = 100;
 
