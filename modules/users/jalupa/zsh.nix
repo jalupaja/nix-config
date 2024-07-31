@@ -47,6 +47,7 @@
       simple_crypt="~/repos/own/simple_crypt/start.sh";
       drag="${pkgs.ripdrag}/bin/ripdrag -b -n";
       term="${globals.term} &";
+			nix-shell="${pkgs.nix-output-monitor}/bin/nom-shell";
 
       # git stuff
       gita = "git add";
