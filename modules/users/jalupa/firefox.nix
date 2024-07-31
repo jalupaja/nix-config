@@ -150,7 +150,7 @@ search = {
 	};
 };
 
-settings = {
+FFsettings = {
 # These settings are an alternation from arkenfox
 # https://github.com/arkenfox/user.js/blob/master/user.js
 
@@ -385,12 +385,12 @@ in
 						"Home Manager Option Search" = search."Home Manager Option Search";
 					};
 				};
-				settings = settings;
+				settings = FFsettings;
 			};
 			shopping = {
 				id = 1;
 				name = "shopping";
-				extensions = with addons; [ vim-vixen ublock-origin darkreader  bitwarden multi-account-containers ];
+				extensions = with addons; [ vim-vixen ublock-origin darkreader bitwarden multi-account-containers ];
 				search = {
 					force = true;
 					default = "ddg";
@@ -400,21 +400,21 @@ in
 						"Startpage" = search.Startpage;
 					};
 				};
-				containers = {
-					"research" = {
-						name = "research";
-						id = 0;
-						color = "green";
-						icon = "chill";
-					};
-					"shopping" = {
-						name = "shopping";
-						id = 1;
-						color = "red";
-						icon = "cart";
-					};
-				};
-				settings = settings;
+				# containers = {
+				# 	"research" = {
+				# 		name = "research";
+				# 		id = 0;
+				# 		color = "green";
+				# 		icon = "chill";
+				# 	};
+				# 	"shopping" = {
+				# 		name = "shopping";
+				# 		id = 1;
+				# 		color = "red";
+				# 		icon = "cart";
+				# 	};
+				# };
+				settings = FFsettings;
 			};
 			uni = {
 				id = 2;
@@ -477,7 +477,7 @@ in
 					];
 				}
 				];
-				settings = settings;
+				settings = FFsettings;
 			};
 			github = {
 				id = 3;
@@ -492,7 +492,7 @@ in
 						"Startpage" = search.Startpage;
 					};
 				};
-				settings = settings;
+				settings = FFsettings;
 			};
 			discord = {
 				id = 4;
@@ -507,7 +507,7 @@ in
 						"Startpage" = search.Startpage;
 					};
 				};
-				settings = settings;
+				settings = FFsettings;
 			};
 		};
 	};
