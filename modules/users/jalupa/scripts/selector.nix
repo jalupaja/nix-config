@@ -20,6 +20,7 @@
     tuta
     bitwarden
     keepassxc
+    obsidian
     office
     xournal++
     zathura
@@ -96,6 +97,9 @@
        ;;
     "keepassxc")
         ${pkgs.keepassxc}/bin/keepassxc
+        ;;
+    "obsidian")
+        ${pkgs.obsidian}/bin/obsidian
         ;;
     "office")
         ${pkgs.libreoffice}/bin/libreoffice
