@@ -99,10 +99,6 @@ with inputs;
         preserve_split = true;
       };
 
-      master = {
-        new_is_master = true;
-      };
-
        gestures = {
          workspace_swipe = true;
          workspace_swipe_forever = true;
@@ -299,7 +295,7 @@ with inputs;
           bind = $mod SHIFT, T, submap, toggle
 
           submap = toggle
-          binde = , O, toggleopaque
+          # binde = , O, opaque, toggle
           binde = , O, submap, reset
 
           bind = , escape, submap, reset
