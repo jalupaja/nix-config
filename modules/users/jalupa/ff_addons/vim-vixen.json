@@ -36,14 +36,6 @@
 			"type": "scroll.pages",
 			"count": 0.5
 		},
-		"<C-B>": {
-			"type": "scroll.pages",
-			"count": -1
-		},
-		"<C-F>": {
-			"type": "scroll.pages",
-			"count": 1
-		},
 		"gg": {
 			"type": "scroll.top"
 		},
