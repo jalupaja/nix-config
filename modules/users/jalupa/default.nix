@@ -5,7 +5,7 @@
     ./fonts.nix
     ./zsh.nix
     #./ssh.nix
-    #./udiskie.nix
+    ./udiskie.nix
     ./gtk.nix # (hopefully) just dark mode
     ./mime.nix # setup default programs
 
@@ -43,6 +43,7 @@
 		./zathura.nix # (pdf) documents
 		# terminal extras
     ./starship.nix
+		./yazi.nix # tui file manager
 		# development extras
     ./dev
 
@@ -71,6 +72,7 @@
     tldr
     ripgrep-all
 		file
+		jmtpfs # mount phone
     # https://github.com/NixOS/nixpkgs/issues/30506
 
     # DESKTOP ENV PROGRAMS
@@ -90,6 +92,7 @@
     p7zip
     texliveFull
     jdk # java
+		ffmpeg
 
     # EXTRA PROGRAMS WITHOUT PROGRAMS MANAGED IN HOME-MANAGER
     brave # chromium based Browser
@@ -104,28 +107,20 @@
     prusa-slicer # 3D printing slicer
 		freecad # 3D CAD Design
 		kicad # PCB Design
+		obsidian # knowledge database
+
+		# TMP
+		inkscape
+		# tenacity # audacity
 
 		# Uni (DEL later)
 		openfortivpn
 
-		glm
-		glew
-		glfw
-
 		R
 		rstudio
 
-
-		python311Packages.pip
-		python311Packages.nltk
-		python311Packages.lime
-		python311Packages.shap
-		python311Packages.gensim
-		python311Packages.wordcloud
-		python311Packages.numpy
-		python311Packages.pandas
-		python311Packages.scipy
-		python311Packages.matplotlib
+		dbeaver-bin
+		docker
   ];
 
   # TODO fix

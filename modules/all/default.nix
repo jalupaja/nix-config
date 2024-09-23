@@ -118,7 +118,7 @@ nixpkgs.config.allowUnfree = true;
 # };
 
 # List services that you want to enable:
-
+services.udisks2.enable = true; # automount service
 # Enable the OpenSSH daemon.
 # services.openssh.enable = true;
 
