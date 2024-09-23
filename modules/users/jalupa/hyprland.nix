@@ -216,7 +216,7 @@ with inputs;
       ];
     };
 
-    extraConfig = ''
+    extraConfig = "
 
 					plugin {
 						# split-monitor-workspaces {
@@ -309,12 +309,12 @@ with inputs;
           bind = $mod SHIFT, T, submap, toggle
 
           submap = toggle
-          # binde = , O, opaque, toggle
+          binde = , O, exec, ${scripts.toggle_opaque}
           binde = , O, submap, reset
 
           bind = , escape, submap, reset
           bind = , return, submap, reset
           submap = reset
-    '';
+    ";
   };
 }

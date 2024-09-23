@@ -22,6 +22,7 @@ in
 // importNixScript "kill"
 // importNixScript "killall"
 // importNixScript "lock"
+// importNixScript "toggle_opaque"
 // importNixScript "file_selector"
 // importNixScript "wallpaper"
 // importNixScript "volume"
