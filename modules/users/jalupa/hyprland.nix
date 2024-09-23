@@ -13,6 +13,7 @@ with inputs;
       hyprsplit.packages.${pkgs.system}.hyprsplit
       #split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces
       #hyprgrass.packages.${pkgs.system}.default
+			hypr-dynamic-cursors.packages.${pkgs.system}.hypr-dynamic-cursors
     ];
 
     settings = {
@@ -223,8 +224,21 @@ with inputs;
 						# }
 						hyprsplit {
 							num_workspaces = 9
-								}
 						}
+						dynamic-cursors {
+							enable = true
+							mode = stretch
+							# mode = tilt
+							# mode = rotate # funny but no
+
+							shake {
+								enable = true
+								nearest = true
+								threshold = 5.0
+							}
+						}
+					}
+
 				# window resize
           bind = $mod, R, submap, resize
 
