@@ -1,21 +1,15 @@
-{ pkgs, ... }:
+{ ... }:
 {
-  home.packages = with pkgs; [
-    udiskie
-  ];
-
-  # TODO not working
  services.udiskie = {
    enable = true;
    notify = true;
+   automount = false;
 
-   automount = true;
    settings = {
      program_options = {
        udisks_version = 2;
-       tray = false;
+       tray = true;
      };
-     icon_names.media = [ "media-optical" ];
    };
  };
 }

@@ -16,8 +16,10 @@
       df="df -h";
       du="du -h";
       free="free -m";
-      mount="sudo mount -o uid=$USER";
-      umount="sudo umount";
+      mount="udisksctl mount -b";
+      # mount="sudo mount -o uid=$USER";
+      umount="udisksctl unmount -b";
+      # umount="sudo umount";
       grep="grep -i --colour=auto";
 			rg="rg -i";
 
