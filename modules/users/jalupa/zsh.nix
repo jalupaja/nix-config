@@ -34,7 +34,7 @@
       cdd = "cd ~/Documents";
       cdn = "cd ~/.config/nix-config";
       cdnh = "cd ~/.config/nix-config/modules/users/jalupa";
-      cdu = "cd ~/Documents/Uni/6.\\ Semester";
+      cdu = "cd ~/Documents/Uni/7.\\ Semester";
       ".." = "cd ..";
       "..." = "cd ../..";
       "...." = "cd ../../..";
@@ -60,10 +60,10 @@
       gitc = "git commit -m";
     };
 
-		envExtra = ''
-# Session Variables
-export LD_LIBRARY_PATH="${pkgs.stdenv.cc.cc.lib}/lib/:/run/opengl-driver/lib/:${pkgs.libGL}/lib/:${pkgs.libxkbcommon}/lib/:${pkgs.fontconfig}/lib/:${pkgs.glibc}/lib";
-		'';
+#		envExtra = ''
+## Session Variables
+#export LD_LIBRARY_PATH="${pkgs.stdenv.cc.cc.lib}/lib/:/run/opengl-driver/lib/:${pkgs.libGL}/lib/:${pkgs.libxkbcommon}/lib/:${pkgs.fontconfig}/lib/:${pkgs.glibc}/lib";
+#		'';
 
     initExtra = ''
 # bindkeys
