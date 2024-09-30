@@ -9,6 +9,8 @@
       enable = true;
     };
 
+		history.share = false;
+
     shellAliases = {
       #healthy defaults
       cp = "cp -i";
