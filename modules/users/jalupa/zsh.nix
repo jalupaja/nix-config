@@ -50,6 +50,7 @@
       drag="${pkgs.ripdrag}/bin/ripdrag -b -n";
       term="${globals.term} &";
 			nix-shell="${pkgs.nix-output-monitor}/bin/nom-shell";
+			mount_phone="${pkgs.jmtpfs}/bin/jmtpfs";
 
       # git stuff
       gita = "git add";
