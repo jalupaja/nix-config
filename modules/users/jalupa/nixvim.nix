@@ -5,6 +5,7 @@ with inputs;
 # TODO implement comment for .nix
 # TODO in multiple files?
 # TODO resources:
+# https://nix-community.github.io/nixvim
 # https://github.com/GaetanLepage/nix-config/tree/master/home/modules/tui/neovim
 imports = [ nixvim.homeManagerModules.nixvim ];
 
@@ -78,7 +79,7 @@ programs.nixvim = {
 
         treesitter = {
           enable = true;
-          disabledLanguages = [ "latex" ];
+					settings.highlight.disable = [ "latex" ];
         };
 
         diffview = {
@@ -194,7 +195,7 @@ programs.nixvim = {
 
         markdown-preview = {
           enable = true;
-          settings.auto_start = false;
+          settings.auto_start = 0;
         };
 
         telescope = {
