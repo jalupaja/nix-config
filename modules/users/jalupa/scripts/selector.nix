@@ -35,7 +35,7 @@
     screenshot
     brightness
     volume
-    volume gui
+    volume gui (pavucontrol)
     monitor setup
     monitor setup gui
     mount
@@ -143,7 +143,7 @@
     "volume")
         ${scripts.volume}
         ;;
-    "volume gui")
+    "volume gui (pavucontrol)")
         ${pkgs.pavucontrol}/bin/pavucontrol
         ;;
     "monitor setup")
