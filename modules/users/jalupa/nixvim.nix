@@ -20,23 +20,48 @@ programs.nixvim = {
       mapleader = " ";
     };
 
-    colorschemes = {
-    # TODO
-    # https://nix-community.github.io/nixvim/colorschemes/tokyonight/index.html#colorschemestokyonightenable
-    tokyonight = {
-      enable = true;
-      settings.style = "night";
-    };
-    ayu = {
-      enable = false;
+		colorschemes = {
+		# TODO
+			tokyonight = {
+				enable = false;
+				settings = {
+					style = "night";
+					styles = {
+						comments = {
+							fg = "#${theme.foreground}";
+						};
+					};
+				};
+			};
+			ayu = {
+				enable = false;
 
-        # doesn't work?
-        #extraOptions.overrides = {
-        #    fg = "#000000";
-        #};
-      };
-      oxocarbon.enable = false;
-    };
+				# doesn't work should be dictionary
+				# settings.overrides = [
+				#    "fg = #000000"
+				# ];
+			};
+			cyberdream = {
+# https://nix-community.github.io/nixvim/colorschemes/cyberdream/settings/theme.html
+				enable = true;
+				settings.theme = {
+					highlights = {
+						Comment = {
+							fg = "#${theme.foreground}";
+						};
+						LineNr = {
+							fg = "#${theme.foreground}";
+						};
+						# CursorLine = {
+						# 	fg = "#${theme.color_second}";
+						# };
+					};
+				};
+			};
+
+# no color options but at least readable line numbers
+			nightfox.enable = false;
+		};
 
     opts = {
       number = true;
