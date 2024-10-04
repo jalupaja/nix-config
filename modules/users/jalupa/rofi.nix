@@ -11,21 +11,22 @@
 
     extraConfig = {
       scroll-method = 1;
+			modi = "drun,window,ssh,combi";
     };
 
-    theme = let  
+    theme = let
       inherit (config.lib.formats.rasi) mkLiteral;
-    in {  
+    in {
       "configuration" = {
         show-icons = true;
         display-drun = "";
         disable-history = false;
       };
 
-      "*" = {    
+      "*" = {
         font = "${theme.font}";
         text-color = mkLiteral "#${theme.foreground}";
-        background-color = mkLiteral "#${theme.background}ff";    
+        background-color = mkLiteral "#${theme.background}ff";
         active-background = mkLiteral "#${theme.color_first}ff";
         urgent-background = mkLiteral "#ffcccbff";
         urgent-text-color = mkLiteral "#8b0000";
@@ -35,8 +36,8 @@
         separatorcolor = mkLiteral "@active-background";
 
         border-color = mkLiteral "#${theme.color_second}";
-        width = 512;  
-      };  
+        width = 512;
+      };
 
       "#window" = {
         background-color = mkLiteral "@background-color";

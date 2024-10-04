@@ -1,193 +1,130 @@
 { pkgs, scripts, globals, ... }:
 {
   selector = pkgs.pkgs.writeShellScript "selector" ''
-    DMENU="${globals.dmenu}"
-    CMD="/usr/bin/env bash -c $1"
-    APPS="${globals.app_runner}"
 
-    menu="\
-    apps
-    emacs
-    firefox research
-    firefox uni
-    firefox shopping
-    firefox github
-    tor browser
-    alacritty
-    kitty
-    wallpaper
-    signal
-    tuta
-    bitwarden
-    keepassxc
-    obsidian
-    office
-    xournal++
-    zathura
-    camera
-    file manager
-    wifi
-    wifi gui
-    bluetooth
-    clipboard
-    remove from clipboard
-    clear-clipboard
-    screenshot
-    brightness
-    volume
-    volume gui (pavucontrol)
-    monitor setup
-    monitor setup gui
-    mount
-    umount
-    lock
-    sleep
-    shutdown
-    restart/reboot
-    kill
-    killall
-    fix
-    keyboard layout\
-    "
-
-    choice=$(echo -e "$menu" | ''${DMENU}) || exit
-
-    case "$choice" in
-    *\!)
-        $CMD "$(printf "%s" "''${choice}" | cut -d'!' -f1)"
-        ;;
-    "apps")
-        $APPS
-        ;;
+app=' '
+if [ ! -z "$@" ]; then
+    case "$@" in
     "emacs")
-        ${pkgs.emacs}/bin/emacsclient -c -a 'emacs'
+        app='${pkgs.emacs}/bin/emacsclient -c -a "emacs"'
         ;;
     "firefox research")
-        ${pkgs.firefox}/bin/firefox -p "research"
+        app='${pkgs.firefox}/bin/firefox -p "research"'
         ;;
     "firefox uni")
-        ${pkgs.firefox}/bin/firefox -p "uni"
+        app='${pkgs.firefox}/bin/firefox -p "uni"'
         ;;
     "firefox shopping")
-        ${pkgs.firefox}/bin/firefox -p "shopping"
+        app='${pkgs.firefox}/bin/firefox -p "shopping"'
         ;;
     "firefox github")
-        ${pkgs.firefox}/bin/firefox -p "github"
-        ;;
-    "tor browser")
-        ${pkgs.tor-browser-bundle-bin}/bin/tor-browser
-        ;;
-    "alacritty")
-        ${pkgs.alacritty}/bin/alacritty
-        ;;
-    "kitty")
-        ${pkgs.kitty}/bin/kitty
+        app='${pkgs.firefox}/bin/firefox -p "github"'
         ;;
     "wallpaper")
-        ${scripts.wallpaper}
-        ;;
-    "signal")
-        ${pkgs.signal-desktop}/bin/signal-desktop --enable-features=UseOzonePlatform --ozone-platform=wayland
-        ;;
-    "tuta")
-        # TODO
-        ;;
-    "bitwarden")
-       ${pkgs.bitwarden}/bin/bitwarden --enable-features=UseOzonePlatform --ozone-platform=wayland
-       ;;
-    "keepassxc")
-        ${pkgs.keepassxc}/bin/keepassxc
-        ;;
-    "obsidian")
-        ${pkgs.obsidian}/bin/obsidian
-        ;;
-    "office")
-        ${pkgs.libreoffice}/bin/libreoffice
-        ;;
-    "xournal++")
-        ${pkgs.xournalpp}/bin/xournalpp
-        ;;
-    "zathura")
-        ${pkgs.zathura}/bin/zathura
-        ;;
-    "camera")
-        ${pkgs.webcamoid}/bin/webcamoid
+        app='${scripts.wallpaper}'
         ;;
     "file manager")
         # TODO
         ;;
     "wifi")
-        ${scripts.wifi}
-        ;;
-    "wifi gui")
-        # TODO
+        app='${scripts.wifi}'
         ;;
     "bluetooth")
-        ${scripts.bluetooth}
+        app='${scripts.bluetooth}'
         ;;
     "clipboard")
-        ${scripts.clipboard}
+        app='${scripts.clipboard}'
         ;;
     "remove from clipboard")
-        ${scripts.rem-from-clipboard}
+        app='${scripts.rem-from-clipboard}'
         ;;
     "clear-clipboard")
-        ${scripts.clear-clipboard}
+        app='${scripts.clear-clipboard}'
         ;;
     "screenshot")
-        ${scripts.screenshot}
+        app='${scripts.screenshot}'
         ;;
     "brightness")
-        ${scripts.brightness}
+        app='${scripts.brightness}'
         ;;
     "volume")
-        ${scripts.volume}
+        app='${scripts.volume}'
         ;;
-    "volume gui (pavucontrol)")
-        ${pkgs.pavucontrol}/bin/pavucontrol
+    "volume gui")
+        app='${pkgs.pavucontrol}/bin/pavucontrol'
         ;;
     "monitor setup")
-        ${scripts.monitorsetup}
+        app='${scripts.monitorsetup}'
         ;;
     "monitor setup gui")
-        ${pkgs.wdisplays}/bin/wdisplays
-        ;;
-    "mount")
-        # TODO script
-        ;;
-    "umount")
-        # TODO script
+        app='${pkgs.wdisplays}/bin/wdisplays'
         ;;
     "lock")
-        ${scripts.lock}
+        app='${scripts.lock}'
         ;;
     "sleep")
         systemctl suspend
-        ${scripts.lock}
+        app='${scripts.lock}'
         ;;
     "shutdown")
-        if [ "$(echo -e "yes\nno" | $DMENU)" = "yes" ]; then poweroff; fi
+        app='${scripts.shutdown}'
         ;;
     "restart/reboot")
-        if [ "$(echo -e "yes\nno" | $DMENU)" = "yes" ]; then reboot; fi
+        app='${scripts.reboot}'
         ;;
     "kill")
-        ${scripts.kill}
+        app='${scripts.kill}'
         ;;
     "killall")
-        ${scripts.killall}
+        app='${scripts.killall}'
         ;;
     "fix")
         # TODO script
         ;;
     "keyboard layout")
-        ${scripts.keyboard_layout}
-        ;;
-    *)
-        echo "ERROR: choice not in list"
-        exit
+        app='${scripts.keyboard_layout}'
         ;;
     esac
 
+    read -ra app <<< "$app"
+    coproc ( $app > /dev/null  2>&1 )
+
+    exit
+fi
+
+menu="\
+emacs
+firefox research
+firefox uni
+firefox shopping
+firefox github
+wallpaper
+wifi
+wifi gui
+bluetooth
+clipboard
+remove from clipboard
+clear-clipboard
+screenshot
+brightness
+volume
+volume gui
+monitor setup
+monitor setup gui
+lock
+sleep
+shutdown
+restart/reboot
+kill
+killall
+fix
+keyboard layout\
+	"
+# TODO
+# mount
+# file manager
+# umount
+
+echo -e "$menu"
   '';
 }

@@ -22,6 +22,8 @@ in
 // importNixScript "kill"
 // importNixScript "killall"
 // importNixScript "lock"
+// importNixScript "shutdown"
+// importNixScript "reboot"
 // importNixScript "toggle_opaque"
 // importNixScript "file_selector"
 // importNixScript "wallpaper"

@@ -18,7 +18,7 @@ with inputs;
 
     settings = {
       "$terminal" = "${globals.term}";
-      "$runprompt" = "${scripts.selector}";
+			"$runprompt" = ''rofi -i -show combi -combi-modi ":${scripts.selector},drun" -show combi'';
       "$volume" = "${scripts.volume}";
       "$brightness" = "${scripts.brightness}";
       # TODO implement screenshot dmenu script
