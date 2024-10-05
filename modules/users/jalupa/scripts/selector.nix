@@ -6,19 +6,19 @@ app=' '
 if [ ! -z "$@" ]; then
     case "$@" in
     "emacs")
-        app='${pkgs.emacs}/bin/emacsclient -c -a "emacs"'
+        app='${pkgs.emacs}/bin/emacsclient -c -a emacs'
         ;;
     "firefox research")
-        app='${pkgs.firefox}/bin/firefox -p "research"'
+        app='${pkgs.firefox}/bin/firefox -p research'
         ;;
     "firefox uni")
-        app='${pkgs.firefox}/bin/firefox -p "uni"'
+        app='${pkgs.firefox}/bin/firefox -p uni'
         ;;
     "firefox shopping")
-        app='${pkgs.firefox}/bin/firefox -p "shopping"'
+        app='${pkgs.firefox}/bin/firefox -p shopping'
         ;;
     "firefox github")
-        app='${pkgs.firefox}/bin/firefox -p "github"'
+        app='${pkgs.firefox}/bin/firefox -p github'
         ;;
     "wallpaper")
         app='${scripts.wallpaper}'
@@ -87,7 +87,7 @@ if [ ! -z "$@" ]; then
     esac
 
     read -ra app <<< "$app"
-    coproc ( $app > /dev/null  2>&1 )
+    coproc ( ''${app[@]} ) #> /dev/null  2>&1 )
 
     exit
 fi
