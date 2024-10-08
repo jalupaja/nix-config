@@ -4,6 +4,6 @@
 
 		DMENU="${globals.dmenu}"
 
-		if [ "$(echo -e "yes\nno" | $DMENU)" = "yes" ]; then shutdown; fi
+		if [ "$(echo -e "yes\nno" | $DMENU)" = "yes" ]; then shutdown now; fi
 			'';
 }
