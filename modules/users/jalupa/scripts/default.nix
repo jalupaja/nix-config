@@ -19,6 +19,7 @@ in
 // importNixScript "startup"
 // importShellScript "switchmonitor"
 // importNixScript  "monitorsetup"
+// importNixScript "mount"
 // importNixScript "kill"
 // importNixScript "killall"
 // importNixScript "lock"

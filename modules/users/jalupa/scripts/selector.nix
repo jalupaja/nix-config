@@ -53,6 +53,15 @@ if [ ! -z "$@" ]; then
     "volume gui")
         app='${pkgs.pavucontrol}/bin/pavucontrol'
         ;;
+		"mount")
+				app='${scripts.mount} -m'
+				;;
+		"umount")
+				app='${scripts.mount} -u'
+				;;
+		"eject usb")
+				app='${scripts.mount} -e'
+				;;
     "monitor setup")
         app='${scripts.monitorsetup}'
         ;;
@@ -109,6 +118,9 @@ screenshot
 brightness
 volume
 volume gui
+mount
+umount
+eject usb
 monitor setup
 monitor setup gui
 lock
@@ -120,10 +132,7 @@ killall
 fix
 keyboard layout\
 	"
-# TODO
-# mount
 # file manager
-# umount
 
 echo -e "$menu"
   '';
