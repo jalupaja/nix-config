@@ -79,6 +79,9 @@ programs.nixvim = {
     plugins = {
         # https://nix-community.github.io/nixvim/plugins/lsp/index.html
 
+				# TODO what is this?
+				web-devicons.enable = true;
+
         nvim-autopairs.enable = true;
 
         neogit.enable = true;
@@ -118,8 +121,8 @@ programs.nixvim = {
 						# Programming languages
 						clangd.enable = true; # C/C++
 							pyright.enable = true; # python
-							java-language-server.enable = false; # java
-							rust-analyzer = { # rust
+							java_language_server.enable = false; # java
+							rust_analyzer = { # rust
 								enable = true;
 								installRustc = true;
 								installCargo = true;
@@ -141,7 +144,7 @@ programs.nixvim = {
             marksman.enable = true; # Markdown
             texlab.enable = true; # LaTex
 
-            typos-lsp.enable = true; # text (prob. just simple english)
+            typos_lsp.enable = true; # text (prob. just simple english)
           };
           keymaps = {
             lspBuf = {
