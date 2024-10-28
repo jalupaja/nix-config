@@ -129,7 +129,8 @@ programs.nixvim = {
 							};
 
 						# script languages
-						bashls.enable = true; # bash
+						# TODO
+						bashls.enable = false; # bash
 							cmake.enable = true; # cmake
 							nixd.enable = true; # nix files
 

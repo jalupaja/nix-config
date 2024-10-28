@@ -42,6 +42,7 @@
 			url = "github:thiagokokada/nix-alien";
       # inputs.nixpkgs.follows = "nixpkgs";
 		};
+
   };
 
   outputs = {
