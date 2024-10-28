@@ -354,8 +354,18 @@ FFsettings = {
 	"browser.urlbar.showSearchTerms.enabled" = false;
 };
 
+	# TODO automatically for all profiles?
+  # Research_DesktopItem = pkgs.makeDesktopItem {
+  #   name = "firefox-research";
+  #   desktopName = "Firefox research";
+  #   exec = "${pkgs.firefox}/bin/firefox -p \"research\"";
+		# icon = "${pkgs.firefox}/share/icons/hicolor/128x128/apps/firefox.png";
+  #   # terminal = true;
+  # };
 in
 {
+  # home.packages = [ Research_DesktopItem ];
+
 	programs.firefox = {
 		enable = true;
 
