@@ -9,6 +9,7 @@
     [
 			# include default packages
 			./pkgs.nix
+			./nix-ld.nix
 		];
 
   nix = {
