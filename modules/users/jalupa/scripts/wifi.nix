@@ -9,7 +9,7 @@
     # This script is copied from https://github.com/GeorgiChalakov01/wifi-control
     # and has been edited to work for me
 
-    case $(echo -e "CONNECT\nDISCONNECT\nWIFI ON\nWIFI OFF" | DMENU "WIFI Options: ";) in
+    case $(echo -e "CONNECT\nDISCONNECT\nHOTSPOT\nWIFI ON\nWIFI OFF" | DMENU "WIFI Options: ";) in
         CONNECT)
             wifiname=$(nmcli d wifi list | DMENU "Select WIFI" | cut -d' ' -f9);
             if [ -n "$wifiname" ]; then
@@ -28,6 +28,16 @@
             internet=$(nmcli | grep "connected" | sed -n '1p' | cut -c 22-);
             nmcli con down id $internet;
             ;;
+				"HOTSPOT")
+					if [ $(nmcli con | awk '{print $1}' | grep '^Hotspot$' | wc -w) -le 0 ]; then
+						nmcli con add type wifi ifname wlp0s20f3 con-name Hotspot autoconnect no ssid Hotspot
+					fi
+
+					nmcli con modify Hotspot 802-11-wireless.mode ap 802-11-wireless.band bg ipv4.method shared
+					nmcli con modify Hotspot wifi-sec.key-mgmt wpa-psk
+					nmcli con modify Hotspot wifi-sec.psk "justForPI4"
+					nmcli con up Hotspot
+					;;
         "WIFI ON")
             nmcli radio wifi on;
             ;;
