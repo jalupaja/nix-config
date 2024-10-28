@@ -71,6 +71,8 @@ i18n.extraLocaleSettings = {
 
 console.useXkbConfig = true;
 
+services.fwupd.enable = true;
+
 # Enable CUPS to print documents.
 services.printing.enable = true;
 
@@ -100,7 +102,7 @@ services.pipewire = {
 users.users.jalupa = {
   isNormalUser = true;
   description = "jalupa";
-  extraGroups = [ "networkmanager" "wheel" "video" "dialout" ];
+  extraGroups = [ "jalupa" "networkmanager" "wheel" "video" "dialout" ];
 };
 
 services.udev.extraRules = ''
