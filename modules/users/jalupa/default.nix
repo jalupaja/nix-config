@@ -97,6 +97,7 @@
 
     # EXTRA PROGRAMS WITHOUT PROGRAMS MANAGED IN HOME-MANAGER
     brave # chromium based Browser
+		mullvad-browser # privacy focues, firefox based Browser
     tor-browser-bundle-bin # Tor Browser
     signal-desktop # signal client
     tutanota-desktop # tuta email client
@@ -109,6 +110,7 @@
 		freecad # 3D CAD Design
 		kicad # PCB Design
 		obsidian # knowledge database
+		docker
 
 		# TMP
 		inkscape
@@ -116,12 +118,13 @@
 
 		# Uni (DEL later)
 		openfortivpn
+		flex
+		bison
+		figma-linux
+		eclipses.eclipse-sdk
+		spring-boot-cli
 
-		R
-		rstudio
-
-		dbeaver-bin
-		docker
+		btlejack
   ];
 
   # TODO fix
