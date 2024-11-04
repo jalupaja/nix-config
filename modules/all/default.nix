@@ -81,7 +81,13 @@ hardware.pulseaudio.enable = false;
 security.rtkit.enable = true;
 # TODO
 security.pam.services.swaylock = {};
-security.pam.services.lemurs = {};
+
+services.lemurs = {
+	enable = false;
+	# x11.enable = true;
+	wayland.enable = true;
+};
+
 services.pipewire = {
   enable = true;
   alsa.enable = true;

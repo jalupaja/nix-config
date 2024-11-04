@@ -16,6 +16,12 @@
 
 		};
 
+		lemurs = {
+			# url = "github:coastalwhite/lemurs";
+			url = "github:NullCub3/lemurs/nixosmodule-old";
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
+
    #  split-monitor-workspaces = {
    #    url = "github:Duckonaut/split-monitor-workspaces";
    #    inputs.hyprland.follows = "hyprland";
@@ -55,6 +61,7 @@
       nur,
       nixvim,
 			nix-alien,
+			lemurs,
       ...
     } @ inputs:
   let
@@ -73,6 +80,7 @@
         ./modules/all
         ./hardware/touch-notebook.nix
         nur.nixosModules.nur
+        lemurs.nixosModules.default
       ];
       specialArgs = {
         nur = pkgs.nur;
