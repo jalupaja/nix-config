@@ -110,7 +110,8 @@
 		freecad # 3D CAD Design
 		kicad # PCB Design
 		obsidian # knowledge database
-		docker
+		docker # container runner
+		nmap # network mapping tool
 
 		# TMP
 		inkscape
@@ -123,6 +124,7 @@
 		figma-linux
 		eclipses.eclipse-sdk
 		spring-boot-cli
+		nodejs
 
 		btlejack
   ];
