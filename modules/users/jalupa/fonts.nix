@@ -2,7 +2,7 @@
 {
   fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
-    # nerdfonts
+    nerd-fonts.jetbrains-mono # https://www.nerdfonts.com/font-downloads
     noto-fonts
     noto-fonts-cjk-sans
     noto-fonts-emoji
