@@ -34,7 +34,7 @@
     ./vim.nix
     ./nixvim.nix # neovim
     #./neovim.nix
-    ./emacs.nix
+    #./emacs.nix
     #./emacs-overlay.nix
     #./doom-emacs
 		# media viewers
@@ -93,7 +93,6 @@
     p7zip
     texliveFull
     jdk # java
-		ffmpeg
 
     # EXTRA PROGRAMS WITHOUT PROGRAMS MANAGED IN HOME-MANAGER
     brave # chromium based Browser
@@ -112,9 +111,14 @@
 		obsidian # knowledge database
 		docker # container runner
 		nmap # network mapping tool
+		inkscape
 
 		# TMP
-		inkscape
+		ffmpeg
+		python312Packages.pytaglib
+		python312Packages.pybluez
+		# bluez bluez-tools git gcc python312 python312Packages.pip python312Packages.setuptools python312Packages.dbus-python python312Packages.pydbus python312Packages.pybluez
+
 		# tenacity # audacity
 
 		# Uni (DEL later)
