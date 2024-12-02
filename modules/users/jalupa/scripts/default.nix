@@ -38,3 +38,4 @@ in
 // importNixScript "rem-from-clipboard"
 // importNixScript "clear-clipboard"
 // importNixScript "selector"
+// importNixScript "power_warning"
