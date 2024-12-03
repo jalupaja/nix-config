@@ -45,6 +45,8 @@
 		nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 		hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
+		systemd.services.modem-manager.enable = false; # use Broadband network
+
 # Efficiency settings
 		powerManagement.enable = true;
 		services.thermald.enable = true;
