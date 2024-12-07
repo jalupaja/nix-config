@@ -80,237 +80,260 @@ programs.nixvim = {
 			foldmethod = "manual";
     };
 
-    plugins = {
-        # https://nix-community.github.io/nixvim/plugins/lsp/index.html
+		plugins = {
+			# https://nix-community.github.io/nixvim/plugins/lsp/index.html
 
-				# TODO what is this?
-				web-devicons.enable = true;
+			# TODO what is this?
+			web-devicons.enable = true;
 
-        nvim-autopairs.enable = true;
+			nvim-autopairs.enable = true;
 
-        neogit.enable = true;
+			neogit.enable = true;
 
-        # TODO
-        startify = {
-          enable = false;
-        };
+			# TODO
+			startify = {
+				enable = false;
+			};
 
-        # fold
-        # TODO
-        nvim-ufo = {
-          enable = true;
-        };
+			# fold
+			nvim-ufo = {
+				enable = true;
+			};
 
-				nvim-tree = {
-					enable = true;
-					#disableNetrw = true;
-				};
+			nvim-tree = {
+				enable = true; # TODO false?
+				#disableNetrw = true;
+			};
 
-        # TODO
-        #clipboard-image.enable = true;
+			# TODO
+			#clipboard-image.enable = true;
 
-        treesitter = {
-          enable = true;
-					settings.highlight.disable = [ "latex" ];
-        };
+			treesitter = {
+				enable = true;
+				settings.highlight.disable = [ "latex" ];
+			};
 
-        diffview = {
-          enable = true;
-          diffBinaries = true;
-        };
+			diffview = {
+				enable = true;
+				diffBinaries = true;
+			};
 
-				lsp = {
-					enable = true;
-					servers = {
-						# Programming languages
-						clangd.enable = true; # C/C++
-							ruff.enable = false; # python
-							pylsp.enable = true; # python
-							pyright.enable = false; # python
-							java_language_server.enable = false; # java
-							rust_analyzer = { # rust
-								enable = true;
-								installRustc = true;
-								installCargo = true;
-							};
-						quick_lint_js.enable = true;
-
-						# script languages
-						# TODO
-						bashls.enable = false; # bash
-							cmake.enable = true; # cmake
-							nixd.enable = true; # nix files
-
-            #web stuff
-            html.enable = true; # html
-            htmx.enable = true; # htmx
-            cssls.enable = true; # css
-
-            # markup
-            jsonls.enable = true; # json
-            lemminx.enable = true; # xml
-            marksman.enable = true; # Markdown
-            texlab.enable = true; # LaTex
-
-            typos_lsp.enable = true; # text (prob. just simple english)
-          };
-          keymaps = {
-            lspBuf = {
-              K = "hover";
-              gD = "references";
-              gd = "definition";
-              gi = "implementation";
-              gt = "type_definition";
-            };
-          };
-        };
-        lspsaga = {
-          enable = true;
-
-          beacon.enable = true;
-          implement.enable = false;
-          lightbulb.enable = false;
-          hover.openCmd = "!${globals.browser}";
-
-          finder.keys = {
-            split = "s";
-            vsplit = "v";
-          };
-          rename.keys = {
-            exec = "<CR>";
-            quit = "q";
-          };
-        };
-        lsp-format = {
-          enable = true;
-          lspServersToEnable = "all";
-				};
-				#lsp-lines.enable = true;
-				# java lsp
-				nvim-jdtls = {
-					enable = true;
-					cmd = [
-						# Eclipse language server
-						"${pkgs.jdt-language-server}/bin/jdtls"
-							"-noverify"
-							"-Xms1G"
-							"-jar"
-							"-data" ".cache/jdtls/workspace"
-							"-configuration" ".cache/jdtls/config"
-					];
-				};
-
-        # more LaTex features
-        vimtex = {
-          enable = true;
-          settings = {
-						view_method = "zathura";
-					};
-        };
-
-        # commenting
-				comment = {
-					enable = true;
-
-					settings = {
-						opleader = {
-							line = "<leader>c";
-							block = "<leader>bc";
+			lsp = {
+				enable = true;
+				servers = {
+					# Programming languages
+					clangd.enable = true; # C/C++
+						ruff.enable = false; # python
+						pylsp.enable = true; # python
+						pyright.enable = false; # python
+						java_language_server.enable = false; # java
+						rust_analyzer = { # rust
+							enable = true;
+							installRustc = true;
+							installCargo = true;
 						};
-						toggler = {
-							line = "<leader>c";
-							block = "<leader>bc";
-						};
+					quick_lint_js.enable = true;
 
-						mappings = {
-							basic = true;
-							extra = false;
-						};
+					# script languages
+					# TODO
+					bashls.enable = false; # bash
+						cmake.enable = true; # cmake
+						nixd.enable = true; # nix files
+
+						#web stuff
+						html.enable = true; # html
+						htmx.enable = true; # htmx
+						cssls.enable = true; # css
+
+						# markup
+						jsonls.enable = true; # json
+						lemminx.enable = true; # xml
+						marksman.enable = true; # Markdown
+						texlab.enable = true; # LaTex
+
+						typos_lsp.enable = true; # text (prob. just simple english)
+				};
+				keymaps = {
+					lspBuf = {
+						K = "hover";
+						gD = "references";
+						gd = "definition";
+						gi = "implementation";
+						gt = "type_definition";
 					};
 				};
+			};
+			lspsaga = {
+				enable = true;
 
-        markdown-preview = {
-          enable = true;
-          settings.auto_start = 0;
-        };
+				beacon.enable = true;
+				implement.enable = false;
+				lightbulb.enable = false;
+				hover.openCmd = "!${globals.browser}";
 
-        telescope = {
-          enable = true;
-        };
-
-        # TODO fix: probably by installing plenary ...
-        harpoon = {
-          enable = true;
-          enableTelescope = true;
-
-          keymaps = {
-            addFile = "<leader>a>";
-            cmdToggleQuickMenu = "<leader>i";
-            gotoTerminal = {
-              "1" = "<C-1>";
-              "2" = "<C-2>";
-              "3" = "<C-3>";
-              "4" = "<C-4>";
-            };
-          };
-        };
-
-				# might only work with a colortheme?
-				nvim-colorizer = {
-					enable = true;
+				finder.keys = {
+					split = "s";
+					vsplit = "v";
 				};
+				rename.keys = {
+					exec = "<CR>";
+					quit = "q";
+				};
+			};
+			lsp-format = {
+				enable = true;
+				lspServersToEnable = "all";
+			};
+			#lsp-lines.enable = true;
+			# java lsp
+			nvim-jdtls = {
+				enable = true;
+				cmd = [
+					# Eclipse language server
+					"${pkgs.jdt-language-server}/bin/jdtls"
+						"-noverify"
+						"-Xms1G"
+						"-jar"
+						"-data" ".cache/jdtls/workspace"
+						"-configuration" ".cache/jdtls/config"
+				];
+			};
 
-				lspkind = {
-					enable = true;
+			# more LaTex features
+			vimtex = {
+				enable = true;
+				settings = {
+					view_method = "zathura";
+				};
+			};
 
-					cmp = {
-						enable = true;
-						menu = {
-							nvim_lsp = "[LSP]";
-							nvim_lua = "[api]";
-							path = "[path]";
-							luasnip = "[snip]";
-							buffer = "[buffer]";
-							neorg = "[neorg]";
-							cmp_tabby = "[Tabby]";
-						};
+			# commenting
+			comment = {
+				enable = true;
+
+				settings = {
+					opleader = {
+						line = "<leader>c";
+						block = "<leader>bc";
+					};
+					toggler = {
+						line = "<leader>c";
+						block = "<leader>bc";
+					};
+
+					mappings = {
+						basic = true;
+						extra = false;
 					};
 				};
+			};
+
+			markdown-preview = {
+				enable = true;
+				settings.auto_start = 0;
+			};
+
+			telescope = {
+				enable = true;
+			};
+
+			# TODO fix: probably by installing plenary ...
+			harpoon = {
+				enable = true;
+				enableTelescope = true;
+
+				keymaps = {
+					addFile = "<leader>a>";
+					cmdToggleQuickMenu = "<leader>i";
+					gotoTerminal = {
+						"1" = "<C-1>";
+						"2" = "<C-2>";
+						"3" = "<C-3>";
+						"4" = "<C-4>";
+					};
+				};
+			};
+
+			# might only work with a colortheme?
+			nvim-colorizer = {
+				enable = true;
+			};
+
+			lspkind = {
+				enable = true;
 
 				cmp = {
 					enable = true;
-
-					settings = {
-						snippet.expand = "function(args) require('luasnip').lsp_expand(args.body) end";
-						mapping = {
-							"<C-d>" = "cmp.mapping.scroll_docs(-4)";
-							"<C-f>" = "cmp.mapping.scroll_docs(4)";
-							"<C-Space>" = "cmp.mapping.complete()";
-							"<C-e>" = "cmp.mapping.close()";
-							"<Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
-							"<S-Tab>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
-							"<CR>" = "cmp.mapping.confirm({ select = true })";
-						};
-
-						sources = [
-						{name = "path";}
-						{name = "nvim_lsp";}
-						{name = "cmp_tabby";}
-						{name = "luasnip";}
-						{
-							# Words from other open buffers can also be suggested.
-							name = "buffer";
-							option.get_bufnrs.__raw = "vim.api.nvim_list_bufs";
-						}
-						{name = "neorg";}
-						];
+					menu = {
+						nvim_lsp = "[LSP]";
+						nvim_lua = "[api]";
+						path = "[path]";
+						luasnip = "[snip]";
+						buffer = "[buffer]";
+						neorg = "[neorg]";
+						cmp_tabby = "[Tabby]";
 					};
 				};
+			};
 
-				cmp-nvim-lsp.enable = true;
-				cmp_luasnip.enable = true;
+			cmp = {
+				enable = true;
 
-				luasnip.enable = true;
+				settings = {
+					snippet.expand = "function(args) require('luasnip').lsp_expand(args.body) end";
+					mapping = {
+						"<C-d>" = "cmp.mapping.scroll_docs(-4)";
+						"<C-f>" = "cmp.mapping.scroll_docs(4)";
+						"<C-Space>" = "cmp.mapping.complete()";
+						"<C-e>" = "cmp.mapping.close()";
+						"<Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
+						"<S-Tab>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
+						"<CR>" = "cmp.mapping.confirm({ select = true })";
+					};
+
+					sources = [
+					{name = "path";}
+					{name = "nvim_lsp";}
+					{name = "cmp_tabby";}
+					{name = "luasnip";}
+					{
+						# Words from other open buffers can also be suggested.
+						name = "buffer";
+						option.get_bufnrs.__raw = "vim.api.nvim_list_bufs";
+					}
+					{name = "neorg";}
+					];
+				};
+			};
+
+			cmp-nvim-lsp.enable = true;
+			cmp_luasnip.enable = true;
+
+			luasnip.enable = true;
+
+			obsidian = {
+				enable = true;
+				settings = {
+					completion = {
+						nvim_cmp = true;
+					};
+
+					workspaces = [
+					{
+						name = "personal";
+						path = "~/Documents/obsidian/personal";
+					}
+					{
+						name = "work";
+						path = "~/Documents/obsidian/work";
+					}
+					];
+
+					daily_notes = {
+						folder = "0 - Journal/Daily";
+					};
+				};
+			};
 		};
 
 		keymaps = [
