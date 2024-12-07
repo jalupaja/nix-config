@@ -77,7 +77,6 @@ programs.nixvim = {
 
 			# don't fold when I open a new file. maybe it's nvim-ufo but this takes ages
 			foldlevelstart = 99;
-			foldmethod = "manual";
     };
 
 		plugins = {
