@@ -74,6 +74,10 @@ programs.nixvim = {
       title = true;
       signcolumn = "no";
       ignorecase = true;
+
+			# don't fold when I open a new file. maybe it's nvim-ufo but this takes ages
+			foldlevelstart = 99;
+			foldmethod = "manual";
     };
 
     plugins = {
@@ -94,7 +98,7 @@ programs.nixvim = {
         # fold
         # TODO
         nvim-ufo = {
-          enable = false;
+          enable = true;
         };
 
 				nvim-tree = {
@@ -473,6 +477,13 @@ programs.nixvim = {
 			mode = "n";
 			key = "<leader>bd";
 			action = "<cmd>bd<CR>";
+		}
+
+		## folding
+		{
+			mode = "n";
+			key = "<Tab>";
+			action = ''za'';
 		}
 
 		## access global clipboard
