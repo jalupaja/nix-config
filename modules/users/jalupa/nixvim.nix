@@ -368,6 +368,18 @@ programs.nixvim = {
 			key = "<leader>t";
 			action = "<cmd>Lspsaga term_toggle<CR>";
 		}
+		{
+			# better indent in visual mode
+			mode = "v";
+			key = ">";
+			action = ">gv";
+		}
+		{
+			# better unindent in visual mode
+			mode = "v";
+			key = "<";
+			action = "<gv";
+		}
 
 		# Lsp keybindings
 		{
