@@ -133,6 +133,7 @@ programs.nixvim = {
 								installRustc = true;
 								installCargo = true;
 							};
+						quick_lint_js.enable = true;
 
 						# script languages
 						# TODO
