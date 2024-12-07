@@ -124,7 +124,9 @@ programs.nixvim = {
 					servers = {
 						# Programming languages
 						clangd.enable = true; # C/C++
-							pyright.enable = true; # python
+							ruff.enable = false; # python
+							pylsp.enable = true; # python
+							pyright.enable = false; # python
 							java_language_server.enable = false; # java
 							rust_analyzer = { # rust
 								enable = true;
