@@ -114,6 +114,8 @@
 		inkscape
 
 		# TMP
+		proxmark3
+
 		ffmpeg
 		python312Packages.pytaglib
 		python312Packages.pybluez
