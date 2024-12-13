@@ -74,6 +74,7 @@ programs.nixvim = {
       title = true;
       signcolumn = "no";
       ignorecase = true;
+			formatprg = "conform";
 
 			# don't fold when I open a new file. maybe it's nvim-ufo but this takes ages
 			foldlevelstart = 99;
@@ -179,10 +180,25 @@ programs.nixvim = {
 					quit = "q";
 				};
 			};
+
+			# Formatting
 			lsp-format = {
 				enable = true;
 				lspServersToEnable = "all";
 			};
+
+			# Formatting
+			conform-nvim = {
+				enable = true;
+				settings = {
+					default_format_opts.lsp_format = "fallback";
+					format_after_save.lsp_format = "fallback";
+					format_on_save.lsp_format = "fallback";
+				};
+			};
+
+			typescript-tools.enable = true;
+
 			#lsp-lines.enable = true;
 			# java lsp
 			nvim-jdtls = {
