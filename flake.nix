@@ -68,25 +68,25 @@
     pkgs = import nixpkgs {
       system = "x86_64-linux";
       overlays = [
-        nur.overlay
+        nur.overlays.default
       ];
     };
   in
-  {
-    extraSpecialArgs = { inherit inputs; };
-    nixosConfigurations."debian" = nixpkgs.lib.nixosSystem {
-      modules = [
-        home-manager.nixosModules.home-manager ( import ./modules/home-manager.nix )
-        ./modules/all
-        ./hardware/touch-notebook.nix
-        nur.nixosModules.nur
-        lemurs.nixosModules.default
-      ];
-      specialArgs = {
-        nur = pkgs.nur;
-        inherit inputs;
-      };
-    };
+	{
+		extraSpecialArgs = { inherit inputs; };
+		nixosConfigurations."debian" = nixpkgs.lib.nixosSystem {
+			modules = [
+				home-manager.nixosModules.home-manager ( import ./modules/home-manager.nix )
+					./modules/all
+					./hardware/touch-notebook.nix
+					nur.modules.nixos.default
+					lemurs.nixosModules.default
+			];
+			specialArgs = {
+				nur = pkgs.nur;
+				inherit inputs;
+			};
+		};
 
     packages.x86_64-linux.hello = nixpkgs.legacyPackages.x86_64-linux.hello;
 
