@@ -10,6 +10,7 @@
     #./rust.nix
     ./python.nix
 		./java.nix
+		./web.nix
 		# TODO test
 		#./pytest.nix
   ];

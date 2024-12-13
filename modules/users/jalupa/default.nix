@@ -130,7 +130,6 @@
 		figma-linux
 		eclipses.eclipse-sdk
 		spring-boot-cli
-		nodejs
 
 		btlejack
   ];
