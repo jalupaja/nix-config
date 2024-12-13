@@ -20,6 +20,9 @@ if [ ! -z "$@" ]; then
     "firefox github")
         app='${pkgs.firefox}/bin/firefox -p github'
         ;;
+    "discord")
+        app='${pkgs.firefox}/bin/firefox -p discord'
+        ;;
     "wallpaper")
         app='${scripts.wallpaper}'
         ;;
@@ -107,6 +110,7 @@ firefox research
 firefox uni
 firefox shopping
 firefox github
+discord
 wallpaper
 wifi
 wifi gui

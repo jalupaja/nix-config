@@ -151,30 +151,30 @@ search = {
 };
 
 FFsettings = {
-# These settings are an alternation from arkenfox
-# https://github.com/arkenfox/user.js/blob/master/user.js
+	# These settings are an alternation from arkenfox
+	# https://github.com/arkenfox/user.js/blob/master/user.js
 
-# startup page
+	# startup page
 	"browser.startup.page" = 0;
 	"browser.startup.homepage" = "about:blank";
 
-# remove sponsored content
+	# remove sponsored content
 	"browser.newtabpage.activity-stream.showSponsored" = false;
 	"browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
 	"browser.newtabpage.activity-stream.default.sites" = "";
 
-# Geo location
+	# Geo location
 	"geo.provider.network.url" = "https://location.services.mozilla.com/v1/geolocate?key=%MOZILLA_API_KEY%";
 	"geo.provider.use_gpsd" = false;
 	"geo.provider.use_geoclue" = false;
 
-# Quieter Fox
+	# Quieter Fox
 	"extensions.getAddons.showPane" = false;
 	"extensions.htmlaboutaddons.recommendations.enabled" = false;
 	"browser.discovery.enabled" = false;
 	"browser.shopping.experience2023.enabled" = false;
 
-# Telemetry
+	# Telemetry
 	"datareporting.policy.dataSubmissionEnabled" = false;
 	"datareporting.healthreport.uploadEnabled" = false;
 	"toolkit.telemetry.unified" = false;
@@ -193,25 +193,25 @@ FFsettings = {
 	"browser.newtabpage.activity-stream.feeds.telemetry" = false;
 	"browser.newtabpage.activity-stream.telemetry" = false;
 
-# Studies
+	# Studies
 	"app.shield.optoutstudies.enabled" = false;
 	"app.normandy.enabled" = false;
 	"app.normandy.api_url" = "";
 
-# Crash reports
+	# Crash reports
 	"breakpad.reportURL" = "";
 	"browser.tabs.crashReporting.sendReport" = false;
 	"browser.crashReports.unsubmittedCheck.autoSubmit2" = false;
 
-# Other
+	# Other
 	"captivedetect.canonicalURL" = "";
 	"network.captive-portal-service.enabled" = false;
 	"network.connectivity-service.enabled" = false;
 
-# Safe Browsing
+	# Safe Browsing
 	"browser.safebrowsing.downloads.remote.enabled" = false;
 
-# Block implicit outbound
+	# Block implicit outbound
 	"network.prefetch-next" = false;
 	"network.dns.disablePrefetch" = true;
 	"network.predictor.enabled" = false;
@@ -219,12 +219,12 @@ FFsettings = {
 	"network.http.speculative-parallel-limit" = 0;
 	"browser.places.speculativeConnect.enabled" = false;
 
-# DNS / DoH / PROXY / SOCKS
+	# DNS / DoH / PROXY / SOCKS
 	"network.proxy.socks_remote_dns" = true;
 	"network.file.disable_unc_paths" = true;
 	"network.gio.supported-protocols" = "";
 
-# LOCATION BAR / SEARCH BAR / SUGGESTIONS / HISTORY / FORMS
+	# LOCATION BAR / SEARCH BAR / SUGGESTIONS / HISTORY / FORMS
 	"browser.urlbar.speculativeConnect.enabled" = false;
 	"browser.urlbar.suggest.quicksuggest.nonsponsored" = false;
 	"browser.urlbar.suggest.quicksuggest.sponsored" = false;
@@ -239,12 +239,12 @@ FFsettings = {
 	"browser.search.separatePrivateDefault" = false; # CHANGED
 		"browser.search.separatePrivateDefault.ui.enabled" = true;
 
-# Passwords
+	# Passwords
 	"signon.autofillForms" = false;
 	"signon.formlessCapture.enabled" = false;
 	"network.auth.subresource-http-auth-allow" = 1;
 
-# Disk Avoidance
+	# Disk Avoidance
 	"browser.cache.disk.enable" = false;
 	"browser.privatebrowsing.forceMediaMemoryCache" = true;
 	"media.memory_cache_max_size" = 65536;
@@ -252,7 +252,7 @@ FFsettings = {
 	"toolkit.winRegisterApplicationRestart" = false;
 	"browser.shell.shortcutFavicons" = false;
 
-# HTTPS
+	# HTTPS
 	"security.ssl.require_safe_negotiation" = true;
 	"security.tls.enable_0rtt_data" = true;
 	"security.OCSP.enabled" = 1;
@@ -261,27 +261,27 @@ FFsettings = {
 	"security.remote_settings.crlite_filters.enabled" = true;
 	"security.pki.crlite_mode" = 2;
 
-# Mixed Content
+	# Mixed Content
 	"dom.security.https_only_mode" = true;
 	"dom.security.https_only_mode_send_http_background_request" = false;
 	"security.ssl.treat_unsafe_negotiation_as_broken" = true;
 	"browser.xul.error_pages.expert_bad_cert" = true;
 
-# Referers
+	# Referers
 	"network.http.referer.XOriginTrimmingPolicy" = 2;
 
-# Containers
+	# Containers
 	"privacy.userContext.enabled" = true;
 	"privacy.userContext.ui.enabled" = true;
 
-# Plugins / Media / WebRTC
+	# Plugins / Media / WebRTC
 	"media.peerconnection.ice.proxy_only_if_behind_proxy" = true;
 	"media.peerconnection.ice.default_address_only" = true;
 
-# DOM
+	# DOM
 	"dom.disable_window_move_resize" = true;
 
-# Misc
+	# Misc
 	"browser.download.start_downloads_in_tmp_dir" = true;
 	"browser.helperApps.deleteTempFileOnExit" = true;
 	"browser.uitour.enabled" = true;
@@ -293,20 +293,20 @@ FFsettings = {
 	"pdfjs.enableScripting" = false;
 	"browser.tabs.searchclipboardfor.middleclick" = false;
 
-# Downloads
+	# Downloads
 	"browser.download.useDownloadDir" = false;
 	"browser.download.alwaysOpenPanel" = false;
 	"browser.download.manager.addToRecentDocs" = false;
 	"browser.download.always_ask_before_handling_new_types" = true;
 
-# Extensions
+	# Extensions
 	"extensions.enabledScopes" = 5;
 	"extensions.postDownloadThirdPartyPrompt" = false;
 
-# Enhanced Tracking Protection
+	# Enhanced Tracking Protection
 	"browser.contentblocking.category" = "strict";
 
-# Sanitize on Shutdown
+	# Sanitize on Shutdown
 	"privacy.clearOnShutdown.cache" = true;
 	"privacy.clearOnShutdown.downloads" = true;
 	"privacy.clearOnShutdown.formdata" = true;
@@ -315,7 +315,7 @@ FFsettings = {
 	"privacy.clearOnShutdown.cookies" = true;
 	"privacy.clearOnShutdown.offlineApps" = true;
 
-# Ignore "ALLOW" site exception
+	# Ignore "ALLOW" site exception
 	"privacy.cpd.cache" = false; # CHANGED
 		"privacy.cpd.formdata" = true;
 	"privacy.cpd.history" = true;
@@ -324,10 +324,10 @@ FFsettings = {
 		"privacy.cpd.cookiesApps" = false; # CHANGED
 		"privacy.sanitize.timeSpan" = 0;
 
-# FPP
+	# FPP
 	"privacy.resistFingerprinting" = true;
-#"privacy.window.maxInnerWidth" = 1600; # CHANGED
-#"privacy.window.maxInnerHeight" = 900; # CHANGED
+	#"privacy.window.maxInnerWidth" = 1600; # CHANGED
+	#"privacy.window.maxInnerHeight" = 900; # CHANGED
 	"privacy.resistFingerprinting.block_mozAddonManager" = true;
 	"privacy.resistFingerprinting.letterboxing" = true;
 	"browser.display.use_system_colors" = false;
@@ -336,7 +336,7 @@ FFsettings = {
 	"browser.link.open_newwindow.restriction" = 0;
 	"webgl.disabled" = true; # false if Netflix/Streaming is needed
 
-# Don't touch
+	# Don't touch
 		"extensions.blocklist.enabled" = true;
 	"network.http.referer.spoofSource" = false;
 	"security.dialog_enable_delay" = 1000;
@@ -346,7 +346,7 @@ FFsettings = {
 	"extensions.webcompat-reporter.enabled" = false;
 	"extensions.quarantinedDomains.enabled" = true;
 
-# non-project related
+	# non-project related
 	"browser.startup.homepage_override.mstone" = "ignore";
 	"browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons" = false;
 	"browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features" = false;
