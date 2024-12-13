@@ -75,6 +75,7 @@ programs.nixvim = {
       signcolumn = "no";
       ignorecase = true;
 			formatprg = "conform";
+			conceallevel = 1; # conceal text if replace character is available
 
 			# don't fold when I open a new file. maybe it's nvim-ufo but this takes ages
 			foldlevelstart = 99;
@@ -329,6 +330,9 @@ programs.nixvim = {
 			obsidian = {
 				enable = true;
 				settings = {
+
+				disable_frontmatter = true;
+
 					completion = {
 						nvim_cmp = true;
 					};
