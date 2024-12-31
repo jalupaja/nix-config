@@ -271,7 +271,7 @@ programs.nixvim = {
 			};
 
 			# might only work with a colortheme?
-			nvim-colorizer = {
+			colorizer = {
 				enable = true;
 			};
 
