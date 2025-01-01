@@ -58,6 +58,10 @@
       gita = "git add";
       gits = "git status";
       gitc = "git commit -m";
+      gitd = "git diff --ignore-all-space";
+      gitds = "git diff --staged --ignore-all-space";
+      gitdw = "git diff";
+      gitdsw = "git diff --staged";
     };
 
 #		envExtra = ''
