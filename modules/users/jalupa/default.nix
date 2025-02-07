@@ -64,7 +64,6 @@
     libnotify
     pavucontrol
     sshfs # TODO replace by home manager
-    xdg-desktop-portal-hyprland # maybe replace with home manager (not hyprland)
     wl-clipboard
     ripgrep
     fd
