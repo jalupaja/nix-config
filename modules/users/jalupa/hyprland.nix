@@ -102,16 +102,18 @@ with inputs;
         preserve_split = true;
       };
 
-       gestures = {
-         workspace_swipe = true;
-         workspace_swipe_forever = true;
-         #workspace_swipe_numbered = true;
-         workspace_swipe_cancel_ratio = 0.15;
-       };
-
-      misc = {
-        force_default_wallpaper = -1; # 0 or 1 to disable anime mascot wallpapers
+      gestures = {
+        workspace_swipe = true;
+        workspace_swipe_forever = true;
+        #workspace_swipe_numbered = true;
+        workspace_swipe_cancel_ratio = 0.15;
       };
+
+      cursor = {
+        enable_hyprcursor = true;
+      };
+
+      ecosystem.no_update_news = true;
 
       "$mod" = "SUPER";
 
