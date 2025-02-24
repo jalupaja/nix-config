@@ -101,6 +101,7 @@
     tutanota-desktop # tuta email client
     keepassxc # password manager
     bitwarden # password manager
+    mullvad-vpn # vpn client
     onlyoffice-bin # office
     xournalpp # pdf viewer/annotator with pen drawing capabilities
     krita # painting program
