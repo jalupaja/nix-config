@@ -105,6 +105,7 @@
     onlyoffice-bin # office
     xournalpp # pdf viewer/annotator with pen drawing capabilities
     krita # painting program
+    gimp # image editor
     prusa-slicer # 3D printing slicer
 		freecad # 3D CAD Design
 		kicad # PCB Design
@@ -112,6 +113,7 @@
 		docker # container runner
 		nmap # network mapping tool
 		inkscape
+    arduino-ide
 
 		# TMP
 		proxmark3
