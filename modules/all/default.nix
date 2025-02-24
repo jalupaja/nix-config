@@ -111,7 +111,7 @@ services.pipewire = {
 users.users.jalupa = {
   isNormalUser = true;
   description = "jalupa";
-  extraGroups = [ "jalupa" "networkmanager" "wheel" "video" "dialout" ];
+  extraGroups = [ "jalupa" "networkmanager" "wheel" "video" "dialout" "adbusers" ];
 };
 
 services.udev.extraRules = ''
@@ -120,6 +120,7 @@ services.udev.extraRules = ''
 
 # TODO move into home-manager (didn't work for me)
 programs.hyprland.enable = true;
+# programs.adb.enable = true;
 
 # Allow unfree packages
 nixpkgs.config.allowUnfree = true;
