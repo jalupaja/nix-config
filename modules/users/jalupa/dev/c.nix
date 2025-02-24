@@ -3,7 +3,7 @@
   home.packages = with pkgs; [
     libgcc
     gdb
-		gcc
+		# gcc
     cmake
     gnumake
 

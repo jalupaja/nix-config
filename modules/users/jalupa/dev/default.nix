@@ -2,7 +2,7 @@
 {
   home.packages = with pkgs; [
     # overall dev utils
-    # clang
+    clang
   ];
 
   imports = [
