@@ -374,7 +374,7 @@ in
 				isDefault = true;
 				id = 0;
 				name = "research";
-				extensions = with addons; [ vim-vixen ublock-origin darkreader ];
+				extensions.packages = with addons; [ vim-vixen ublock-origin darkreader ];
 				search = {
 					force = true;
 					default = "bravesearch";
@@ -400,7 +400,7 @@ in
 			shopping = {
 				id = 1;
 				name = "shopping";
-				extensions = with addons; [ vim-vixen ublock-origin darkreader bitwarden multi-account-containers ];
+				extensions.packages = with addons; [ vim-vixen ublock-origin darkreader bitwarden multi-account-containers ];
 				search = {
 					force = true;
 					default = "ddg";
@@ -429,7 +429,7 @@ in
 			uni = {
 				id = 2;
 				name = "uni";
-				extensions = with addons; [ vim-vixen ublock-origin bitwarden darkreader ];
+				extensions.packages = with addons; [ vim-vixen ublock-origin bitwarden darkreader ];
 				search = {
 					force = true;
 					default = "ddg";
@@ -492,7 +492,7 @@ in
 			github = {
 				id = 3;
 				name = "github";
-				extensions = with addons; [ vim-vixen ublock-origin darkreader ];
+				extensions.packages = with addons; [ vim-vixen ublock-origin darkreader ];
 				search = {
 					force = true;
 					default = "bravesearch";
@@ -507,7 +507,7 @@ in
 			discord = {
 				id = 4;
 				name = "discord";
-				extensions = with addons; [ ublock-origin darkreader ];
+				extensions.packages = with addons; [ ublock-origin darkreader ];
 				search = {
 					force = true;
 					default = "bravesearch";
