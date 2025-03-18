@@ -127,13 +127,7 @@
 
 		# Uni (DEL later)
 		openfortivpn
-		flex
-		bison
-		figma-linux
-		eclipses.eclipse-sdk
-		spring-boot-cli
-
-		btlejack
+    dbeaver
   ];
 
   # TODO fix
