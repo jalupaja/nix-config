@@ -28,7 +28,7 @@
       # ll stuff
       ll = "ls -lh";
       la = "ls -lah";
-      lg = "ls -lah | grep ";
+      lg = "rg --files | rg -i";
 
       # cd stuff
       cdd = "cd ~/Documents";
