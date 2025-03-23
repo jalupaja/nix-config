@@ -10,6 +10,7 @@
 			# include default packages
 			./pkgs.nix
 			./nix-ld.nix
+      ./nginx.nix
 		];
 
   nix = {
