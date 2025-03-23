@@ -48,7 +48,6 @@
       g="grep";
       mpvs="mpv --shuffle";
       mpvv="mpv --player-operation-mode=pseudo-gui";
-      simple_crypt="~/repos/own/simple_crypt/start.sh";
       drag="${pkgs.ripdrag}/bin/ripdrag -b -n";
       term="${globals.term} &";
 			nix-shell="${pkgs.nix-output-monitor}/bin/nom-shell";
@@ -77,6 +76,12 @@ bindkey '^H' backward-kill-word
 calc()
 {
     echo "$1" | bc -l
+}
+
+simple_crypt()
+{
+  cd ~/repos/simple_crypt
+  nix-shell --run "python simple_crypt.sh $@"
 }
 
 printf '\e]4;1;rgb:${theme.color_second}\e\\\e[31m'
