@@ -14,7 +14,7 @@ search = {
 			{ name = "query"; value = "{searchTerms}"; }
 			];
 		}];
-		iconUpdateURL = favicon("search.nixos.org");
+		icon = favicon("search.nixos.org");
 		inherit updateInterval;
 		definedAliases = [ "<np" ];
 	};
@@ -27,7 +27,7 @@ search = {
 			{ name = "query"; value = "{searchTerms}"; }
 			];
 		}];
-		iconUpdateURL = favicon("search.nixos.org");
+		icon = favicon("search.nixos.org");
 		inherit updateInterval;
 		definedAliases = [ "<no" ];
 	};
@@ -39,7 +39,7 @@ search = {
 			{ name = "term"; value = "{searchTerms}"; }
 			];
 		}];
-		iconUpdateURL = favicon("noogle.dev");
+		icon = favicon("noogle.dev");
 		inherit updateInterval;
 		definedAliases = [ "<nop" ];
 	};
@@ -51,41 +51,41 @@ search = {
 			{ name = "q"; value = "{searchTerms}"; }
 			];
 		}];
-		iconUpdateURL = favicon("search.nix.gsc.io");
+		icon = favicon("search.nix.gsc.io");
 		inherit updateInterval;
 		definedAliases = [ "<nh" ];
 	};
 	"NixOS Wiki" = {
 		urls = [{ template = "https://nixos.wiki/index.php?search={searchTerms}"; }];
-		iconUpdateURL = favicon("nixos.wiki");
+		icon = favicon("nixos.wiki");
 		inherit updateInterval;
 		definedAliases = [ "<nw" ];
 	};
 
 	"Home Manager Option Search" = {
 		urls = [{ template = "https://home-manager-options.extranix.com/?query={searchTerms}&release=master"; }];
-		iconUpdateURL = favicon("nixos.wiki");
+		icon = favicon("nixos.wiki");
 		inherit updateInterval;
 		definedAliases = [ "<ho" ];
 	};
 
 	"Rust Std" = {
 		urls = [{ template = "https://doc.rust-lang.org/std/?search={searchTerms}"; }];
-		iconUpdateURL = favicon("rust-lang.org");
+		icon = favicon("rust-lang.org");
 		inherit updateInterval;
 		definedAliases = [ "<rsd" ];
 	};
 
 	"Crates.io" = {
 		urls = [{ template = "https://crates.io/search?q={searchTerms}"; }];
-		iconUpdateURL = favicon("crates.io");
+		icon = favicon("crates.io");
 		inherit updateInterval;
 		definedAliases = [ "<cr" ];
 	};
 
 	"Pip / PyPi" = {
 		urls = [{ template = "https://pypi.org/search/?q={searchTerms}"; }];
-		iconUpdateURL = favicon("python.org");
+		icon = favicon("python.org");
 		inherit updateInterval;
 		definedAliases = [ "<pip" "<py" ];
 	};
@@ -94,7 +94,7 @@ search = {
 		urls = [{
 			template = "https://de.wikipedia.org/wiki/{searchTerms}";
 		}];
-		iconUpdateURL = favicon("wikipedia.org");
+		icon = favicon("wikipedia.org");
 		inherit updateInterval;
 		definedAliases = [ "<wd" ];
 	};
@@ -103,7 +103,7 @@ search = {
 		urls = [{
 			template = "https://en.wikipedia.org/wiki/{searchTerms}";
 		}];
-		iconUpdateURL = favicon("wikipedia.org");
+		icon = favicon("wikipedia.org");
 		inherit updateInterval;
 		definedAliases = [ "<we" ];
 	};
@@ -117,34 +117,34 @@ search = {
 			];
 		}];
 		definedAliases = [ "<sp" ];
-		iconUpdateURL = favicon("startpage.com");
+		icon = favicon("startpage.com");
 		inherit updateInterval;
 	};
 
 	"alternativeto.net" = {
 		urls = [{template = "https://alternativeto.net/browse/search/?q={searchTerms}";}];
-		iconUpdateURL = favicon("alternativeto.net");
+		icon = favicon("alternativeto.net");
 		inherit updateInterval;
 		definedAliases = [ "<alto" ];
 	};
 
 	"ddg" = {
 		urls = [{template = "https://duckduckgo.com/?t=h_&q={searchTerms}&ia=web";}];
-		iconUpdateURL = favicon("duckduckgo.com");
+		icon = favicon("duckduckgo.com");
 		inherit updateInterval;
 		definedAliases = [ "<ddg" ];
 	};
 
 	"ecosia" = {
 		urls = [{template = "https://www.ecosia.org/search?method=index&q={searchTerms}";}];
-		iconUpdateURL = favicon("ecosia.org");
+		icon = favicon("ecosia.org");
 		inherit updateInterval;
 		definedAliases = [ "<e" ];
 	};
 
 	"brave" = {
 		urls = [{template = "https://search.brave.com/search?q={searchTerms}&source=web";}];
-		iconUpdateURL = favicon("brave.com");
+		icon = favicon("brave.com");
 		inherit updateInterval;
 		definedAliases = [ "<b" ];
 	};
@@ -382,7 +382,7 @@ in
 						"bravesearch" = search.brave;
 						"ddg" = search.ddg;
 						"Startpage" = search.Startpage;
-						"Ecosia" = search.ecosia;
+						"ecosia" = search.ecosia;
 
 						"Wikipedia" = search."wiki EN";
 						"alternativeto" = search."alternativeto.net";
@@ -439,54 +439,57 @@ in
 						"Startpage" = search.Startpage;
 					};
 				};
-				bookmarks = [
-				{
-					name = "OTH";
-					toolbar = false;
-					bookmarks = [
-					{
-						name = "Infoboard";
-						url = "https://elearning.oth-regensburg.de/course/view.php?id=3696";
-					}
-					{
-						name = "Mail";
-						keyword = "mail";
-						url = "https://exchange.hs-regensburg.de";
-					}
-					{
-						name = "Studiuservice, QIS";
-						url = "https://hisinone-studium.oth-regensburg.de";
-					}
-					{
-						name = "Cloud";
-						url = "https://cloud.fsim-ev.de";
-					}
-					{
-						name = "Webuntis";
-						keyword = "unt";
-						url = "https://untis.oth-regensburg.de";
-					}
-					{
-						name = "Prüfungsterminplanung";
-						url = "https://java.oth-regensburg.de/ptp/index.xhtml";
-					}
-					{
-						name = "Elearning";
-						keyword = "ele";
-						url = "https://elearning.hs-regensburg.de";
-					}
-					{
-						name = "Semesterzeiten";
-						url = "https://www.oth-regensburg.de/die-oth/termine-und-oeffnungszeiten";
-					}
-					{
-						name = "LaTeX Detexify";
-						keyword = "det";
-						url = "https://detexify.kirelabs.org/classify.html";
-					}
-					];
-				}
-				];
+				bookmarks = {
+          force = true;
+          settings = [
+          {
+            name = "OTH";
+            toolbar = false;
+            bookmarks = [
+            {
+              name = "Infoboard";
+              url = "https://elearning.oth-regensburg.de/course/view.php?id=3696";
+            }
+            {
+              name = "Mail";
+              keyword = "mail";
+              url = "https://outlook.office.com/mail/";
+            }
+            {
+              name = "Studiuservice, QIS";
+              url = "https://hisinone-studium.oth-regensburg.de";
+            }
+            {
+              name = "Cloud";
+              url = "https://cloud.fsim-ev.de";
+            }
+            {
+              name = "Webuntis";
+              keyword = "unt";
+              url = "https://untis.oth-regensburg.de";
+            }
+            {
+              name = "Prüfungsterminplanung";
+              url = "https://java.oth-regensburg.de/ptp/index.xhtml";
+            }
+            {
+              name = "Elearning";
+              keyword = "ele";
+              url = "https://elearning.oth-regensburg.de";
+            }
+            {
+              name = "Semesterzeiten";
+              url = "https://www.oth-regensburg.de/die-oth/termine-und-oeffnungszeiten";
+            }
+            {
+              name = "LaTeX Detexify";
+              keyword = "det";
+              url = "https://detexify.kirelabs.org/classify.html";
+            }
+            ];
+          }
+          ];
+				};
 				settings = FFsettings;
 			};
 			github = {
