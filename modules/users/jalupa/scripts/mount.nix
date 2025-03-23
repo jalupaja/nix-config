@@ -4,14 +4,56 @@
 
 DMENU="${globals.dmenu}"
 
+get_disks()
+{
+    get_parts | sed -n '/^.*[0-9]. *$/p' | sed -n '/^disk\s*/p' | awk '{print $2 " " $3}' | column -t
+}
+
+get_parts()
+{
+    lsblk -e 7 -o TYPE,NAME,SIZE,MOUNTPOINTS -l | tail -n +2
+}
+
+get_mountable()
+{
+    get_parts | sed -n '/^.*[0-9]. *$/p' | sed -n '/^part\s*/p' | awk '{print $2 " " $4 " " $3}' | column -t
+}
+
+get_unmountable()
+{
+    get_parts | sed '/^.*[0-9]. *$/d' | sed -n '/^part\s*/p' | awk '{print $2 " " $4 " " $3}' | column -t
+}
+
+mnt()
+{
+    udisksctl mount -b /dev/$1
+}
+
+umnt()
+{
+    udisksctl unmount -b /dev/$1
+}
+
+eject()
+{
+    udisksctl power-off -b /dev/$1
+}
+
 getopts "mue" flag
 case "''${flag}" in
     e) # eject
-	to_ejec=$(lsblk -e 7 -o TYPE,NAME,SIZE,MOUNTPOINTS -l | tail -n +2 | sed -n '/^.*[0-9]. *$/p' | sed -n '/^disk\s*/p' | awk '{print $2 " " $3}' | column -t | $DMENU " mount ")
+    to_ejec=$(get_disks | $DMENU " mount " | awk '{print $1}')
 
 	if [ -n "$to_ejec" ];
 	then
-	    udisksctl power-off -b /dev/"$(echo -e $to_ejec | awk '{print $1}')"
+        readarray -t to_umnt < <(get_unmountable | grep "^$to_ejec*" | awk '{print $1}')
+
+        for umnt in "''${to_umnt[@]}"
+        do
+            umnt "$umnt"
+        done
+
+	    eject "$(echo -e $to_ejec | awk '{print $1}')"
 	fi
 	if [ $? -ne 0 ];
 	then
@@ -19,11 +61,11 @@ case "''${flag}" in
 	fi
 	;;
     u) # umount
-	to_umnt=$(lsblk -e 7 -o TYPE,NAME,SIZE,MOUNTPOINTS -l | tail -n +2 | sed '/^.*[0-9]. *$/d' | sed -n '/^part\s*/p' | awk '{print $2 " " $4 " " $3}' | column -t | $DMENU " umount ")
+	to_umnt=$(get_unmountable | $DMENU " umount ")
 
 	if [ -n "$to_umnt" ];
 	then
-	    udisksctl unmount -b /dev/"$(echo -e $to_umnt | awk '{print $1}')"
+        umnt "$(echo -e $to_umnt | awk '{print $1}')"
 	fi
 	if [ $? -ne 0 ];
 	then
@@ -31,11 +73,11 @@ case "''${flag}" in
 	fi
 	;;
     m | *) # default is mount
-	to_mnt=$(lsblk -e 7 -o TYPE,NAME,SIZE,MOUNTPOINTS -l | tail -n +2 | sed -n '/^.*[0-9]. *$/p' | sed -n '/^part\s*/p' | awk '{print $2 " " $3}' | column -t | $DMENU " mount ")
+	to_mnt=$(get_mountable | $DMENU " mount ")
 
 	if [ -n "$to_mnt" ];
 	then
-	    udisksctl mount -b /dev/"$(echo -e $to_mnt | awk '{print $1}')"
+	    mnt "$(echo -e $to_mnt | awk '{print $1}')"
 	fi
 	if [ $? -ne 0 ];
 	then
