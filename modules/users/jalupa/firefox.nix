@@ -520,8 +520,10 @@ in
 						"Startpage" = search.Startpage;
 					};
 				};
-				settings = FFsettings;
-			};
+        settings = FFsettings // {
+          "browser.startup.homepage" = "https://discord.com/app";
+      };
+      };
 		};
 	};
 }
