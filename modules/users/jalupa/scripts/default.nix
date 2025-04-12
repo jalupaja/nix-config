@@ -23,6 +23,7 @@ in
 // importNixScript "kill"
 // importNixScript "killall"
 // importNixScript "lock"
+// importNixScript "disable"
 // importNixScript "shutdown"
 // importNixScript "reboot"
 // importNixScript "toggle_opaque"

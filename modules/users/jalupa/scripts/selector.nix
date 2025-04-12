@@ -41,6 +41,9 @@ if [ ! -z "$@" ]; then
     "remove from clipboard")
         app='${scripts.rem-from-clipboard}'
         ;;
+    "disable")
+        app='${scripts.disable}'
+        ;;
     "clear-clipboard")
         app='${scripts.clear-clipboard}'
         ;;
@@ -117,6 +120,7 @@ wifi gui
 bluetooth
 clipboard
 remove from clipboard
+disable
 clear-clipboard
 screenshot
 brightness
