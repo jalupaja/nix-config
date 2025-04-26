@@ -51,7 +51,7 @@
     # ./mpd.nix
     ./syncthing.nix
     ./btop.nix
-		./nix-alien.nix # TODO currently testing
+		# ./nix-alien.nix # TODO currently testing
   ];
 
   home.username = "jalupa";
