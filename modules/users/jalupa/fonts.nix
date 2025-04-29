@@ -7,5 +7,7 @@
     noto-fonts-cjk-sans
     noto-fonts-emoji
     liberation_ttf
+    ipafont
+    kochi-substitute
   ];
 }
