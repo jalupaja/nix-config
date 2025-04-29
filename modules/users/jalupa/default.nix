@@ -46,6 +46,7 @@
 		./yazi.nix # tui file manager
 		# development extras
     ./dev
+    # ./games.nix
 
     # EXTRA PROGRAMS
     # ./mpd.nix
