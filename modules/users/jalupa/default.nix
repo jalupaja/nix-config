@@ -92,6 +92,7 @@
     # OPTIONAL DEPENDENCIES
     p7zip
     texliveFull
+    exiftool # metadata
     jdk # java
 
     # EXTRA PROGRAMS WITHOUT PROGRAMS MANAGED IN HOME-MANAGER
@@ -103,32 +104,33 @@
     keepassxc # password manager
     bitwarden # password manager
     mullvad-vpn # vpn client
-    onlyoffice-bin # office
+    libreoffice # office
     xournalpp # pdf viewer/annotator with pen drawing capabilities
-    krita # painting program
-    gimp # image editor
     prusa-slicer # 3D printing slicer
 		freecad # 3D CAD Design
-		kicad # PCB Design
 		obsidian # knowledge database
 		docker # container runner
 		nmap # network mapping tool
 		inkscape
-    arduino-ide
+    krita # painting program
+    gimp # image editor
+    # arduino-ide
+		# kicad # PCB Design
+    mmex
 
 		# TMP
 		proxmark3
 
 		ffmpeg
-		python312Packages.pytaglib
-		python312Packages.pybluez
+		# python312Packages.pytaglib # TODO
+		# python312Packages.pybluez
 		# bluez bluez-tools git gcc python312 python312Packages.pip python312Packages.setuptools python312Packages.dbus-python python312Packages.pydbus python312Packages.pybluez
 
 		# tenacity # audacity
 
 		# Uni (DEL later)
 		openfortivpn
-    dbeaver
+    dbeaver-bin
   ];
 
   # TODO fix
