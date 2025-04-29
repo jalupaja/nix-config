@@ -204,17 +204,19 @@ programs.nixvim = {
 
 			#lsp-lines.enable = true;
 			# java lsp
-			nvim-jdtls = {
+			jdtls = {
 				enable = true;
-				cmd = [
-					# Eclipse language server
-					"${pkgs.jdt-language-server}/bin/jdtls"
-						"-noverify"
-						"-Xms1G"
-						"-jar"
-						"-data" ".cache/jdtls/workspace"
-						"-configuration" ".cache/jdtls/config"
-				];
+          settings = {
+          cmd = [
+            # Eclipse language server
+            "${pkgs.jdt-language-server}/bin/jdtls"
+              "-noverify"
+              "-Xms1G"
+              "-jar"
+              "-data" ".cache/jdtls/workspace"
+              "-configuration" ".cache/jdtls/config"
+          ];
+          };
 			};
 
 			# more LaTex features
