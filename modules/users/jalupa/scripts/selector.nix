@@ -5,9 +5,6 @@
 app=' '
 if [ ! -z "$@" ]; then
     case "$@" in
-    "emacs")
-        app='${pkgs.emacs}/bin/emacsclient -c -a emacs'
-        ;;
     "firefox research")
         app='${pkgs.firefox}/bin/firefox -p research'
         ;;
@@ -108,7 +105,6 @@ if [ ! -z "$@" ]; then
 fi
 
 menu="\
-emacs
 firefox research
 firefox uni
 firefox shopping
