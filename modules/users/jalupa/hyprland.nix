@@ -142,7 +142,6 @@ with inputs;
         "$mod, J, movefocus, d"
 
         # workspaces
-	# TODO fix split workspaces
        "$mod, 1, split:workspace, 1"
        "$mod, 2, split:workspace, 2"
        "$mod, 3, split:workspace, 3"
@@ -178,10 +177,10 @@ with inputs;
        "$mod SHIFT, 9, split:movetoworkspacesilent, 9"
        "$mod SHIFT, space, split:movetoworkspacesilent, special:scratch"
 			 # TODO fix (doesn't exist in hyprsplit?!?)
-       # "$mod SHIFT, period, split:changemonitorsilent, next"
-       # "$mod SHIFT, comma, split:changemonitorsilent, prev"
+       "$mod SHIFT, period, split:movetoworkspacesilent, r+1"
+       "$mod SHIFT, comma, split:movetoworkspacesilent, r-1"
 
-        # Scroll through exisiting workspaces
+       # Scroll through exisiting workspaces
        "$mod, mouse_down, split:workspace, e+1"
        "$mod, mouse_up, split:workspace, e-1"
 
