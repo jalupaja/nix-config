@@ -38,6 +38,9 @@ if [ ! -z "$@" ]; then
     "remove from clipboard")
         app='${scripts.rem-from-clipboard}'
         ;;
+    "tailscale")
+        app='${scripts.tailscale}'
+        ;;
     "disable")
         app='${scripts.disable}'
         ;;

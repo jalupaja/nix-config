@@ -38,5 +38,6 @@ in
 // importNixScript "clipboard"
 // importNixScript "rem-from-clipboard"
 // importNixScript "clear-clipboard"
+// importNixScript "tailscale"
 // importNixScript "selector"
 // importNixScript "power_warning"

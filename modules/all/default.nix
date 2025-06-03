@@ -11,6 +11,7 @@
 			./pkgs.nix
 			./nix-ld.nix
       ./nginx.nix
+      ./tailscale.nix
 		];
 
   nix = {
