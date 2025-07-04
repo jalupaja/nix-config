@@ -237,11 +237,13 @@ FFsettings = {
 	"browser.urlbar.weather.featureGate" = false;
 	"browser.formfill.enable" = false;
 	"browser.search.separatePrivateDefault" = false; # CHANGED
-		"browser.search.separatePrivateDefault.ui.enabled" = true;
+  "browser.search.separatePrivateDefault.ui.enabled" = true;
+  "places.history.enabled" = false;
 
 	# Passwords
 	"signon.autofillForms" = false;
 	"signon.formlessCapture.enabled" = false;
+  "signon.rememberSignons" = false; # disable password saving
 	"network.auth.subresource-http-auth-allow" = 1;
 
 	# Disk Avoidance
@@ -307,6 +309,7 @@ FFsettings = {
 	"browser.contentblocking.category" = "strict";
 
 	# Sanitize on Shutdown
+  "privacy.sanitize.sanitizeOnShutdown" = true;
 	"privacy.clearOnShutdown.cache" = true;
 	"privacy.clearOnShutdown.downloads" = true;
 	"privacy.clearOnShutdown.formdata" = true;
@@ -314,15 +317,17 @@ FFsettings = {
 	"privacy.clearOnShutdown.sessions" = true;
 	"privacy.clearOnShutdown.cookies" = true;
 	"privacy.clearOnShutdown.offlineApps" = true;
+	"privacy.clearOnShutdown.openWindows" = true;
+	"privacy.clearOnShutdown.siteSettings" = true;
 
 	# Ignore "ALLOW" site exception
 	"privacy.cpd.cache" = false; # CHANGED
-		"privacy.cpd.formdata" = true;
+  "privacy.cpd.formdata" = true;
 	"privacy.cpd.history" = true;
 	"privacy.cpd.sessions" = false; # CHANGED
-		"privacy.cpd.offlineApps" = false; # CHANGED
-		"privacy.cpd.cookiesApps" = false; # CHANGED
-		"privacy.sanitize.timeSpan" = 0;
+  "privacy.cpd.offlineApps" = false; # CHANGED
+  "privacy.cpd.cookiesApps" = false; # CHANGED
+  "privacy.sanitize.timeSpan" = 0;
 
 	# FPP
 	"privacy.resistFingerprinting" = true;
