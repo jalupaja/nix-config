@@ -8,11 +8,8 @@ with inputs;
     xwayland.enable = true;
 
     plugins = [
-			# TODO test
-			#https://github.com/shezdy/hyprsplit
       hyprsplit.packages.${pkgs.system}.hyprsplit
-      #split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces
-      #hyprgrass.packages.${pkgs.system}.default
+      hyprgrass.packages.${pkgs.system}.default
 			hypr-dynamic-cursors.packages.${pkgs.system}.hypr-dynamic-cursors
     ];
 
@@ -34,7 +31,7 @@ with inputs;
 
       input = {
         kb_layout = "eu,de,us";
-        kb_options = "caps:escape_shifted_capslock";
+        kb_options = "caps:escape";
 
         follow_mouse = 2;
         touchpad = {
@@ -48,7 +45,6 @@ with inputs;
         gaps_in = 5;
         gaps_out = 10;
         border_size = 2;
-        # TODO change to orange?
         "col.active_border" = "rgba(${theme.color_first}ee) rgba(${theme.color_second}ee) 45deg";
         "col.inactive_border" = "rgba(${theme.background}aa)";
 
@@ -222,9 +218,6 @@ with inputs;
     extraConfig = "
 
 					plugin {
-						# split-monitor-workspaces {
-							# count = 9
-						# }
 						hyprsplit {
 							num_workspaces = 9
 						}

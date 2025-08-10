@@ -22,18 +22,14 @@
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 
-   #  split-monitor-workspaces = {
-   #    url = "github:Duckonaut/split-monitor-workspaces";
-   #    inputs.hyprland.follows = "hyprland";
-   #  };
     hyprsplit = {
 			url = "github:shezdy/hyprsplit";
 			inputs.hyprland.follows = "hyprland";
     };
-    # hyprgrass = {
-    #   url = "github:horriblename/hyprgrass";
-    #   inputs.hyprland.follows = "hyprland";
-    # };
+    hyprgrass = {
+      url = "github:horriblename/hyprgrass";
+      inputs.hyprland.follows = "hyprland";
+    };
 		hypr-dynamic-cursors = {
 			url = "github:VirtCode/hypr-dynamic-cursors";
 			inputs.hyprland.follows = "hyprland"; # to make sure that the plugin is built for the correct version of hyprland
@@ -55,9 +51,9 @@
       self,
       nixpkgs,
       home-manager,
-      # split-monitor-workspaces,
 			hyprsplit,
-      # hyprgrass,
+      hyprgrass,
+      hypr-dynamic-cursors,
       nur,
       nixvim,
 			nix-alien,
