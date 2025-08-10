@@ -28,7 +28,7 @@
       # ll stuff
       ll = "ls -lh";
       la = "ls -lah";
-      lg = "rg --files | rg -i";
+      lg = "rg --files --hidden | rg -i";
 
       # cd stuff
       cdd = "cd ~/Documents";
@@ -78,10 +78,25 @@ calc()
     echo "$1" | bc -l
 }
 
+alarm()
+{
+  sleep $(echo "$1 * 60" | bc)
+  for i in $(seq 1 10); do
+    notify-send -u 'critical' "NOW " $i
+  done
+}
+
 simple_crypt()
 {
   cd ~/repos/simple_crypt
-  nix-shell --run "python simple_crypt.sh $@"
+  nix-shell --run "python simple_crypt.py -- $@"
+}
+
+cpRAW()
+{
+  # copy raw images, matching current exports from parent folder to current folder
+  jpgFiles=($(\ls -1 *.jpg))
+  cp $(echo "''${jpgFiles[@]}" | sed -e 's/jpg/ARW/g' | sed -e 's/ / ..\//g' | sed -e 's/^/..\//') .
 }
 
 printf '\e]4;1;rgb:${theme.color_second}\e\\\e[31m'
