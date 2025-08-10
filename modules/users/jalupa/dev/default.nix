@@ -7,6 +7,7 @@
 
   imports = [
     ./c.nix
+    ./unity.nix
     #./rust.nix
     ./python.nix
 		./java.nix
