@@ -91,7 +91,8 @@
 
     # OPTIONAL DEPENDENCIES
     p7zip
-    texliveFull
+    texliveFull # LaTeX
+    typst
     exiftool # metadata
     jdk # java
 
@@ -111,12 +112,18 @@
 		obsidian # knowledge database
 		docker # container runner
 		nmap # network mapping tool
-		inkscape
-    krita # painting program
-    gimp # image editor
     # arduino-ide
 		# kicad # PCB Design
     mmex
+
+    # ART
+    gimp # image editor
+    # darktable # edit raw image files
+    rawtherapee # edit raw image files
+		inkscape # svg editor
+    krita # painting program
+    geeqie # image viewer
+    # hugin # stitch panorama photos
 
 		# TMP
 		proxmark3
