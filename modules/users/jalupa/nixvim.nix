@@ -259,19 +259,19 @@ programs.nixvim = {
 
 			# TODO fix: probably by installing plenary ...
 			harpoon = {
-				enable = true;
+				enable = false;
 				enableTelescope = true;
 
-				keymaps = {
-					addFile = "<leader>a>";
-					cmdToggleQuickMenu = "<leader>i";
-					gotoTerminal = {
-						"1" = "<C-1>";
-						"2" = "<C-2>";
-						"3" = "<C-3>";
-						"4" = "<C-4>";
-					};
-				};
+				# keymaps = {
+				# 	addFile = "<leader>a>";
+				# 	cmdToggleQuickMenu = "<leader>i";
+				# 	gotoTerminal = {
+				# 		"1" = "<C-1>";
+				# 		"2" = "<C-2>";
+				# 		"3" = "<C-3>";
+				# 		"4" = "<C-4>";
+				# 	};
+				# };
 			};
 
 			# might only work with a colortheme?
@@ -332,7 +332,7 @@ programs.nixvim = {
 			luasnip.enable = true;
 
 			obsidian = {
-				enable = true;
+				enable = false;
 				settings = {
 
 				disable_frontmatter = true;
