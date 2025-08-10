@@ -23,9 +23,6 @@ if [ ! -z "$@" ]; then
     "wallpaper")
         app='${scripts.wallpaper}'
         ;;
-    "file manager")
-        # TODO
-        ;;
     "wifi")
         app='${scripts.wifi}'
         ;;
@@ -93,9 +90,6 @@ if [ ! -z "$@" ]; then
     "killall")
         app='${scripts.killall}'
         ;;
-    "fix")
-        # TODO script
-        ;;
     "keyboard layout")
         app='${scripts.keyboard_layout}'
         ;;
@@ -119,6 +113,7 @@ wifi gui
 bluetooth
 clipboard
 remove from clipboard
+tailscale
 disable
 clear-clipboard
 screenshot
