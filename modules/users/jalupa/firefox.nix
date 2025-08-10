@@ -405,7 +405,7 @@ in
 			shopping = {
 				id = 1;
 				name = "shopping";
-				extensions.packages = with addons; [ vim-vixen ublock-origin darkreader bitwarden multi-account-containers ];
+				extensions.packages = with addons; [ vim-vixen ublock-origin darkreader bitwarden multi-account-containers cookie-autodelete ];
 				search = {
 					force = true;
 					default = "ddg";
@@ -429,12 +429,14 @@ in
 				# 		icon = "cart";
 				# 	};
 				# };
-				settings = FFsettings;
+        settings = FFsettings // {
+          "privacy.sanitize.sanitizeOnShutdown" = false;
+        };
 			};
 			uni = {
 				id = 2;
 				name = "uni";
-				extensions.packages = with addons; [ vim-vixen ublock-origin bitwarden darkreader ];
+				extensions.packages = with addons; [ vim-vixen ublock-origin bitwarden darkreader cookie-autodelete ];
 				search = {
 					force = true;
 					default = "ddg";
@@ -495,7 +497,9 @@ in
           }
           ];
 				};
-				settings = FFsettings;
+        settings = FFsettings // {
+          "privacy.sanitize.sanitizeOnShutdown" = false;
+        };
 			};
 			github = {
 				id = 3;
