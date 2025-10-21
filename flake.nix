@@ -34,7 +34,10 @@
 			url = "github:VirtCode/hypr-dynamic-cursors";
 			inputs.hyprland.follows = "hyprland"; # to make sure that the plugin is built for the correct version of hyprland
 		};
-
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland";
+    };
     nixvim = {
      url = "github:nix-community/nixvim";
      # inputs.nixpkgs.follows = "nixpkgs";
@@ -53,6 +56,7 @@
       home-manager,
 			hyprsplit,
       hyprgrass,
+      hyprland-plugins,
       hypr-dynamic-cursors,
       nur,
       nixvim,

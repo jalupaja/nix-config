@@ -11,6 +11,7 @@ with inputs;
       hyprsplit.packages.${pkgs.system}.hyprsplit
       hyprgrass.packages.${pkgs.system}.default
 			hypr-dynamic-cursors.packages.${pkgs.system}.hypr-dynamic-cursors
+      hyprland-plugins.packages.${pkgs.system}.hyprscrolling
     ];
 
     settings = {
@@ -48,7 +49,7 @@ with inputs;
         "col.active_border" = "rgba(${theme.color_first}ee) rgba(${theme.color_second}ee) 45deg";
         "col.inactive_border" = "rgba(${theme.background}aa)";
 
-        layout = "dwindle";
+        layout = "scrolling";
 
         allow_tearing = false;
       };
@@ -233,6 +234,10 @@ with inputs;
 								threshold = 5.0
 							}
 						}
+            hyprscrolling {
+              column_width = 0.5
+              fullscreen_on_one_column = true
+            }
 					}
 
 				# window resize
