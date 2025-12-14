@@ -310,7 +310,7 @@ with inputs;
           bind = $mod SHIFT, T, submap, toggle
 
           submap = toggle
-          binde = , O, exec, ${scripts.toggle_opaque}
+          binde = , O, setprop, active opaque toggle
           binde = , O, submap, reset
 
           bind = , escape, submap, reset

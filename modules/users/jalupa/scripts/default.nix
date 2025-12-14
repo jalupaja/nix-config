@@ -26,7 +26,6 @@ in
 // importNixScript "disable"
 // importNixScript "shutdown"
 // importNixScript "reboot"
-// importNixScript "toggle_opaque"
 // importNixScript "file_selector"
 // importNixScript "wallpaper"
 // importNixScript "volume"
