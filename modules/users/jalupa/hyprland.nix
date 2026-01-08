@@ -49,15 +49,11 @@ with inputs;
         "col.active_border" = "rgba(${theme.color_first}ee) rgba(${theme.color_second}ee) 45deg";
         "col.inactive_border" = "rgba(${theme.background}aa)";
 
+        # layout = "dwindle";
         layout = "scrolling";
 
         allow_tearing = false;
       };
-
-      layerrule = [
-        "blur"
-        "ignorezero"
-      ];
 
       decoration = {
         rounding = 10;
@@ -237,6 +233,7 @@ with inputs;
             hyprscrolling {
               column_width = 0.5
               fullscreen_on_one_column = true
+              follow_focus = false
             }
 					}
 
