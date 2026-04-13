@@ -12,6 +12,7 @@
 			./nix-ld.nix
       ./nginx.nix
       ./tailscale.nix
+      ./kvm.nix
 		];
 
   nix = {
@@ -122,7 +123,7 @@ services.pipewire = {
 users.users.jalupa = {
   isNormalUser = true;
   description = "jalupa";
-  extraGroups = [ "jalupa" "networkmanager" "wheel" "video" "dialout" "adbusers" ];
+  extraGroups = [ "jalupa" "networkmanager" "wheel" "video" "dialout" "adbusers" "libvirtd" ];
 };
 
 services.udev.extraRules = ''

@@ -52,6 +52,7 @@
     # ./mpd.nix
     ./syncthing.nix
     ./btop.nix
+    ./kvm.nix
 		# ./nix-alien.nix # TODO currently testing
   ];
 
