@@ -12,6 +12,7 @@
     # DESKTOP ENV PROGRAMS
 		# Desktop environment
     ./hyprland.nix
+    # ./xdg-portal.nix # enable screen share
     ./waybar.nix
 		# clipboard manager
     ./cliphist.nix
@@ -81,7 +82,7 @@
     grim
     grimblast
     slurp
-    swww
+    awww
     wlr-randr
     wdisplays # gui display positioning
     swaylock-effects
@@ -100,11 +101,11 @@
     # EXTRA PROGRAMS WITHOUT PROGRAMS MANAGED IN HOME-MANAGER
     brave # chromium based Browser
 		mullvad-browser # privacy focues, firefox based Browser
-    tor-browser-bundle-bin # Tor Browser
+    tor-browser # Tor Browser
     signal-desktop # signal client
     tutanota-desktop # tuta email client
     keepassxc # password manager
-    bitwarden # password manager
+    bitwarden-desktop # password manager
     mullvad-vpn # vpn client
     libreoffice # office
     xournalpp # pdf viewer/annotator with pen drawing capabilities

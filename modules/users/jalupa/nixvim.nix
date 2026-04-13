@@ -7,7 +7,7 @@ with inputs;
 # TODO resources:
 # https://nix-community.github.io/nixvim
 # https://github.com/GaetanLepage/nix-config/tree/master/home/modules/tui/neovim
-imports = [ nixvim.homeManagerModules.nixvim ];
+imports = [ nixvim.homeModules.nixvim ];
 
 programs.nixvim = {
   enable = true;
@@ -118,7 +118,9 @@ programs.nixvim = {
 
 			diffview = {
 				enable = true;
-				diffBinaries = true;
+        settings = {
+          diff_binaries = true;
+        };
 			};
 
 			lsp = {
@@ -169,19 +171,21 @@ programs.nixvim = {
 			lspsaga = {
 				enable = true;
 
-				beacon.enable = true;
-				implement.enable = false;
-				lightbulb.enable = false;
-				hover.openCmd = "!${globals.browser}";
+        settings = {
+          beacon.enable = true;
+          implement.enable = false;
+          lightbulb.enable = false;
+          hover.openCmd = "!${globals.browser}";
 
-				finder.keys = {
-					split = "s";
-					vsplit = "v";
-				};
-				rename.keys = {
-					exec = "<CR>";
-					quit = "q";
-				};
+          finder.keys = {
+            split = "s";
+            vsplit = "v";
+          };
+          rename.keys = {
+            exec = "<CR>";
+            quit = "q";
+          };
+        };
 			};
 
 			# Formatting
@@ -282,7 +286,7 @@ programs.nixvim = {
 			lspkind = {
 				enable = true;
 
-				cmp = {
+				settings.cmp = {
 					enable = true;
 					menu = {
 						nvim_lsp = "[LSP]";
@@ -290,7 +294,7 @@ programs.nixvim = {
 						path = "[path]";
 						luasnip = "[snip]";
 						buffer = "[buffer]";
-						neorg = "[neorg]";
+						# neorg = "[neorg]";
 						cmp_tabby = "[Tabby]";
 					};
 				};
