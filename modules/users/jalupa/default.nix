@@ -116,6 +116,7 @@
     # arduino-ide
 		# kicad # PCB Design
     mmex
+    openvpn
 
     # ART
     gimp # image editor

@@ -9,25 +9,35 @@
     [
 			# include default packages
 			./pkgs.nix
-			./nix-ld.nix
+			# ./nix-ld.nix
       ./nginx.nix
       ./tailscale.nix
+      ./openvpn.nix
       ./kvm.nix
+			# ./lemurs.nix
+			# ./lemurs2.nix
 		];
 
   nix = {
-      package = pkgs.nixFlakes;
-      settings.experimental-features = [ "nix-command" "flakes" ];
+      # package = pkgs.nixFlakes;
+			# package = nixVersions.stable;
     settings = {
       substituters =
-        [ "https://hyprland.cachix.org" "https://nix-community.cachix.org" ];
+        ["https://cache.nixos.org" "https://nix-community.cachix.org" "https://hyprland.cachix.org" "https://ros.cachix.org"];
       trusted-public-keys = [
+        "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
         "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
-          "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+        "ros.cachix.org-1:dSyZxI8geDCJrwgvCOHDoAfOm5sV1wCPjBkKL+38Rvo="
       ];
       experimental-features = [ "nix-command" "flakes" ];
     };
   };
+
+ # TODO remove
+    nixpkgs.config.permittedInsecurePackages = [
+      "libsoup-2.74.3"
+    ];
 
 	# Kernel
 	boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -96,12 +106,18 @@ services.pulseaudio.enable = false;
 security.rtkit.enable = true;
 # TODO
 security.pam.services.swaylock = {};
-
-services.lemurs = {
-	enable = false;
-	# x11.enable = true;
-	wayland.enable = true;
+security.pam.services.lemurs = {};
+security.pam.services.kwallet = {
+  name = "kwallet";
+  enableKwallet = true;
 };
+
+# dm.lemurs.enable = true;
+# services.lemurs = {
+# 	enable = false;
+# 	# x11.enable = true;
+# 	wayland.enable = true;
+# };
 
 services.pipewire = {
   enable = true;
