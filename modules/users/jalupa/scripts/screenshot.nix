@@ -9,12 +9,15 @@
         date '+%Y%m%d-%H%M%S'
     }
 
-    case "$(echo -e 'Fullscreen\nActive screen\nSelected region' | $DMENU)" in
+    case "$(echo -e 'Fullscreen\nActive screen\nActive window\nSelected region' | $DMENU)" in
         "Fullscreen")
             targetCMD="screen"
             ;;
         "Active screen")
             targetCMD="output"
+            ;;
+        "Active window")
+            targetCMD="active"
             ;;
         "Selected region")
             targetCMD="area"
