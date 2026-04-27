@@ -4,6 +4,7 @@
     # DEFAULT DEPENDENCIES
     ./fonts.nix
     ./zsh.nix
+    ./bash.nix
     #./ssh.nix
     ./udiskie.nix
     ./gtk.nix # (hopefully) just dark mode
