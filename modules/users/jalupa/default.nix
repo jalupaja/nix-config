@@ -48,6 +48,8 @@
 		./yazi.nix # tui file manager
 		# development extras
     ./dev
+    # security/hacking research
+    ./hacking
     # ./games.nix
 
     # EXTRA PROGRAMS
