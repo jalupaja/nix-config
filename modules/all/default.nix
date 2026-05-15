@@ -7,8 +7,10 @@
 {
   imports =
     [
+      # TODO most should probably go to user
 			# include default packages
 			./pkgs.nix
+      ./docker.nix
 			# ./nix-ld.nix
       ./nginx.nix
       ./tailscale.nix
