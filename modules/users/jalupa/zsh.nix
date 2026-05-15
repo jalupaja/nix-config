@@ -34,7 +34,7 @@
       cdd = "cd ~/Documents";
       cdn = "cd ~/.config/nix-config";
       cdnh = "cd ~/.config/nix-config/modules/users/jalupa";
-      cdu = "cd ~/Documents/Uni/7.\\ Semester";
+      cdu = "cd ~/Documents/Uni/3.\\ Master";
       ".." = "cd ..";
       "..." = "cd ../..";
       "...." = "cd ../../..";
@@ -96,7 +96,7 @@ cpRAW()
 {
   # copy raw images, matching current exports from parent folder to current folder
   jpgFiles=($(\ls -1 *.jpg))
-  cp $(echo "''${jpgFiles[@]}" | sed -e 's/jpg/ARW/g' | sed -e 's/ / ..\//g' | sed -e 's/^/..\//') .
+  cp $(echo "''${jpgFiles[@]}" | sed -e 's/jpg/ARW/ig' | sed -e 's/ / ..\//g' | sed -e 's/^/..\//') .
 }
 
 printf '\e]4;1;rgb:${theme.color_second}\e\\\e[31m'
