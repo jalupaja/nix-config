@@ -99,6 +99,16 @@ cpRAW()
   cp $(echo "''${jpgFiles[@]}" | sed -e 's/jpg/ARW/ig' | sed -e 's/ / ..\//g' | sed -e 's/^/..\//') .
 }
 
+mvRAW()
+{
+  # copy raw images, matching current exports from parent folder to current folder
+  jpgFiles=($(\ls -1 *.jpg))
+  mv $(echo "''${jpgFiles[@]}" | sed -e 's/jpg/ARW/ig' | sed -e 's/ / ..\//g' | sed -e 's/^/..\//') .
+}
+
+# penetration testing setup
+wl="$HOME/Documents/CTFs/wordlists"
+
 printf '\e]4;1;rgb:${theme.color_second}\e\\\e[31m'
 date=$(date | awk '{print $4}')
 printf "%*s\n" $(((''${#date}+$COLUMNS)/2)) "$date"
