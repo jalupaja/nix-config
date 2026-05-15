@@ -100,6 +100,8 @@
     typst
     exiftool # metadata
     jdk # java
+    fastfetch
+    yt-dlp
 
     # EXTRA PROGRAMS WITHOUT PROGRAMS MANAGED IN HOME-MANAGER
     brave # chromium based Browser
@@ -113,6 +115,7 @@
     libreoffice # office
     xournalpp # pdf viewer/annotator with pen drawing capabilities
     prusa-slicer # 3D printing slicer
+    element-desktop # matrix client
 		freecad # 3D CAD Design
 		obsidian # knowledge database
 		docker # container runner
@@ -120,6 +123,8 @@
     # arduino-ide
 		# kicad # PCB Design
     mmex
+    thunderbird
+    beeref # image reference viewer
     openvpn
 
     # ART
@@ -143,7 +148,7 @@
 
 		# Uni (DEL later)
 		openfortivpn
-    dbeaver-bin
+    zotero
   ];
 
   # TODO fix
