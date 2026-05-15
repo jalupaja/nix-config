@@ -6,12 +6,12 @@ with inputs;
     package = hyprland.packages.${pkgs.system}.hyprland;
     systemd.enable = true;
     xwayland.enable = true;
+    configType = "hyprlang"; # TODO only for this nixos stateVersion. Also change to lua if possible
 
     plugins = [
       hyprsplit.packages.${pkgs.system}.hyprsplit
       hyprgrass.packages.${pkgs.system}.default
 			hypr-dynamic-cursors.packages.${pkgs.system}.hypr-dynamic-cursors
-      hyprland-plugins.packages.${pkgs.system}.hyprscrolling
     ];
 
     settings = {
@@ -55,6 +55,15 @@ with inputs;
         allow_tearing = false;
       };
 
+      scrolling  = {
+        column_width = 0.5;
+        fullscreen_on_one_column = true;
+        focus_fit_method = 1;
+        wrap_focus = true;
+        wrap_swapcol = true;
+      };
+
+
       decoration = {
         rounding = 10;
 
@@ -91,7 +100,7 @@ with inputs;
       };
 
       dwindle = {
-        pseudotile = true;
+        # pseudotile = true;
         preserve_split = true;
       };
 
@@ -230,11 +239,6 @@ with inputs;
 								threshold = 5.0
 							}
 						}
-            hyprscrolling {
-              column_width = 0.5
-              fullscreen_on_one_column = true
-              follow_focus = false
-            }
 					}
 
 				# window resize

@@ -373,6 +373,7 @@ in
 
 	programs.firefox = {
 		enable = true;
+    configPath = "~/.mozilla/firefox"; # TODO old config path because stateVersion < 26.05
 
 		profiles = {
 			research = {
