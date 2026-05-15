@@ -108,6 +108,10 @@ programs.nixvim = {
 				#disableNetrw = true;
 			};
 
+      rainbow-delimiters = {
+        enable = true;
+      };
+
 			# TODO
 			#clipboard-image.enable = true;
 
