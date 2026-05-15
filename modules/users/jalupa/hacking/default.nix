@@ -4,6 +4,7 @@
   ];
 
   imports = [
+    ./android.nix
     ./hashes.nix
     ./network_enumeration.nix
     ./network_exploitation.nix
