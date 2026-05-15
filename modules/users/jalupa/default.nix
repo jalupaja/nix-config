@@ -62,7 +62,7 @@
 
   home.username = "jalupa";
   home.homeDirectory = "/home/jalupa";
-  home.stateVersion = "23.11";
+  home.stateVersion = "23.11"; # TODO should not be needed but is. is in all/default
 
   home.packages = with pkgs; [
     # DEFAULT DEPENDENCIES
