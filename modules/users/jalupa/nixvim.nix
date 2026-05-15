@@ -117,7 +117,7 @@ programs.nixvim = {
 
 			treesitter = {
 				enable = true;
-				settings.highlight.disable = [ "latex" ];
+				highlight.disable = [ "latex" ];
 			};
 
 			diffview = {
