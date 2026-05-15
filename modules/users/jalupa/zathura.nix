@@ -8,6 +8,8 @@
 			selection-clipboard = "clipboard";
 
 
+      continuous-hist-save = "false";
+
 		# Zathura configuration file
 		# See man `man zathurarc'
 
