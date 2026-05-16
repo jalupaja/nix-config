@@ -1,27 +1,19 @@
 { theme, ... }:
 {
   # https://wezterm.org/copymode.html#key-assignments
-  # TODO default terminal?
   programs.wezterm = {
     enable = true;
-    # TODO font from alacritty
-    # font = {
-    #   normal.family = "${theme.font}";
-    #   size = 12;
-    #
-    #   bold.style = "Bold";
-    #   italic.style = "Italic";
-    #   bold_italic.style = "Bold Italic";
-    # };
-    # font = wezterm.font "Comic Code Ligatures",
+
     extraConfig = ''
       local wezterm = require("wezterm")
       local config = wezterm.config_builder()
       local act = wezterm.action
 
       config = {
-        window_background_opacity = 0.6,
+        window_background_opacity = 1,
         color_scheme = "Tokyo Night Moon",
+
+        font = wezterm.font '${theme.font}',
 
         window_padding = {
           left = 0,
@@ -53,7 +45,7 @@
 
         keys = {
           {
-            key = 'c',
+            key = 't',
             mods = 'LEADER',
             action = act.SpawnTab 'CurrentPaneDomain',
           },
@@ -63,19 +55,14 @@
             action = wezterm.action.CloseCurrentTab { confirm = true },
           },
           {
-            key = "P",
-            mods = "LEADER",
-            action = act.MoveTabRelative(-1),
-          },
-          {
-            key = "N",
-            mods = "LEADER",
-            action = act.MoveTabRelative(1),
-          },
-          {
             key = "p",
             mods = "LEADER",
             action = act.ActivateTabRelative(-1),
+          },
+          {
+            key = "P",
+            mods = "LEADER",
+            action = act.MoveTabRelative(-1),
           },
           {
             key = "n",
@@ -83,14 +70,24 @@
             action = act.ActivateTabRelative(1),
           },
           {
+            key = "N",
+            mods = "LEADER",
+            action = act.MoveTabRelative(1),
+          },
+          {
             key = "v",
             mods = "LEADER",
-            action = act.SplitVertical({domain="CurrentPaneDomain"})
+            action = act.SplitHorizontal({domain="CurrentPaneDomain"})
           },
           {
             key = "s",
             mods = "LEADER",
-            action = act.SplitHorizontal({domain="CurrentPaneDomain"})
+            action = act.SplitVertical({domain="CurrentPaneDomain"})
+          },
+          {
+            key = "w",
+            mods = "LEADER",
+            action = act.ActivatePaneDirection("Next")
           },
           {
             key = "h",
