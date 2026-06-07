@@ -49,7 +49,7 @@
       mpvs="mpv --shuffle";
       mpvv="mpv --player-operation-mode=pseudo-gui";
       drag="${pkgs.ripdrag}/bin/ripdrag -b -n";
-      term="${globals.term} &";
+      term="${globals.term} start --cwd . 2&>/dev/null";
 			nix-shell="${pkgs.nix-output-monitor}/bin/nom-shell";
 			mount_phone="${pkgs.jmtpfs}/bin/jmtpfs";
 
