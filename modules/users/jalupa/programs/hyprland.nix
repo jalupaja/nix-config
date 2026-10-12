@@ -9,8 +9,8 @@ with inputs;
     configType = "hyprlang"; # TODO only for this nixos stateVersion. Also change to lua if possible
 
     plugins = [
-      hyprsplit.packages.${pkgs.system}.hyprsplit
-      hyprgrass.packages.${pkgs.system}.default
+      # hyprsplit.packages.${pkgs.system}.hyprsplit
+      # hyprgrass.packages.${pkgs.system}.default
 			hypr-dynamic-cursors.packages.${pkgs.system}.hypr-dynamic-cursors
     ];
 
@@ -104,13 +104,6 @@ with inputs;
         preserve_split = true;
       };
 
-      gestures = {
-        workspace_swipe = true;
-        workspace_swipe_forever = true;
-        #workspace_swipe_numbered = true;
-        workspace_swipe_cancel_ratio = 0.15;
-      };
-
       cursor = {
         enable_hyprcursor = true;
       };
@@ -144,22 +137,25 @@ with inputs;
         "$mod, J, movefocus, d"
 
         # workspaces
-       "$mod, 1, split:workspace, 1"
-       "$mod, 2, split:workspace, 2"
-       "$mod, 3, split:workspace, 3"
-       "$mod, 4, split:workspace, 4"
-       "$mod, 5, split:workspace, 5"
-       "$mod, 6, split:workspace, 6"
-       "$mod, 7, split:workspace, 7"
-       "$mod, 8, split:workspace, 8"
-       "$mod, 9, split:workspace, 9"
+       # TODO split (but probably just change to lua)
+       "$mod, 1, workspace, 1"
+       "$mod, 2, workspace, 2"
+       "$mod, 3, workspace, 3"
+       "$mod, 4, workspace, 4"
+       "$mod, 5, workspace, 5"
+       "$mod, 6, workspace, 6"
+       "$mod, 7, workspace, 7"
+       "$mod, 8, workspace, 8"
+       "$mod, 9, workspace, 9"
         "$mod, space, togglespecialworkspace, special:scratch"
+        "$mod, n, togglespecialworkspace, special:social"
+        "$mod, b, togglespecialworkspace, special:bitwarden"
         "$mod, period, exec, ${scripts.switchmonitor} -n"
         "$mod, comma, exec, ${scripts.switchmonitor} -p"
 
         # touch workspaces
-       " , edge:l:r, split:workspace, e-1"
-       " , edge:r:l, split:workspace, e+1"
+       " , edge:l:r, workspace, e-1"
+       " , edge:r:l, workspace, e+1"
 
         # window
         "$mod, M, fullscreen, 1"
@@ -168,23 +164,25 @@ with inputs;
         "$mod SHIFT, 0, pin"
 
         # move to workspace
-       "$mod SHIFT, 1, split:movetoworkspacesilent, 1"
-       "$mod SHIFT, 2, split:movetoworkspacesilent, 2"
-       "$mod SHIFT, 3, split:movetoworkspacesilent, 3"
-       "$mod SHIFT, 4, split:movetoworkspacesilent, 4"
-       "$mod SHIFT, 5, split:movetoworkspacesilent, 5"
-       "$mod SHIFT, 6, split:movetoworkspacesilent, 6"
-       "$mod SHIFT, 7, split:movetoworkspacesilent, 7"
-       "$mod SHIFT, 8, split:movetoworkspacesilent, 8"
-       "$mod SHIFT, 9, split:movetoworkspacesilent, 9"
-       "$mod SHIFT, space, split:movetoworkspacesilent, special:scratch"
+       "$mod SHIFT, 1, movetoworkspacesilent, 1"
+       "$mod SHIFT, 2, movetoworkspacesilent, 2"
+       "$mod SHIFT, 3, movetoworkspacesilent, 3"
+       "$mod SHIFT, 4, movetoworkspacesilent, 4"
+       "$mod SHIFT, 5, movetoworkspacesilent, 5"
+       "$mod SHIFT, 6, movetoworkspacesilent, 6"
+       "$mod SHIFT, 7, movetoworkspacesilent, 7"
+       "$mod SHIFT, 8, movetoworkspacesilent, 8"
+       "$mod SHIFT, 9, movetoworkspacesilent, 9"
+       "$mod SHIFT, space, movetoworkspacesilent, special:scratch"
+       "$mod SHIFT, n, movetoworkspacesilent, special:social"
+       "$mod SHIFT, b, movetoworkspacesilent, special:bitwarden"
 			 # TODO fix (doesn't exist in hyprsplit?!?)
-       "$mod SHIFT, period, split:movetoworkspacesilent, r+1"
-       "$mod SHIFT, comma, split:movetoworkspacesilent, r-1"
+       "$mod SHIFT, period, movetoworkspacesilent, r+1"
+       "$mod SHIFT, comma, movetoworkspacesilent, r-1"
 
        # Scroll through exisiting workspaces
-       "$mod, mouse_down, split:workspace, e+1"
-       "$mod, mouse_up, split:workspace, e-1"
+       "$mod, mouse_down, workspace, e+1"
+       "$mod, mouse_up, workspace, e-1"
 
       ];
 
@@ -283,7 +281,7 @@ with inputs;
           submap = swap
 
 					# grap windows in invalid workspaces (can happen when unplugging a monitor)
-          binde = , G, split:grabroguewindows
+          # binde = , G, split:grabroguewindows
           binde = , G,  submap, reset
 
           binde = , left, swapwindow, l

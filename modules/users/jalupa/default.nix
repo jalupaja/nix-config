@@ -1,155 +1,19 @@
 { config, pkgs, inputs, theme, ... }:
 {
   imports = [
-    # DEFAULT DEPENDENCIES
-    ./fonts.nix
-    ./zsh.nix
-    ./bash.nix
-    #./ssh.nix
-    ./udiskie.nix
-    ./gtk.nix # (hopefully) just dark mode
-    ./mime.nix # setup default programs
+    ./programs_default.nix
+    ./programs_desktop.nix
+    ./programs_optional.nix
+    ./programs_extra.nix
+    ./programs_art.nix
+    ./programs_temp.nix
 
-    # DESKTOP ENV PROGRAMS
-		# Desktop environment
-    ./hyprland.nix
-    # ./xdg-portal.nix # enable screen share
-    ./waybar.nix
-		# clipboard manager
-    ./cliphist.nix
-    #./clipman.nix
-		# notification manager
-    ./dunst.nix
-    #./mako.nix
-		# dmenu replacements
-    ./rofi.nix
-    #./fuzzel.nix
-
-    # OPTIONAL DEPENDENCIES
-		# browser
-    ./firefox.nix
-		# terminal emulators
-    ./alacritty.nix
-    #./kitty.nix
-    ./foot.nix # backup terminal
-		# editors
-    ./vim.nix
-    ./nixvim.nix # neovim
-    #./neovim.nix
-    #./emacs.nix
-    #./emacs-overlay.nix
-    #./doom-emacs
-		# media viewers
-    ./mpv.nix # music/video
-    ./pqiv.nix # images
-		./zathura.nix # (pdf) documents
-		# terminal extras
-    ./starship.nix
-		./yazi.nix # tui file manager
-		# development extras
-    ./dev
-    # security/hacking research
-    ./hacking
-    # ./games.nix
-
-    # EXTRA PROGRAMS
-    # ./mpd.nix
-    ./syncthing.nix
-    ./btop.nix
-    ./kvm.nix
-		# ./nix-alien.nix # TODO currently testing
+    # ./programs_stable.nix # TODO
   ];
 
   home.username = "jalupa";
   home.homeDirectory = "/home/jalupa";
-  home.stateVersion = "23.11"; # TODO should not be needed but is. is in all/default
-
-  home.packages = with pkgs; [
-    # DEFAULT DEPENDENCIES
-    playerctl
-    libnotify
-    pavucontrol
-    sshfs # TODO replace by home manager
-    wl-clipboard
-    ripgrep
-    fd
-    bc
-    usbutils
-    tldr
-    ripgrep-all
-		file
-		jmtpfs # mount phone
-    # https://github.com/NixOS/nixpkgs/issues/30506
-
-    # DESKTOP ENV PROGRAMS
-    grim
-    grimblast
-    slurp
-    awww
-    wlr-randr
-    wdisplays # gui display positioning
-    swaylock-effects
-    #swaynotificationcenter
-    # lemurs # TODO fix
-    ripdrag
-		webcamoid # camera
-
-    # OPTIONAL DEPENDENCIES
-    p7zip
-    texliveFull # LaTeX
-    typst
-    exiftool # metadata
-    jdk # java
-    fastfetch
-    yt-dlp
-
-    # EXTRA PROGRAMS WITHOUT PROGRAMS MANAGED IN HOME-MANAGER
-    brave # chromium based Browser
-		mullvad-browser # privacy focues, firefox based Browser
-    tor-browser # Tor Browser
-    signal-desktop # signal client
-    tutanota-desktop # tuta email client
-    keepassxc # password manager
-    bitwarden-desktop # password manager
-    mullvad-vpn # vpn client
-    libreoffice # office
-    xournalpp # pdf viewer/annotator with pen drawing capabilities
-    prusa-slicer # 3D printing slicer
-    element-desktop # matrix client
-		freecad # 3D CAD Design
-		obsidian # knowledge database
-		docker # container runner
-		nmap # network mapping tool
-    # arduino-ide
-		# kicad # PCB Design
-    mmex
-    thunderbird
-    beeref # image reference viewer
-    openvpn
-
-    # ART
-    gimp # image editor
-    # darktable # edit raw image files
-    rawtherapee # edit raw image files
-		inkscape # svg editor
-    krita # painting program
-    geeqie # image viewer
-    # hugin # stitch panorama photos
-
-		# TMP
-		proxmark3
-
-		ffmpeg
-		# python312Packages.pytaglib # TODO
-		# python312Packages.pybluez
-		# bluez bluez-tools git gcc python312 python312Packages.pip python312Packages.setuptools python312Packages.dbus-python python312Packages.pydbus python312Packages.pybluez
-
-		# tenacity # audacity
-
-		# Uni (DEL later)
-		openfortivpn
-    zotero
-  ];
+  home.stateVersion = "26.05"; # TODO should not be needed but is. is in all/default
 
   # TODO fix
 #  systemd.user.services.lemurs = {

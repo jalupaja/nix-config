@@ -3,15 +3,14 @@
   programs.rofi = {
     enable = true;
 
-    cycle = true;
-    location = "top";
-    terminal = "${globals.term}";
-    # this theme is heavenly influenced by dracula: https://github.com/dracula/rofi/blob/main/theme/config1.rasi
-
-    extraConfig = {
+    settings = {
+      cycle = true;
+      location = 2;
+      terminal = "${globals.term}";
       scroll-method = 1;
 			modi = "drun,window,ssh,combi";
     };
+    # this theme is heavenly influenced by dracula: https://github.com/dracula/rofi/blob/main/theme/config1.rasi
 
     theme = let
       inherit (config.lib.formats.rasi) mkLiteral;

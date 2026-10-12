@@ -91,7 +91,7 @@ programs.nixvim = {
 
 			nvim-autopairs.enable = true;
 
-			neogit.enable = true;
+			neogit.enable = false;
 
 			# TODO
 			startify = {
@@ -110,6 +110,7 @@ programs.nixvim = {
 
       rainbow-delimiters = {
         enable = true;
+        autoLoad = true;
       };
 
 			# TODO
@@ -151,7 +152,7 @@ programs.nixvim = {
 
 						#web stuff
 						html.enable = true; # html
-						htmx.enable = true; # htmx
+						htmx.enable = false; # htmx
 						cssls.enable = true; # css
 
 						# markup
@@ -200,7 +201,7 @@ programs.nixvim = {
 
 			# Formatting
 			conform-nvim = {
-				enable = true;
+				enable = false;
 				settings = {
 					default_format_opts.lsp_format = "fallback";
 					format_after_save.lsp_format = "fallback";
@@ -344,10 +345,6 @@ programs.nixvim = {
 				settings = {
 
 				disable_frontmatter = true;
-
-					completion = {
-						nvim_cmp = true;
-					};
 
 					workspaces = [
 					{

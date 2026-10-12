@@ -1,10 +1,16 @@
 { pkgs, theme, globals, ... }:
 {
-  programs.bash = {
+  programs.zsh = {
     enable = true;
-    historyFile = null;
 
-    # TODO use same as zsh, automatically
+    autocd = true;
+    defaultKeymap = "emacs";
+    syntaxHighlighting = {
+      enable = true;
+    };
+
+		history.share = false;
+
     shellAliases = {
       #healthy defaults
       cp = "cp -i";
@@ -28,7 +34,7 @@
       cdd = "cd ~/Documents";
       cdn = "cd ~/.config/nix-config";
       cdnh = "cd ~/.config/nix-config/modules/users/jalupa";
-      cdu = "cd ~/Documents/Uni/3.\\ Master";
+      cdu = "cd ~/Documents/Uni/4.\\ Master";
       ".." = "cd ..";
       "..." = "cd ../..";
       "...." = "cd ../../..";
@@ -45,7 +51,8 @@
       drag="${pkgs.ripdrag}/bin/ripdrag -b -n";
       term="${globals.term} start --cwd . 2&>/dev/null";
 			nix-shell="${pkgs.nix-output-monitor}/bin/nom-shell";
-			mount_phone="${pkgs.jmtpfs}/bin/jmtpfs";
+			# mount_phone="${pkgs.simple-mtpfs}/bin/simple-mtpfs";
+      sshlm="ssh user@192.168.178.149";
 
       # git stuff
       gita = "git add";
@@ -57,8 +64,24 @@
       gitdsw = "git diff --staged";
     };
 
-    bashrcExtra = ''
+#		envExtra = ''
+## Session Variables
+#export LD_LIBRARY_PATH="${pkgs.stdenv.cc.cc.lib}/lib/:/run/opengl-driver/lib/:${pkgs.libGL}/lib/:${pkgs.libxkbcommon}/lib/:${pkgs.fontconfig}/lib/:${pkgs.glibc}/lib";
+#		'';
+
+    initContent = ''
+# bindkeys
+bindkey '^H' backward-kill-word
+
 # Functions
+clip() {
+  if [ -t 0 ]; then
+      cliphist decode $(cliphist list | head -n 1 | awk '{print $1}')
+  else
+      cliphist store
+  fi
+}
+
 calc()
 {
     echo "$1" | bc -l
@@ -95,7 +118,41 @@ mvRAW()
 # penetration testing setup
 wl="$HOME/Documents/CTFs/wordlists"
 
+printf '\e]4;1;rgb:${theme.color_second}\e\\\e[31m'
+date=$(date | awk '{print $4}')
+printf "%*s\n" $(((''${#date}+$COLUMNS)/2)) "$date"
+unset date
+
+printf '\e]4;1;rgb:${theme.color_first}\e\\\e[31m'
+
+echo '
+       ___  ________  ___       ___  ___  ________  ________
+      |\  \|\   __  \|\  \     |\  \|\  \|\   __  \|\   __  \
+      \ \  \ \  \|\  \ \  \    \ \  \\\\\  \ \  \|\  \ \  \|\  \
+    __ \ \  \ \   __  \ \  \    \ \  \\\\\  \ \   ____\ \   __  \
+   |\  \\\_\  \ \  \ \  \ \  \____\ \  \\\\\  \ \  \___|\ \  \ \  \
+   \ \________\ \__\ \__\ \_______\ \_______\ \__\    \ \__\ \__\
+    \|________|\|__|\|__|\|_______|\|_______|\|__|     \|__|\|__|
+
+'
     '';
+
+    prezto = {
+      enable = true;
+
+      color = true;
+      caseSensitive = false;
+      editor = {
+        dotExpansion = true;
+      };
+
+      prompt = {
+        pwdLength = "short";
+      };
+
+      utility = {
+        safeOps = false;
+      };
+    };
   };
 }
-

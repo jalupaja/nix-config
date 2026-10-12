@@ -12,6 +12,7 @@
       config = {
         window_background_opacity = 1,
         color_scheme = "Tokyo Night Moon",
+        hide_tab_bar_if_only_one_tab = true,
 
         font = wezterm.font '${theme.font}',
 

@@ -373,14 +373,14 @@ in
 
 	programs.firefox = {
 		enable = true;
-    configPath = "~/.mozilla/firefox"; # TODO old config path because stateVersion < 26.05
 
 		profiles = {
 			research = {
 				isDefault = true;
 				id = 0;
 				name = "research";
-				# extensions.packages = with addons; [ vim-vixen ublock-origin darkreader ];
+        path = "research";
+				extensions.packages = with addons; [ vim-vixen ublock-origin darkreader ];
 				search = {
 					force = true;
 					default = "bravesearch";
@@ -437,7 +437,7 @@ in
 			uni = {
 				id = 2;
 				name = "uni";
-				# extensions.packages = with addons; [ vim-vixen ublock-origin bitwarden darkreader cookie-autodelete ];
+				extensions.packages = with addons; [ vim-vixen ublock-origin bitwarden darkreader cookie-autodelete ];
 				search = {
 					force = true;
 					default = "ddg";
@@ -505,7 +505,7 @@ in
 			github = {
 				id = 3;
 				name = "github";
-				# extensions.packages = with addons; [ vim-vixen ublock-origin darkreader ];
+				extensions.packages = with addons; [ vim-vixen ublock-origin darkreader ];
 				search = {
 					force = true;
 					default = "bravesearch";
@@ -520,7 +520,7 @@ in
 			discord = {
 				id = 4;
 				name = "discord";
-				# extensions.packages = with addons; [ ublock-origin darkreader ];
+				extensions.packages = with addons; [ ublock-origin darkreader ];
 				search = {
 					force = true;
 					default = "bravesearch";

@@ -2,7 +2,6 @@
   gtk = {
     enable = true;
 
-    gtk4.theme = null; # enable new default behaviour on current, old nix stateVersion
     font = {
          name = "${theme.font}";
     };
