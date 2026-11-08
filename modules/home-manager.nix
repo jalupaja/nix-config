@@ -5,6 +5,10 @@
     useUserPackages = true;
     extraSpecialArgs = rec {
       inherit inputs;
+      pkgs-stable = import inputs.nixpkgs-stable {
+        system = pkgs.stdenv.hostPlatform.system;
+        config = config.nixpkgs.config;
+      };
       theme = import ./users/jalupa/theme.nix;
       globals = import ./users/jalupa/globals.nix {inherit pkgs;};
       scripts = import ./users/jalupa/scripts{inherit pkgs lib config;};

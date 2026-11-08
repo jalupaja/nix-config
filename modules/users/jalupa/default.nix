@@ -7,8 +7,7 @@
     ./programs_extra.nix
     ./programs_art.nix
     ./programs_temp.nix
-
-    # ./programs_stable.nix # TODO
+    ./programs_stable.nix
   ];
 
   home.username = "jalupa";
