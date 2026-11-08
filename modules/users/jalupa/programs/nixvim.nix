@@ -342,19 +342,20 @@ programs.nixvim = {
 						option.get_bufnrs.__raw = "vim.api.nvim_list_bufs";
 					}
 					{name = "neorg";}
-					{name = "minuet"; priority = 50;}
+					# {name = "minuet"; priority = 50;}
 					];
 				};
 			};
 
       # local AI integration
       minuet = {
-        enable = true;
+        enable = false;
         settings = {
           provider = "openai_compatible";
           provider_options = {
             openai_compatible = {
               end_point = "http://192.168.178.67:11434/v1/chat/completions";
+              api_key = "TERM";
               model = "gemma4:e4b";
               name = "Ollama";
               optional = {
