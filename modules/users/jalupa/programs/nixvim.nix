@@ -9,6 +9,10 @@ with inputs;
 # https://github.com/GaetanLepage/nix-config/tree/master/home/modules/tui/neovim
 imports = [ nixvim.homeModules.nixvim ];
 
+  home.packages = with pkgs; [
+    ltex-ls-plus
+  ];
+
 programs.nixvim = {
   enable = true;
 
@@ -133,15 +137,22 @@ programs.nixvim = {
 				servers = {
 					# Programming languages
 					clangd.enable = true; # C/C++
-						ruff.enable = false; # python
-						pylsp.enable = true; # python
-						pyright.enable = false; # python
-						java_language_server.enable = false; # java
-						rust_analyzer = { # rust
-							enable = true;
-							installRustc = true;
-							installCargo = true;
-						};
+          ruff.enable = false; # python
+          pylsp.enable = true; # python
+          pyright.enable = false; # python
+          java_language_server.enable = false; # java
+          rust_analyzer = { # rust
+            enable = true;
+            installRustc = true;
+            installCargo = true;
+          };
+          ltex = { # ltex_plus
+            enable = true;
+            settings = {
+              language = "auto";
+              checkFrequency = "save";
+            };
+          };
 					quick_lint_js.enable = true;
 
 					# script languages
@@ -331,9 +342,30 @@ programs.nixvim = {
 						option.get_bufnrs.__raw = "vim.api.nvim_list_bufs";
 					}
 					{name = "neorg";}
+					{name = "minuet"; priority = 50;}
 					];
 				};
 			};
+
+      # local AI integration
+      minuet = {
+        enable = true;
+        settings = {
+          provider = "openai_compatible";
+          provider_options = {
+            openai_compatible = {
+              end_point = "http://192.168.178.67:11434/v1/chat/completions";
+              model = "gemma4:e4b";
+              name = "Ollama";
+              optional = {
+                max_tokens = 256;
+                top_p = 0.9;
+              };
+              stream = true;
+            };
+          };
+        };
+      };
 
 			cmp-nvim-lsp.enable = true;
 			cmp_luasnip.enable = true;
