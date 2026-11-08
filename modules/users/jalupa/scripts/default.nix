@@ -17,7 +17,6 @@ in
   # https://discourse.nixos.org/t/how-to-create-a-script-with-dependencies/7970/8
 }
 // importNixScript "startup"
-// importShellScript "switchmonitor"
 // importNixScript  "monitorsetup"
 // importNixScript "mount"
 // importNixScript "kill"

@@ -1,320 +1,152 @@
-{ pkgs, lib, inputs, theme, globals, scripts, ... }:
-with inputs;
+{ pkgs, inputs, theme, globals, scripts, ... }:
+let
+  luaString = builtins.toJSON;
+in
 {
   wayland.windowManager.hyprland = {
     enable = true;
-    package = hyprland.packages.${pkgs.system}.hyprland;
+    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
     systemd.enable = true;
     xwayland.enable = true;
-    configType = "hyprlang"; # TODO only for this nixos stateVersion. Also change to lua if possible
+    configType = "lua";
+    plugins = [ inputs.hypr-dynamic-cursors.packages.${pkgs.stdenv.hostPlatform.system}.hypr-dynamic-cursors ];
 
-    plugins = [
-      # hyprsplit.packages.${pkgs.system}.hyprsplit
-      # hyprgrass.packages.${pkgs.system}.default
-			hypr-dynamic-cursors.packages.${pkgs.system}.hypr-dynamic-cursors
-    ];
+    extraConfig = ''
+      local hs = dofile(${luaString "${inputs.hyprsplit}/init.lua"})
+      hs.config({ num_workspaces = 9 })
+      local mod = "SUPER"
+      local terminal = ${luaString globals.term}
+      local runprompt = ${luaString "rofi -i -show combi -combi-modi \":${scripts.selector},drun\" -show combi"}
+      local volume = ${luaString (toString scripts.volume)}
+      local brightness = ${luaString (toString scripts.brightness)}
 
-    settings = {
-      "$terminal" = "${globals.term}";
-			"$runprompt" = ''rofi -i -show combi -combi-modi ":${scripts.selector},drun" -show combi'';
-      "$volume" = "${scripts.volume}";
-      "$brightness" = "${scripts.brightness}";
-      # TODO implement screenshot dmenu script
-      # TODO fix screenshot thing
+      hl.monitor({ output = "", mode = "preferred", position = "auto", scale = 1 })
+      hl.monitor({ output = "desc:Samsung Electric Company S24F350 H4ZJ203739", mode = "preferred", position = "auto", scale = 1, transform = 1 })
 
-      exec-once = scripts.startup;
+      hl.config({
+        input = {
+          kb_layout = "eu,de,us", kb_options = "caps:escape", follow_mouse = 2,
+          touchpad = { natural_scroll = true, disable_while_typing = true, drag_lock = 1 },
+        },
+        general = {
+          gaps_in = 5, gaps_out = 10, border_size = 2,
+          col = {
+            active_border = { colors = { "rgba(${theme.color_first}ee)", "rgba(${theme.color_second}ee)" }, angle = 45 },
+            inactive_border = "rgba(${theme.background}aa)",
+          },
+          layout = "scrolling", allow_tearing = false,
+        },
+        scrolling = { column_width = 0.5, fullscreen_on_one_column = true, focus_fit_method = 1, wrap_focus = true, wrap_swapcol = true },
+        decoration = {
+          rounding = 10, active_opacity = 0.90, inactive_opacity = 0.75, fullscreen_opacity = 1.0,
+          blur = { enabled = true, size = 5, passes = 3, new_optimizations = true },
+          shadow = { enabled = true, range = 4, render_power = 3 },
+        },
+        animations = { enabled = true },
+        dwindle = { preserve_split = true },
+        cursor = { enable_hyprcursor = true },
+        ecosystem = { no_update_news = true },
+      })
 
-      monitor = [
-        ",preferred,auto,1"
-        # rotate my vertical monitor
-        "desc:Samsung Electric Company S24F350 H4ZJ203739,preferred,auto,1,transform,1"
-      ];
+      hl.curve("myBezier", { type = "bezier", points = { {0.05, 0.09}, {0.1, 1.05} } })
+      hl.animation({ leaf = "windows", enabled = true, speed = 7, bezier = "myBezier" })
+      hl.animation({ leaf = "windowsOut", enabled = true, speed = 7, bezier = "default", style = "popin 80%" })
+      hl.animation({ leaf = "border", enabled = true, speed = 10, bezier = "default" })
+      hl.animation({ leaf = "borderangle", enabled = true, speed = 8, bezier = "default" })
+      hl.animation({ leaf = "fade", enabled = true, speed = 7, bezier = "default" })
+      hl.animation({ leaf = "workspaces", enabled = true, speed = 6, bezier = "default" })
 
-      input = {
-        kb_layout = "eu,de,us";
-        kb_options = "caps:escape";
+      if hl.plugin.dynamic_cursors then
+        hl.config({ plugin = { dynamic_cursors = {
+          enabled = true, mode = "stretch", shake = { enabled = true, threshold = 5.0 },
+          hyprcursor = { nearest = 2 },
+        } } })
+      end
 
-        follow_mouse = 2;
-        touchpad = {
-          natural_scroll = true;
-          disable_while_typing = true;
-          drag_lock = true;
-        };
-      };
+      hl.on("hyprland.start", function() hl.exec_cmd(${luaString (toString scripts.startup)}) end)
+      hl.bind(mod .. " + return", hl.dsp.exec_cmd(terminal))
+      hl.bind("CTRL + space", hl.dsp.exec_cmd(runprompt))
+      hl.bind(mod .. " + SHIFT + L", hl.dsp.exec_cmd(${luaString (toString scripts.lock)}))
+      hl.bind(mod .. " + V", hl.dsp.exec_cmd(${luaString (toString scripts.clipboard)}))
+      hl.bind(mod .. " + SHIFT + S", hl.dsp.exec_cmd("grimblast copy area"))
+      hl.bind(mod .. " + Q", hl.dsp.window.close())
+      hl.bind(mod .. " + SHIFT + CTRL + Q", hl.dsp.exit())
 
-      general = {
-        gaps_in = 5;
-        gaps_out = 10;
-        border_size = 2;
-        "col.active_border" = "rgba(${theme.color_first}ee) rgba(${theme.color_second}ee) 45deg";
-        "col.inactive_border" = "rgba(${theme.background}aa)";
+      local directions = { left = "left", H = "left", right = "right", L = "right", up = "up", K = "up", down = "down", J = "down" }
+      for key, direction in pairs(directions) do
+        hl.bind(mod .. " + " .. key, hl.dsp.focus({ direction = direction }))
+      end
+      for i = 1, 9 do
+        hl.bind(mod .. " + " .. i, hs.dsp.focus({ workspace = i }))
+        hl.bind(mod .. " + SHIFT + " .. i, hs.dsp.window.move({ workspace = i, follow = false }))
+      end
+      for key, name in pairs({ space = "scratch", n = "social", b = "bitwarden" }) do
+        hl.bind(mod .. " + " .. key, hl.dsp.workspace.toggle_special(name))
+        hl.bind(mod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = "special:" .. name, follow = false }))
+      end
+      hl.bind(mod .. " + period", hl.dsp.focus({ monitor = "+1" }))
+      hl.bind(mod .. " + comma", hl.dsp.focus({ monitor = "-1" }))
+      hl.bind(mod .. " + SHIFT + period", hs.dsp.window.move({ workspace = "r+1", follow = false }))
+      hl.bind(mod .. " + SHIFT + comma", hs.dsp.window.move({ workspace = "r-1", follow = false }))
+      hl.bind(mod .. " + mouse_down", hs.dsp.focus({ workspace = "e+1" }))
+      hl.bind(mod .. " + mouse_up", hs.dsp.focus({ workspace = "e-1" }))
+      hl.bind(mod .. " + M", hl.dsp.window.fullscreen({ mode = "maximized" }))
+      hl.bind(mod .. " + CTRL + M", hl.dsp.window.fullscreen({ mode = "fullscreen" }))
+      hl.bind(mod .. " + F", hl.dsp.window.float())
+      hl.bind(mod .. " + SHIFT + 0", hl.dsp.window.pin())
 
-        # layout = "dwindle";
-        layout = "scrolling";
+      local repeating = { repeating = true }
+      local function resize(x, y) return hl.dsp.window.resize({ x = x, y = y, relative = true }) end
+      hl.bind(mod .. " + SHIFT + equal", resize(10, 0), repeating)
+      hl.bind(mod .. " + minus", resize(-10, 0), repeating)
+      hl.bind(mod .. " + CTRL + SHIFT + equal", resize(0, 10), repeating)
+      hl.bind(mod .. " + CTRL + minus", resize(0, -10), repeating)
+      hl.bind(mod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
+      hl.bind(mod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
+      for key, command in pairs({
+        XF86AudioRaiseVolume = volume .. " -i", XF86AudioLowerVolume = volume .. " -d",
+        XF86AudioMute = volume .. " -t", XF86AudioMicMute = volume .. " -m",
+        XF86AudioPlay = "playerctl play-pause", XF86AudioPause = "playerctl play-pause",
+        XF86AudioNext = "playerctl next", XF86AudioPrev = "playerctl previous",
+        XF86MonBrightnessUp = brightness .. " -i", XF86MonBrightnessDown = brightness .. " -d",
+      }) do
+        hl.bind(key, hl.dsp.exec_cmd(command), { locked = true, repeating = true })
+      end
 
-        allow_tearing = false;
-      };
-
-      scrolling  = {
-        column_width = 0.5;
-        fullscreen_on_one_column = true;
-        focus_fit_method = 1;
-        wrap_focus = true;
-        wrap_swapcol = true;
-      };
-
-
-      decoration = {
-        rounding = 10;
-
-        active_opacity = 0.90;
-        inactive_opacity = 0.75;
-        fullscreen_opacity = 1.0;
-
-        blur = {
-          enabled = true;
-          size = 5;
-          passes = 3;
-          new_optimizations = true;
-        };
-
-				shadow = {
-					enabled = true;
-					range = 4;
-					render_power = 3;
-				};
-      };
-
-      animations = {
-        enabled = true;
-        bezier = "myBezier, 0.05, 0.09, 0.1, 1.05";
-
-        animation = [
-          "windows, 1, 7, myBezier"
-          "windowsOut, 1, 7, default, popin 80%"
-          "border, 1, 10, default"
-          "borderangle, 1, 8, default"
-          "fade, 1, 7, default"
-          "workspaces, 1, 6, default"
-        ];
-      };
-
-      dwindle = {
-        # pseudotile = true;
-        preserve_split = true;
-      };
-
-      cursor = {
-        enable_hyprcursor = true;
-      };
-
-      ecosystem.no_update_news = true;
-
-      "$mod" = "SUPER";
-
-      bind = [
-        # apps
-        "$mod, return, exec, $terminal"
-        "CTRL, space, exec, $runprompt"
-        "$mod SHIFT, L, exec, ${scripts.lock}"
-	"$mod, V, exec, ${scripts.clipboard}"
-        "$mod SHIFT, S, exec, grimblast copy area"
-
-        # kill window
-        "$mod, Q, killactive"
-
-        # kill hyprland
-        "$mod SHIFT CTRL, Q, exit"
-
-        # focus movement
-        "$mod, left, movefocus, l"
-        "$mod, H, movefocus, l"
-        "$mod, right, movefocus, r"
-        "$mod, L, movefocus, r"
-        "$mod, up, movefocus, u"
-        "$mod, K, movefocus, u"
-        "$mod, down, movefocus, d"
-        "$mod, J, movefocus, d"
-
-        # workspaces
-       # TODO split (but probably just change to lua)
-       "$mod, 1, workspace, 1"
-       "$mod, 2, workspace, 2"
-       "$mod, 3, workspace, 3"
-       "$mod, 4, workspace, 4"
-       "$mod, 5, workspace, 5"
-       "$mod, 6, workspace, 6"
-       "$mod, 7, workspace, 7"
-       "$mod, 8, workspace, 8"
-       "$mod, 9, workspace, 9"
-        "$mod, space, togglespecialworkspace, special:scratch"
-        "$mod, n, togglespecialworkspace, special:social"
-        "$mod, b, togglespecialworkspace, special:bitwarden"
-        "$mod, period, exec, ${scripts.switchmonitor} -n"
-        "$mod, comma, exec, ${scripts.switchmonitor} -p"
-
-        # touch workspaces
-       " , edge:l:r, workspace, e-1"
-       " , edge:r:l, workspace, e+1"
-
-        # window
-        "$mod, M, fullscreen, 1"
-        "$mod CTRL, M, fullscreen, 0"
-        "$mod, F, togglefloating"
-        "$mod SHIFT, 0, pin"
-
-        # move to workspace
-       "$mod SHIFT, 1, movetoworkspacesilent, 1"
-       "$mod SHIFT, 2, movetoworkspacesilent, 2"
-       "$mod SHIFT, 3, movetoworkspacesilent, 3"
-       "$mod SHIFT, 4, movetoworkspacesilent, 4"
-       "$mod SHIFT, 5, movetoworkspacesilent, 5"
-       "$mod SHIFT, 6, movetoworkspacesilent, 6"
-       "$mod SHIFT, 7, movetoworkspacesilent, 7"
-       "$mod SHIFT, 8, movetoworkspacesilent, 8"
-       "$mod SHIFT, 9, movetoworkspacesilent, 9"
-       "$mod SHIFT, space, movetoworkspacesilent, special:scratch"
-       "$mod SHIFT, n, movetoworkspacesilent, special:social"
-       "$mod SHIFT, b, movetoworkspacesilent, special:bitwarden"
-			 # TODO fix (doesn't exist in hyprsplit?!?)
-       "$mod SHIFT, period, movetoworkspacesilent, r+1"
-       "$mod SHIFT, comma, movetoworkspacesilent, r-1"
-
-       # Scroll through exisiting workspaces
-       "$mod, mouse_down, workspace, e+1"
-       "$mod, mouse_up, workspace, e-1"
-
-      ];
-
-      # resize window
-      binde = [
-        #"$mod, R, submap, resize" # TODO search for submaps in nixconf
-        "$mod SHIFT, equal, resizeactive, 10 0"
-        "$mod, minus, resizeactive, -10 0"
-        "$mod CTRL SHIFT, equal, resizeactive, 0 10"
-        "$mod CTRL, minus, resizeactive, 0 -10"
-      ];
-
-      # mouse
-      bindm = [
-        "$mod, mouse:272, movewindow"
-        "$mod, mouse:273, resizewindow"
-      ];
-
-      # activate even when locked, hold = repeat
-      bindle = [
-        # volume keys
-        ", XF86AudioRaiseVolume, exec, $volume -i"
-        ", XF86AudioLowerVolume, exec, $volume -d"
-        ", XF86AudioMute, exec, $volume -t"
-        ", XF86AudioMicMute, exec, $volume -m"
-        ", XF86AudioPlay, exec, playerctl play-pause"
-        ", XF86AudioPause, exec, playerctl play-pause"
-        ", XF86AudioNext, exec, playerctl next"
-        ", XF86AudioPrev, exec, playerctl previous"
-
-        # brightness keys
-        ", XF86MonBrightnessUp, exec, $brightness -i"
-        ", XF86MonBrightnessDown, exec, $brightness -d"
-      ];
-    };
-
-    extraConfig = "
-
-					plugin {
-						hyprsplit {
-							num_workspaces = 9
-						}
-						dynamic-cursors {
-							enable = true
-							mode = stretch
-							# mode = tilt
-							# mode = rotate # funny but no
-
-							shake {
-								enable = true
-								nearest = true
-								threshold = 5.0
-							}
-						}
-					}
-
-				# window resize
-          bind = $mod, R, submap, resize
-
-          submap = resize
-
-          binde = , left, resizeactive, -10 0
-          binde = , H, resizeactive, -10 0
-          binde = , right, resizeactive, 10 0
-          binde = , L, resizeactive, 10 0
-          binde = , up, resizeactive, 0 -10
-          binde = , K, resizeactive, 0 -10
-          binde = , down, resizeactive, 0 10
-          binde = , J, resizeactive, 0 10
-
-          bind = , escape, submap, reset
-          bind = , return, submap, reset
-          submap = reset
-
-          # window move
-          bind = $mod SHIFT, M, submap, move
-
-          submap = move
-
-          binde = , left, movewindow, l
-          binde = , H, movewindow, l
-          binde = , right, movewindow, r
-          binde = , L, movewindow, r
-          binde = , up, movewindow, u
-          binde = , K, movewindow, u
-          binde = , down, movewindow, d
-          binde = , J, movewindow, d
-
-          bind = , escape, submap, reset
-          bind = , return, submap, reset
-          submap = reset
-
-          # window swapping + window fixing
-          bind = $mod, S, submap, swap
-
-          submap = swap
-
-					# grap windows in invalid workspaces (can happen when unplugging a monitor)
-          # binde = , G, split:grabroguewindows
-          binde = , G,  submap, reset
-
-          binde = , left, swapwindow, l
-          binde = , left,  submap, reset
-          binde = , H, swapwindow, l
-          binde = , H,  submap, reset
-          binde = , right, swapwindow, r
-          binde = , right,  submap, reset
-          binde = , L, swapwindow, r
-          binde = , L,  submap, reset
-          binde = , up, swapwindow, u
-          binde = , up,  submap, reset
-          binde = , K, swapwindow, u
-          binde = , K,  submap, reset
-          binde = , down, swapwindow, d
-          binde = , down,  submap, reset
-          binde = , J, swapwindow, d
-          binde = , J,  submap, reset
-
-          bind = , escape, submap, reset
-          bind = , return, submap, reset
-          submap = reset
-
-          # togglesd
-          bind = $mod SHIFT, T, submap, toggle
-
-          submap = toggle
-          binde = , O, setprop, active opaque toggle
-          binde = , O, submap, reset
-
-          bind = , escape, submap, reset
-          bind = , return, submap, reset
-          submap = reset
-    ";
+      local function exits()
+        hl.bind("escape", hl.dsp.submap("reset"))
+        hl.bind("return", hl.dsp.submap("reset"))
+      end
+      hl.bind(mod .. " + R", hl.dsp.submap("resize"))
+      hl.define_submap("resize", function()
+        local sizes = { left = {-10, 0}, H = {-10, 0}, right = {10, 0}, L = {10, 0}, up = {0, -10}, K = {0, -10}, down = {0, 10}, J = {0, 10} }
+        for key, size in pairs(sizes) do hl.bind(key, resize(size[1], size[2]), repeating) end
+        exits()
+      end)
+      hl.bind(mod .. " + SHIFT + M", hl.dsp.submap("move"))
+      hl.define_submap("move", function()
+        for key, direction in pairs(directions) do hl.bind(key, hl.dsp.window.move({ direction = direction }), repeating) end
+        exits()
+      end)
+      hl.bind(mod .. " + S", hl.dsp.submap("swap"))
+      hl.define_submap("swap", function()
+        for key, direction in pairs(directions) do
+          hl.bind(key, function()
+            hl.dispatch(hl.dsp.window.swap({ direction = direction }))
+            hl.dispatch(hl.dsp.submap("reset"))
+          end)
+        end
+        hl.bind("G", hl.dsp.submap("reset"))
+        exits()
+      end)
+      hl.bind(mod .. " + SHIFT + T", hl.dsp.submap("toggle"))
+      hl.define_submap("toggle", function()
+        hl.bind("O", function()
+          hl.dispatch(hl.dsp.window.set_prop({ prop = "opaque", value = "toggle" }))
+          hl.dispatch(hl.dsp.submap("reset"))
+        end)
+        exits()
+      end)
+    '';
   };
 }
