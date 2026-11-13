@@ -1,5 +1,18 @@
-{ config, pkgs, inputs, theme, ... }:
+{ config, pkgs, pkgs-stable, inputs, theme, ... }:
+let
+  pkgsStable = pkgs-stable;
+  unfreePkgs = import pkgs.path {
+    inherit (pkgs.stdenv.hostPlatform) system;
+    config = pkgs.config // { allowUnfree = true; };
+  };
+  unfreePkgsStable = import pkgsStable.path {
+    inherit (pkgsStable.stdenv.hostPlatform) system;
+    config = pkgsStable.config // { allowUnfree = true; };
+  };
+in
 {
+  _module.args = { inherit pkgsStable unfreePkgs unfreePkgsStable; };
+
   imports = [
     ./programs_default.nix
     ./programs_desktop.nix

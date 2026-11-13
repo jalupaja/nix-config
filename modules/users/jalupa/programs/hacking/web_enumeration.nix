@@ -3,7 +3,7 @@
   home.packages = with pkgs; [
     ffuf
     gobuster
-    wpscan
+    wpscan # UNFREE
     nikto
     burpsuite # closed source
   ];

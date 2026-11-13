@@ -1,5 +1,5 @@
 # EXTRA PROGRAMS
-{ pkgs, ... }:
+{ pkgs, unfreePkgs, ... }:
 {
   home.packages = with pkgs; [
     brave # chromium based Browser
@@ -15,7 +15,7 @@
     prusa-slicer # 3D printing slicer
     element-desktop # matrix client
 		freecad # 3D CAD Design
-		obsidian # knowledge database
+		unfreePkgs.obsidian # knowledge database
 		docker # container runner
 		nmap # network mapping tool
     # arduino-ide # TODO -> dev
