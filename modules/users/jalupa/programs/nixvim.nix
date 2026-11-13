@@ -1,4 +1,4 @@
-{ pkgs, lib, inputs, theme, globals, ... }:
+{ pkgs, pkgsStable, lib, inputs, theme, globals, ... }:
 # TODO check what TODOs do
 with inputs;
 {
@@ -15,6 +15,7 @@ imports = [ nixvim.homeModules.nixvim ];
 
 programs.nixvim = {
   enable = true;
+  nixpkgs.pkgs = pkgsStable;
 
   defaultEditor = true;
     # TODO check
