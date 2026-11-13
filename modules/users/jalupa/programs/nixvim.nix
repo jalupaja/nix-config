@@ -95,7 +95,7 @@ programs.nixvim = {
 
 			nvim-autopairs.enable = true;
 
-			neogit.enable = false;
+			neogit.enable = true;
 
 			# TODO
 			startify = {
